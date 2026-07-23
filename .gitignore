@@ -1,0 +1,67 @@
+# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# dependencies
+/node_modules
+/.pnp
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/versions
+
+# testing
+/coverage
+
+# next.js
+/.next/
+/out/
+
+# production
+/build
+# esbuild 输出目录（Dockerfile 在 builder stage 用，本地编译验证不入库）
+/dist
+
+# misc
+.DS_Store
+*.pem
+
+# debug
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# env files (can opt-in for committing if needed)
+.env*
+!.env.example
+
+# vercel
+.vercel
+
+# typescript
+*.tsbuildinfo
+next-env.d.ts
+
+# runtime logs（翻译失败、管道输出等）
+/logs/
+
+# tmp 目录用于本地测试脚本和临时验证产物，不入库
+/tmp/
+
+# 兵法视频：Remotion 渲染产物 / 生成音频（本地专用，不入库）
+/remotion/public/
+/.remotion/
+
+# 密钥：GA4 Service Account key 等，绝不入库
+/.secrets/
+*ga-sa*.json
+gcp-*.json
+
+# git worktrees（隔离开发工作区）
+/.worktrees/
+
+# 兵法视频：EP 素材缓存与构建产物（md 与 spec.json 入库，其余不入）
+/content/bingfa/episodes/*/audio/
+/content/bingfa/episodes/*/images/
+/content/bingfa/episodes/*/build/
