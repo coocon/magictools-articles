@@ -1,6 +1,8 @@
 ---
 title: "Password Security Guide: How to Create, Store & Manage Strong Passwords"
-slug: "password-security-guide"
+slug: "password-security-guide-en"
+locale: en
+translationSlug: "password-security-guide"
 category: utility
 tags:
   - password security

@@ -1,6 +1,7 @@
 ---
 title: "Prompt Engineering for Beginners: 10 Techniques That Actually Work"
-slug: "prompt-engineering-beginners-10-techniques"
+slug: "prompt-engineering-beginners-10-techniques-en"
+locale: en
 category: ai-prompts
 tags:
   - prompt engineering

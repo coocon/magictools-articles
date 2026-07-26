@@ -1,6 +1,8 @@
 ---
 title: "JSON vs XML vs YAML: Which Data Format Should You Use?"
-slug: "json-xml-yaml-comparison"
+slug: "json-xml-yaml-comparison-en"
+locale: en
+translationSlug: "json-xml-yaml-comparison"
 category: developer
 tags:
   - JSON

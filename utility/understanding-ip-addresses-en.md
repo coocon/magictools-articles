@@ -1,6 +1,7 @@
 ---
 title: "Understanding IP Addresses: A Complete Beginner's Guide"
-slug: "understanding-ip-addresses-beginners-guide"
+slug: "understanding-ip-addresses-beginners-guide-en"
+locale: en
 category: utility
 tags:
   - IP address

@@ -1,5 +1,5 @@
 ---
-title: "Files API with Claude: Reuse Uploaded Documents Without Repeating Work"
+title: "Claude Files API: Upload Once, Reuse Documents Across Requests"
 slug: "claude-files-api-guide-en"
 category: ai-tutorials
 tags:
@@ -7,7 +7,7 @@ tags:
   - anthropic
   - files api
   - api
-summary: "A practical guide to Claude's Files API, including upload-once workflows, file_id reuse, supported file types, and the situations where Files API reduces repeated uploads."
+summary: "Claude's Files API lets you upload a document once and reference it by file_id across many requests, instead of resending the same content every time. This guide covers the upload-once workflow, supported file types, the pitfalls to watch for, and when Files API is the right call."
 coverImage: ""
 status: published
 scheduledAt: ""

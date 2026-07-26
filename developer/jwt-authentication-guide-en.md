@@ -1,6 +1,8 @@
 ---
 title: "JWT Authentication Explained: How It Works & Security Best Practices"
-slug: "jwt-authentication-guide"
+slug: "jwt-authentication-guide-en"
+locale: en
+translationSlug: "jwt-authentication-guide"
 category: developer
 tags:
   - JWT

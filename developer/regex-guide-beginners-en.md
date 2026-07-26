@@ -1,6 +1,7 @@
 ---
 title: "Regular Expressions for Beginners: 10 Practical Examples You'll Actually Use"
-slug: "regex-guide-beginners"
+slug: "regex-guide-beginners-en"
+locale: en
 category: developer
 tags:
   - regex

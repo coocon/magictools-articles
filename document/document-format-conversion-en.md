@@ -1,6 +1,8 @@
 ---
 title: "Document Format Conversion Guide: Markdown, HTML, PDF & More"
-slug: "document-format-conversion-guide"
+slug: "document-format-conversion-guide-en"
+locale: en
+translationSlug: "document-format-conversion-guide"
 category: document
 tags:
   - document conversion

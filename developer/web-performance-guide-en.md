@@ -1,6 +1,7 @@
 ---
 title: "Web Performance Optimization: 15 Techniques to Speed Up Your Website"
-slug: "web-performance-guide"
+slug: "web-performance-guide-en"
+locale: en
 category: developer
 tags:
   - web performance

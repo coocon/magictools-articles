@@ -1,6 +1,7 @@
 ---
 title: "Best Free Online Developer Tools in 2026: The Ultimate Curated List"
-slug: "best-free-online-developer-tools-2026"
+slug: "best-free-online-developer-tools-2026-en"
+locale: en
 category: developer
 tags:
   - developer tools
