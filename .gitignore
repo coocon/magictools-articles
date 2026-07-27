@@ -65,3 +65,9 @@ gcp-*.json
 /content/bingfa/episodes/*/audio/
 /content/bingfa/episodes/*/images/
 /content/bingfa/episodes/*/build/
+
+# 短视频工厂 shorts/：素材缓存与渲染产物不入库
+# 入库的是：script.md / spec.json / frames.lock.json / timeline.json / metrics.jsonl
+# 以及 ip/*/refs/（角色参考图是资产不是缓存，必须入库）
+/shorts/episodes/*/assets/
+/shorts/remotion/public/

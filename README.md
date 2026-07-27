@@ -31,10 +31,23 @@
 | [Claude Code Tips and Best Practices (en)](./claude/claude-code-best-practices-en.md) | English |
 | *[更多 Claude 英文版文章...](./claude/)* | 35篇双语覆盖 |
 
-## AI 教程系列（62 篇）
+## AI 教程系列（64 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [「关灯」软件工厂跑了四个月，他的联合创始人手写了两周代码善后](./ai-tutorials/lights-off-software-factory-postmortem.md) | 中文 🆕 |
+| [They Ran a Lights-Off Software Factory for Four Months (en)](./ai-tutorials/lights-off-software-factory-postmortem-en.md) | English 🆕 |
+| [劝美国别禁中国开源模型的人，正是当年被 Kubernetes 干掉的那个创始人](./ai-tutorials/open-weight-ai-kubernetes-moment.md) | 中文 🆕 |
+| [The Man Warning America Not to Ban Chinese Open Models Is the Founder Kubernetes Killed (en)](./ai-tutorials/open-weight-ai-kubernetes-moment-en.md) | English 🆕 |
+| [三个时钟：Kimi K3 的权重为什么还没发出来](./ai-tutorials/kimi-k3-weights-three-clocks.md) | 中文 🆕 |
+| [Three Clocks: Why Kimi K3's Weights Still Are Not Out (en)](./ai-tutorials/kimi-k3-weights-three-clocks-en.md) | English 🆕 |
+| [Anthropic 删掉了 Claude Code 80% 的系统提示词，评测分没动](./ai-tutorials/context-engineering-claude-5-deleted-80-percent.md) | 中文 🆕 |
+| [Anthropic Deleted 80% of Claude Code's System Prompt (en)](./ai-tutorials/context-engineering-claude-5-deleted-80-percent-en.md) | English 🆕 |
+| [当 API token 卖到官方价的 3%，你买的就不是 token 了](./ai-tutorials/llm-token-relay-market-anatomy.md) | 中文 🆕 |
+| [When API Tokens Sell at 3% of List Price (en)](./ai-tutorials/llm-token-relay-market-anatomy-en.md) | English 🆕 |
+| [Kimi K3 开权重前夜：四个被广泛误读的数字](./ai-tutorials/kimi-k3-open-weights-four-numbers.md) | 中文 🆕 |
+| [Four Numbers Everyone Is Misreading About Kimi K3 (en)](./ai-tutorials/kimi-k3-open-weights-four-numbers-en.md) | English 🆕 |
+| [一个 AI 为了刷榜，自己越狱黑进了 Hugging Face](./ai-tutorials/ai-sandbox-escape-open-source-debate.md) | 中文 |
 | [一个人用 AI 流水线做出 156 支双语视频](./ai-tutorials/ai-video-pipeline-156-videos.md) | 中文 |
 | [从 Opus 切换到 Fable 5：工具调用实战](./ai-tutorials/claude-fable-5-experience.md) | 中文 |
 | [Claude Artifacts 基础指南](./ai-tutorials/claude-artifacts-basics-guide.md) | 中文 |
@@ -111,12 +124,12 @@
 | 分类 | 中文 | 英文 | 合计 |
 |------|------|------|------|
 | Claude 系列 | 17 | 18 | 35 |
-| AI 教程 | 31 | 31 | 62 |
+| AI 教程 | 32 | 32 | 64 |
 | AI Prompt | 1 | 1 | 2 |
 | 开发者工具 | 13 | 13 | 26 |
 | 文档处理 | 7 | 7 | 14 |
 | 实用工具 | 10 | 9 | 19 |
-| **总计** | **79** | **79** | **158** |
+| **总计** | **80** | **80** | **160** |
 
 ---
 
