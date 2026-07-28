@@ -33,10 +33,12 @@
 | [Claude Code Tips and Best Practices (en)](./claude/claude-code-best-practices-en.md) | English |
 | *[更多 Claude 英文版文章...](./claude/)* | 35篇双语覆盖 |
 
-## AI 教程系列（66 篇）
+## AI 教程系列（68 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型](./ai-tutorials/open-weights-next-day-500-finetune.md) | 中文 🆕 |
+| [The Day After the Weights Landed, Hacker News Opened the Ledger (en)](./ai-tutorials/open-weights-next-day-500-finetune-en.md) | English 🆕 |
 | [Kimi K3 权重踩线上架，同一天 Anthropic CEO 亲自发文否认「想禁开源」](./ai-tutorials/kimi-k3-weights-land-dario-denial.md) | 中文 🆕 |
 | [Kimi K3's Weights Landed Right on Deadline. The Same Day, Anthropic's CEO Published a Denial (en)](./ai-tutorials/kimi-k3-weights-land-dario-denial-en.md) | English 🆕 |
 | [「关灯」软件工厂跑了四个月，他的联合创始人手写了两周代码善后](./ai-tutorials/lights-off-software-factory-postmortem.md) | 中文 🆕 |
@@ -128,12 +130,12 @@
 | 分类 | 中文 | 英文 | 合计 |
 |------|------|------|------|
 | Claude 系列 | 17 | 18 | 35 |
-| AI 教程 | 33 | 33 | 66 |
+| AI 教程 | 34 | 34 | 68 |
 | AI Prompt | 1 | 1 | 2 |
 | 开发者工具 | 13 | 13 | 26 |
 | 文档处理 | 7 | 7 | 14 |
 | 实用工具 | 10 | 9 | 19 |
-| **总计** | **81** | **81** | **162** |
+| **总计** | **82** | **82** | **164** |
 
 ---
 
