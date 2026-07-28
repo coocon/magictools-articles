@@ -33,10 +33,12 @@
 | [Claude Code Tips and Best Practices (en)](./claude/claude-code-best-practices-en.md) | English |
 | *[更多 Claude 英文版文章...](./claude/)* | 35篇双语覆盖 |
 
-## AI 教程系列（68 篇）
+## AI 教程系列（70 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [同一个模型，测出 11 小时和 11400 小时：benchmark 是怎么失去测量能力的](./ai-tutorials/benchmarks-stopped-measuring.md) | 中文 🆕 |
+| [Same Model, 11 Hours or 11,400: How Benchmarks Stopped Measuring (en)](./ai-tutorials/benchmarks-stopped-measuring-en.md) | English 🆕 |
 | [权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型](./ai-tutorials/open-weights-next-day-500-finetune.md) | 中文 🆕 |
 | [The Day After the Weights Landed, Hacker News Opened the Ledger (en)](./ai-tutorials/open-weights-next-day-500-finetune-en.md) | English 🆕 |
 | [Kimi K3 权重踩线上架，同一天 Anthropic CEO 亲自发文否认「想禁开源」](./ai-tutorials/kimi-k3-weights-land-dario-denial.md) | 中文 🆕 |
@@ -130,12 +132,12 @@
 | 分类 | 中文 | 英文 | 合计 |
 |------|------|------|------|
 | Claude 系列 | 17 | 18 | 35 |
-| AI 教程 | 34 | 34 | 68 |
+| AI 教程 | 35 | 35 | 70 |
 | AI Prompt | 1 | 1 | 2 |
 | 开发者工具 | 13 | 13 | 26 |
 | 文档处理 | 7 | 7 | 14 |
 | 实用工具 | 10 | 9 | 19 |
-| **总计** | **82** | **82** | **164** |
+| **总计** | **83** | **83** | **166** |
 
 ---
 
