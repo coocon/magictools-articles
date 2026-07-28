@@ -3,6 +3,7 @@ title: "Claude Code 2026 新功能盘点：Agent Teams、嵌套子代理与后�
 slug: claude-code-2026-new-features-zh
 category: claude
 locale: zh
+translationSlug: claude-code-2026-new-features-en
 tags: [Claude Code, Agent Teams, 子代理, Fast Mode, 2026新功能, AI编程]
 summary: "2026 年上半年 Claude Code 的能力边界被大幅推宽：多智能体团队协作、可递归 5 层的嵌套子代理、后台会话与 Agent View、Opus 级 Fast Mode。本文基于官方文档与 changelog，逐一讲清每个新功能是什么、怎么开、什么场景值得用。"
 status: published

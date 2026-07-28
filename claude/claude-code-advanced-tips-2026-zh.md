@@ -3,6 +3,7 @@ title: "Claude Code 进阶实战：会话恢复、Checkpoint 回滚与 Headless 
 slug: claude-code-advanced-tips-2026-zh
 category: claude
 locale: zh
+translationSlug: claude-code-advanced-tips-2026-en
 tags: [Claude Code, 实用技巧, Headless, Checkpoint, 上下文管理, 成本控制]
 summary: "从会话命名恢复、/rewind 时光机、上下文瘦身，到 headless 模式接入 CI、按路径生效的规则文件、自动记忆——10 个官方文档记载但多数人没用起来的 Claude Code 进阶技巧，每条都给出具体命令和适用场景。"
 status: published

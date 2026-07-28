@@ -3,6 +3,7 @@ title: "10 Advanced Claude Code Techniques: Session Recovery, Checkpoint Rewind,
 slug: claude-code-advanced-tips-2026-en
 category: claude
 locale: en
+translationSlug: claude-code-advanced-tips-2026-zh
 tags: [Claude Code, tips, headless, checkpoint, context management, cost control]
 summary: "From named sessions and the /rewind time machine to context slimming, path-scoped rules, auto memory, and wiring Claude Code into CI with headless mode — 10 advanced techniques straight from the official docs that most users never open, each with the exact commands and when to use them."
 status: published

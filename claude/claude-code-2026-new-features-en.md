@@ -3,6 +3,7 @@ title: "What's New in Claude Code in 2026: Agent Teams, Nested Subagents, and Ba
 slug: claude-code-2026-new-features-en
 category: claude
 locale: en
+translationSlug: claude-code-2026-new-features-zh
 tags: [Claude Code, Agent Teams, subagents, Fast Mode, new features 2026, AI coding]
 summary: "The first half of 2026 pushed Claude Code well beyond the single-session workflow: multi-agent teams, subagents that recurse up to 5 levels deep, background sessions with Agent View, and an Opus-class Fast Mode. Based on the official docs and changelog, here is what each feature does, how to turn it on, and when it's actually worth using."
 status: published
