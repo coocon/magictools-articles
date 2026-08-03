@@ -6,10 +6,12 @@
 
 ---
 
-## Claude Code 系列（35 篇）
+## Claude Code 系列（37 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了](./claude/claude-code-auto-mode-permission-trap.md) | 中文 🆕 |
+| [Claude Code's Auto Mode Judges a Model With a Model (en)](./claude/claude-code-auto-mode-permission-trap-en.md) | English 🆕 |
 | [Claude Code 完全指南：从安装到高效编程](./claude/claude-code-guide.md) | 中文 |
 | [Claude Code 高效使用技巧与最佳实践](./claude/claude-code-best-practices.md) | 中文 |
 | [Claude Code Hooks：自定义自动化工作流](./claude/claude-code-hooks.md) | 中文 |
@@ -33,10 +35,18 @@
 | [Claude Code Tips and Best Practices (en)](./claude/claude-code-best-practices-en.md) | English |
 | *[更多 Claude 英文版文章...](./claude/)* | 35篇双语覆盖 |
 
-## AI 教程系列（70 篇）
+## AI 教程系列（78 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [Opus 5 发布一周：数据说它更准，体感说它更烦——这其实是同一件事](./ai-tutorials/opus-5-week-one-verdict.md) | 中文 🆕 |
+| [One Week With Claude Opus 5: More Precise, More Annoying — Same Thing (en)](./ai-tutorials/opus-5-week-one-verdict-en.md) | English 🆕 |
+| [AI 发现弱点用了 60 小时，人类验证用了一个月：HAWK 成为第一个被 AI 淘汰的 NIST 候选算法](./ai-tutorials/hawk-first-algorithm-retired-by-ai.md) | 中文 🆕 |
+| [The AI Found the Weakness in 60 Hours. Humans Took a Month to Verify It. (en)](./ai-tutorials/hawk-first-algorithm-retired-by-ai-en.md) | English 🆕 |
+| [7 月 28 日，MCP 的成人礼：协议砍掉状态，生态打响第一场官司](./ai-tutorials/mcp-stateless-spec-first-lawsuit.md) | 中文 🆕 |
+| [July 28 Was MCP's Coming of Age: The Protocol Dropped State, the Ecosystem Got Its First Lawsuit (en)](./ai-tutorials/mcp-stateless-spec-first-lawsuit-en.md) | English 🆕 |
+| [7 月 27 日，AI 安全分裂成两个阵营——微软两边都押了注](./ai-tutorials/ai-security-two-camps-microsoft-both.md) | 中文 🆕 |
+| [On July 27, AI Security Split Into Two Camps. Microsoft Bet on Both. (en)](./ai-tutorials/ai-security-two-camps-microsoft-both-en.md) | English 🆕 |
 | [同一个模型，测出 11 小时和 11400 小时：benchmark 是怎么失去测量能力的](./ai-tutorials/benchmarks-stopped-measuring.md) | 中文 🆕 |
 | [Same Model, 11 Hours or 11,400: How Benchmarks Stopped Measuring (en)](./ai-tutorials/benchmarks-stopped-measuring-en.md) | English 🆕 |
 | [权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型](./ai-tutorials/open-weights-next-day-500-finetune.md) | 中文 🆕 |
@@ -131,13 +141,13 @@
 
 | 分类 | 中文 | 英文 | 合计 |
 |------|------|------|------|
-| Claude 系列 | 17 | 18 | 35 |
-| AI 教程 | 35 | 35 | 70 |
+| Claude 系列 | 18 | 19 | 37 |
+| AI 教程 | 39 | 39 | 78 |
 | AI Prompt | 1 | 1 | 2 |
 | 开发者工具 | 13 | 13 | 26 |
 | 文档处理 | 7 | 7 | 14 |
 | 实用工具 | 10 | 9 | 19 |
-| **总计** | **83** | **83** | **166** |
+| **总计** | **88** | **88** | **176** |
 
 ---
 
