@@ -2,6 +2,8 @@
 title: "Claude Files API：上传一次，反复复用文档"
 slug: "claude-files-api-guide"
 category: ai-tutorials
+locale: zh
+translationSlug: "claude-files-api-guide-en"
 tags:
   - claude
   - anthropic
