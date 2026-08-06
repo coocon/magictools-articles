@@ -4,7 +4,14 @@ slug: claude-code-auto-mode-permission-trap-en
 category: claude
 locale: en
 translationSlug: claude-code-auto-mode-permission-trap
-tags: [Claude Code, permissions, auto mode, API relay, troubleshooting, developer workflow]
+tags: [Claude Code, permissions, auto mode, API relay, troubleshooting, developer workflow, claude-code-lab]
+lab:
+  testedAt: "2026-07-28"
+  ccVersion: "2.1.220"
+  model: "auto mode (classifier: claude-opus-5[1m])"
+  platform: macOS
+  status: reproducible
+docsUrl: https://docs.claude.com/en/docs/claude-code/settings
 summary: "Auto permission mode calls your session model to judge whether each Bash command is safe — the judge and the worker are the same model. When it goes unavailable you land in a counterintuitive half-paralysis: reading files works, but you can't run a single cat. This is a log of a real debugging session in which I proposed three entirely reasonable hypotheses and knocked all three down with controlled experiments, leaving exactly one dependable way out."
 status: published
 ---

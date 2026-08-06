@@ -4,7 +4,14 @@ slug: claude-code-auto-mode-permission-trap
 category: claude
 locale: zh
 translationSlug: claude-code-auto-mode-permission-trap-en
-tags: [Claude Code, 权限管理, auto 模式, API 中转, 故障排查, 开发者工作流]
+tags: [Claude Code, 权限管理, auto 模式, API 中转, 故障排查, 开发者工作流, claude-code-lab]
+lab:
+  testedAt: "2026-07-28"
+  ccVersion: "2.1.220"
+  model: "auto mode (classifier: claude-opus-5[1m])"
+  platform: macOS
+  status: reproducible
+docsUrl: https://docs.claude.com/en/docs/claude-code/settings
 summary: "auto 权限模式在放行 Bash 前会额外调用一次当前会话模型，来判定这条命令安不安全——判定器和干活的是同一个模型。模型一旦不可用，你会撞进一个反直觉的半瘫状态：读文件、搜代码全都正常，但一条 cat 都跑不了。这篇文章记录了一次真实排查：我先后提出三个听起来都很合理的假设，又用对照实验把它们逐个推翻，最后只剩下一条真正可靠的退路。"
 status: published
 ---
