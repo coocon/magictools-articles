@@ -6,10 +6,12 @@
 
 ---
 
-## Claude Code 系列（37 篇）
+## Claude Code 系列（44 篇）
 
 | 文章 | 语言 |
 |------|------|
+| [我按「删掉这 5 类提示词」清了 Opus 5 配置，然后跑了 18 次 A/B：省了 21%，但「更好」我拿不出证据](./claude/opus-5-prompt-diet-ab-test.md) | 中文 🆕 |
+| [I Put My Opus 5 Config on the Recommended Diet, Then Ran 18 A/B Trials (en)](./claude/opus-5-prompt-diet-ab-test-en.md) | English 🆕 |
 | [Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了](./claude/claude-code-auto-mode-permission-trap.md) | 中文 🆕 |
 | [Claude Code's Auto Mode Judges a Model With a Model (en)](./claude/claude-code-auto-mode-permission-trap-en.md) | English 🆕 |
 | [Claude Code 完全指南：从安装到高效编程](./claude/claude-code-guide.md) | 中文 |
