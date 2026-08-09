@@ -38,6 +38,10 @@ There are two independent model call chains here:
 
 With that chain down, the permission system has no verdict to act on. It cannot default to "allow," so it blocks everything. Read-only tools never enter that step at all, so they come through untouched.
 
+![Two model call chains side by side: a Read/Grep request goes request → main loop → tool execution and succeeds, while a Bash request goes request → main loop → safety classifier, where the second model call is unavailable, leaving no verdict and blocking the command](https://cdn.tools.cooconsbit.com/uploads/hermes/2026-08-09/1786292779000-b21019d6.png)
+
+*A diagram, not a screenshot — this failure only appears while the classifier is genuinely unreachable, so it can't be staged on demand. The error text quoted at the bottom is verbatim from the session on 2026-07-28 (v2.1.220).*
+
 **The classifier runs on the exact model you're working with.** There's direct evidence for this: the model ID named in the error changes when you switch session models. After I moved my config from `opus[1m]` to `opus`, the error text shifted from `claude-opus-5[1m]` to `claude-opus-5` in lockstep. The classifier isn't some separate small model — it's the one in your session.
 
 ## What each permission mode actually trusts

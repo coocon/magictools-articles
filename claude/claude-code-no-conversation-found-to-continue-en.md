@@ -40,6 +40,10 @@ $ CLAUDE_CODE_ENTRYPOINT=sdk-cli claude --continue
 # ← interactive UI opens normally, with the -p session history fully loaded
 ```
 
+![Terminal transcript: claude -p returns OK, ls shows the session .jsonl sitting in ~/.claude/projects, bare claude --continue answers "No conversation found to continue", yet claude -p --continue recalls 42 from that same session](https://cdn.tools.cooconsbit.com/uploads/hermes/2026-08-09/1786292779000-f1c28cd5.png)
+
+*Typeset from the real run on v2.1.226 (2026-08-10) — commands and output are reproduced verbatim, only the colours and spacing are ours. The `ls` line is the point: the session file the interactive mode says it can't find is sitting right there on disk.*
+
 The contrast between steps 2 and 3 is the whole story: **the same session data continues fine in headless mode but is "not found" in interactive mode**. The session file sits happily in `~/.claude/projects/<project-path>/` as a `.jsonl` — we checked, and sessions created by `-p` live in the same place, in the same format, as interactive ones.
 
 ## The trap: a filter applied one command too far
@@ -52,7 +56,9 @@ The problem: that filter was **also applied to `--continue`**, whose semantics �
 - The headless path `-p --continue` was fixed after an earlier issue (#43013) → works all along
 - The data layer is intact: session metadata, entrypoint fields, and jsonl content are all fine
 
-The GitHub issue ([#82536](https://github.com/anthropics/claude-code/issues/82536), reported on Fedora + tmux) and our macOS reproduction confirm each other — this is a cross-platform logic bug, not an environment quirk, present from v2.1.90 through v2.1.220 and counting.
+The GitHub issue ([#82536](https://github.com/anthropics/claude-code/issues/82536), reported on Fedora + tmux) and our macOS reproduction confirm each other — this is a cross-platform logic bug, not an environment quirk, present from v2.1.90 through v2.1.226 and counting.
+
+**Update 2026-08-10** — re-ran the same four steps on **v2.1.226**, which is the current latest on npm. Identical behaviour. v2.1.90 shipped on 2026-04-01, so the regression has now survived 114 published releases and just over four months, with the issue still open and no linked PR.
 
 ## Two verified workarounds
 
@@ -74,7 +80,7 @@ One debugging trap to know: if you run `claude --continue` through a pipe or red
 
 ## Scope and boundaries
 
-- Affects every version since v2.1.90 (tested here on v2.1.220, same version as the issue report; unfixed with no linked PR at the time of writing)
+- Affects every version since v2.1.90 (first tested here on v2.1.220, the same version as the issue report; re-confirmed on v2.1.226, the current latest — unfixed, no linked PR)
 - Only **interactive** `--continue`/`--resume` discovery of `-p`/SDK sessions is affected; headless `-p --continue` is fine
 - Reproduced on both macOS and Fedora; model-independent
 - Inferred from the filtering mechanism (not separately tested): when a directory holds both an interactive session and a newer `-p` session, interactive `--continue` will skip the `-p` session and silently pick up the older interactive one — no error, but not the "latest" session you meant, which is sneakier than failing outright
