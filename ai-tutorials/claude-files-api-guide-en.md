@@ -1,5 +1,5 @@
 ---
-title: "Claude Files API Guide (2026): Upload Once, Reuse by file_id"
+title: "Claude Files API: Upload Once, Never Attach Again"
 slug: "claude-files-api-guide-en"
 category: ai-tutorials
 locale: en
@@ -9,7 +9,7 @@ tags:
   - anthropic
   - files api
   - api
-summary: "Upload a document to Claude once, then reference it by file_id across requests. Covers the upload workflow, supported file types, limits, and the pitfalls to watch for."
+summary: "Anthropic's Files API lets you upload documents once and reference them by file_id across all future requests. Covers the workflow, limits, and the pitfalls nobody tells you about."
 coverImage: ""
 status: published
 scheduledAt: ""
