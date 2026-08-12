@@ -1,7 +1,7 @@
 ---
-title: "Cloudflare Wallets Explained: An Identity and a Stablecoin Wallet for AI Agents — cloudflare.pay Handles Are Live"
+title: "Cloudflare Wallets: What They Are and How to Get a Handle"
 slug: cloudflare-wallets-agent-wallet-guide-en
-summary: "On August 4, 2026, Cloudflare announced Cloudflare Wallets and cloudflare.pay during Agents Week: a human-readable, stable identity for AI agents plus a stablecoin wallet with owner-defined spending guardrails. This guide covers the problem it solves, how Account Wallets and Virtual Wallets split responsibilities, how x402 micropayments complete the two-sided agentic market, and the one thing you can do today — reserve your wallet handle."
+summary: "How Cloudflare Wallets work: a stable identity plus a stablecoin wallet for AI agents, spending guardrails, x402 payments — and how to reserve your cloudflare.pay handle today."
 category: ai-tutorials
 tags: [Cloudflare, AI Agent, stablecoin, x402, agentic commerce, agent payments]
 status: published
@@ -9,8 +9,6 @@ locale: en
 source: authored
 translationSlug: cloudflare-wallets-agent-wallet-guide
 ---
-
-# Cloudflare Wallets Explained: An Identity and a Stablecoin Wallet for AI Agents — cloudflare.pay Handles Are Live
 
 On August 4, 2026, Cloudflare (NYSE: NET) dropped one of the headline announcements of its Agents Week: **Cloudflare Wallets** and **cloudflare.pay**. In one sentence — AI agents deployed on Cloudflare get a stable, human-readable identity, plus a stablecoin wallet whose spending limits are set by their human owners.
 

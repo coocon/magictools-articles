@@ -1,5 +1,5 @@
 ---
-title: "Claude PDF Analysis Guide: Extract Text, Tables, and Visual Details"
+title: "Claude PDF Analysis: Extract Text, Tables, and Charts"
 slug: "claude-pdf-analysis-guide-en"
 category: ai-tutorials
 tags:
@@ -7,7 +7,7 @@ tags:
   - anthropic
   - pdf
   - vision
-summary: "A practical guide to analyzing PDFs with Claude, including limits, prompt structure, and workflows for extracting text, tables, charts, and visual details."
+summary: "How to analyze PDFs with Claude: page and size limits, prompt patterns, and workflows for extracting text, tables, charts, and form fields from real documents."
 coverImage: ""
 status: published
 scheduledAt: ""

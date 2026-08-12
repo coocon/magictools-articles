@@ -1,5 +1,5 @@
 ---
-title: "Markdown vs Rich Text vs RTF — Pick Wrong and Your Content Becomes Hostage"
+title: "Markdown vs Rich Text vs RTF: Which to Use (2026)"
 slug: "markdown-vs-rich-text-editors-2026-en"
 category: document
 locale: en
@@ -12,7 +12,7 @@ tags:
   - writing tools
   - comparison
   - productivity
-summary: "RTF stores formatting codes, Markdown stores structure. That one difference determines portability, searchability, and whether your content survives the next tool migration."
+summary: "Markdown vs rich text vs RTF, compared on portability, search, and tool lock-in — plus a simple rule for picking the right format for notes, docs, and blogs."
 coverImage: ""
 status: published
 scheduledAt: ""
