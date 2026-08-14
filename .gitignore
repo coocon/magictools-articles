@@ -71,3 +71,6 @@ gcp-*.json
 # 以及 ip/*/refs/（角色参考图是资产不是缓存，必须入库）
 /shorts/episodes/*/assets/
 /shorts/remotion/public/
+
+# 文章同步本地缓存（slug → payload hash），不入库
+/.articles-sync-cache.json
