@@ -31,7 +31,7 @@ Anthropic 签署了欧盟《人工智能法案》第 50(2) 条《AI 生成内容
 
 很多人听到"隐形文本水印"，第一反应是零宽空格（U+200B）、变体选择符这类隐藏 Unicode 字符。**这不是 Claude 用的方案**——隐藏字符在十六进制编辑器里一览无余，一次查找替换就能清空，作为溯源机制毫无价值。
 
-官方文档没有披露具体算法，但多家媒体和技术分析指向同一类技术：**采样水印（token sampling watermark）**，与 Google DeepMind 2024 年发表在 Nature 上的 SynthID-Text 同源，思路可追溯到 Scott Aaronson 2022 年的提案。工作方式大致是：
+最初的帮助中心文档没有披露具体算法，但多家媒体和技术分析指向同一类技术：**采样水印（token sampling watermark）**，与 Google DeepMind 2024 年发表在 Nature 上的 SynthID-Text 同源，思路可追溯到 Scott Aaronson 2022 年的提案。**2026 年 8 月 16 日，Anthropic 在官网发布《How Claude's Text Watermark Works》，正式确认了这一机制**（见下方更新章节）。工作方式大致是：
 
 - 模型生成每个词时，本来就在一堆候选词里按概率采样
 - 水印算法按某种隐藏规则，对部分候选词施加**轻微的概率偏置**
@@ -40,6 +40,24 @@ Anthropic 签署了欧盟《人工智能法案》第 50(2) 条《AI 生成内容
 可以理解为**藏在文本概率分布里的指纹**，而不是藏在字符里的暗号。这解释了两件事：为什么复制粘贴带不掉（指纹就是文字选择本身），以及为什么网上流传的"AI 水印清除工具"（删零宽字符、替换弯引号那套）对它完全无效——它们针对的是另一种根本不存在于 Claude 输出里的机制。
 
 据 Forbes 报道，有 Anthropic 工程师在社交媒体上补充了三个细节：检测 API 后续会开放给用户自行调用；模型本身并不知道自己被加了水印；以及一句坦率的评价——"它不完美，你可以通过编辑去掉它，但这是第一步"。
+
+## 2026-08-16 更新：官方公开技术细节，争议随之升级
+
+本文首发时上面这段还是"合理推测"，现在有了官方答案。8 月 16 日 Anthropic 发布技术说明[《How Claude's Text Watermark Works》](https://www.anthropic.com/news/claude-text-watermark)，要点：
+
+- **确认是统计水印**：生成每个 token 时，按密钥把候选词动态分成"绿/红"两组，对绿组施加轻微概率偏置。文本里**没有添加任何字符，也没有隐藏字符**——同一个词这次在绿组、下次可能在红组，因此不存在一份"Claude 偏爱词表"
+- **只有持有密钥的 Anthropic 能检测**，且各家水印互不相通：Claude 检测不了 Gemini 的 SynthID 标记，反之亦然
+- **生效阈值约 200 token（约 150 词）以上**——这也是欧盟《AI 生成内容透明度行为准则》的适用下限；准则同时要求提供商在服务条款里**禁止用户移除水印**，并要求水印对复制粘贴、截图、OCR、翻译等"常规处理"保持稳健
+
+官方说明发布次日，知名博主 John Gruber 在 Daring Fireball 发文[《Anthropic's 'Watermark' Text Adulteration in Claude Is a Perversion of Writing》](https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing)，把争议推到台前。他的核心论点不是隐私，而是**写作质量**：文本水印和图片元数据不同，它改动的就是"选了哪个词"本身——同义词之间没有完全等价的，"leaped at the chance" 和 "jumped at the opportunity" 不是同一句话。一旦知道有绿/红词表在起作用，**每一个用词都变得可疑**：模型选这个词，是因为它最贴切，还是因为它在绿组里？Gruber 还指出官方"imperceptible、不影响质量"的措辞与 SynthID 的 Nature 论文自证存在落差——论文只证明了人类评价差异"统计不显著"，这不等于"不可感知"。
+
+技术社区的另一层批评来自 James Padolsey（他的[交互式图解](https://declaude.org/watermarking/)是理解这类水印最好的入门读物）：这种水印**对老实人最严、对造假者最弱**——普通用户的润色、辅助写作会被打上标记，而有意冒充人类写作的人，用一次不合规模型的改写就能把统计信号洗掉。他自己的 Declaude 就是现成例子：粘贴进去、输出改写后的"素文本"，水印随之消失。这与本文原版的判断一致：它是弱信号，不是判决书。
+
+对读者的实际结论没有变化，反而更清晰了：
+
+1. **别再用"查隐藏字符"的思路防 Claude 水印**——官方已明确没有隐藏字符。想验证一段文本里有没有零宽字符、变体选择符这类**另一种**隐写（其他工具或恶意注入仍在用），可以用我们的 [AI 水印检查器](https://tools.cooconsbit.com/tools/ai-watermark-checker) 扫一遍，还你一个明确结论
+2. **文件溯源看 C2PA**：Claude 生成的图片等文件走的是 C2PA 签名元数据，这部分是可以自助验证的——把文件拖进 [C2PA 内容凭证验证器](https://tools.cooconsbit.com/tools/c2pa-verifier)，浏览器内本地验签，不上传文件
+3. **文本水印本身，第三方目前无法检测也无法可靠去除**，这一点官方技术说明反而坐实了：没有密钥就没有检测
 
 ## 现在能检测吗
 
@@ -84,7 +102,7 @@ Anthropic 签署了欧盟《人工智能法案》第 50(2) 条《AI 生成内容
 
 ### 现在有工具能检测一段文字是不是 Claude 写的吗？
 
-暂时没有。官方检测 API 和技术文档还未发布。现有的第三方"AI 检测器"做的是写作风格判断，不是水印验证，误判率高，结果不能作为依据。
+暂时没有。官方 8 月 16 日的技术说明确认：水印基于密钥分配的绿/红词表概率偏置，**只有 Anthropic 自己能检测**，检测 API 尚未开放。现有的第三方"AI 检测器"做的是写作风格判断，不是水印验证，误判率高，结果不能作为依据。如果你想排查的是文本里有没有零宽字符等隐藏字符（另一类隐写，与 Claude 水印无关），可以用 [AI 水印检查器](https://tools.cooconsbit.com/tools/ai-watermark-checker) 本地扫描。
 
 ### 旧版 Claude 模型生成的内容带水印吗？
 
@@ -97,6 +115,10 @@ Anthropic 签署了欧盟《人工智能法案》第 50(2) 条《AI 生成内容
 ## 参考链接
 
 - [How Claude marks AI-generated content — Anthropic 官方帮助中心](https://support.claude.com/en/articles/16266773-how-claude-marks-ai-generated-content)
+- [How Claude's Text Watermark Works — Anthropic 官方技术说明（2026-08-16）](https://www.anthropic.com/news/claude-text-watermark)
+- [Anthropic's 'Watermark' Text Adulteration in Claude Is a Perversion of Writing — Daring Fireball](https://daringfireball.net/2026/08/anthropics_watermark_text_adulteration_in_claude_is_a_perversion_of_writing)
+- [How AI Text Watermarking Works — James Padolsey 交互式图解](https://declaude.org/watermarking/)
+- [Anthropic's Weak Watermarks Appease a Weak Law — James Padolsey](https://blog.j11y.io/2026-08-12_Anthropics-weak-watermarks-appease-a-weak-law/)
 - [Claude Will Put Invisible Watermarks On AI Text And Images — Forbes](https://www.forbes.com/sites/maryroeloffs/2026/08/11/claude-will-put-invisible-watermarks-on-ai-text-and-images-and-the-internet-isnt-happy/)
 - [Claude AI Watermark: How Anthropic Marks AI-Generated Text — Business Standard](https://www.business-standard.com/technology/tech-news/claude-invisible-watermark-ai-generated-text-how-it-works-126081100381_1.html)
 - [Claude 首推隐形水印 生成文字复制仍留痕 — unwire.hk](https://unwire.hk/2026/08/11/claude-invisible-watermark-ai-generated-text-c2pa/software/)
