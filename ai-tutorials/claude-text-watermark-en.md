@@ -2,7 +2,13 @@
 slug: "claude-text-watermark-en"
 title: "Claude's Text Watermark: A Signature Hidden in the Dice Rolls"
 summary: "Anthropic published the full mechanics of Claude's text watermark — nothing added to the text, no hidden characters, no extra tokens, no price change. What's more interesting is the other half of the document: the long list of cases where the watermark barely works at all."
+category: ai-tutorials
 tags: [Claude, Anthropic, watermarking, SynthID, EU AI Act, AI detection, LLM]
+coverImage: ""
+status: published
+locale: en
+source: authored
+translationSlug: claude-text-watermark
 ---
 
 # Claude's Text Watermark: A Signature Hidden in the Dice Rolls

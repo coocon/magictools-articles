@@ -2,7 +2,13 @@
 slug: "claude-text-watermark"
 title: "Claude 文本水印：藏在随机数里的签名"
 summary: "Anthropic 公开了 Claude 文本水印的完整技术细节：不加字、不加隐藏字符、不涨价，只是把选词时的随机数来源换成了「密钥 + 前文」。但它能证明的东西比大多数人以为的少得多——短文本查不出、代码几乎没有、帮你润色的那段基本查不到。"
+category: ai-tutorials
 tags: [Claude, Anthropic, AI水印, SynthID, 欧盟AI法案, AI检测, LLM]
+coverImage: ""
+status: published
+locale: zh
+source: authored
+translationSlug: claude-text-watermark-en
 ---
 
 # Claude 文本水印：藏在随机数里的签名
