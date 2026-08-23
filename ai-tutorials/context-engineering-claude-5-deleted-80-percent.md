@@ -1,17 +1,6 @@
----
-title: "Anthropic 删掉了 Claude Code 80% 的系统提示词，评测分没动"
-slug: context-engineering-claude-5-deleted-80-percent
-summary: "官方公布：为 Claude Opus 5 和 Fable 5 删掉了 Claude Code 系统提示词的 80% 以上，编码评测无可测量的损失。传播中最流行的解读是「提示词要写短」——这是错的。真正被删掉的是「约束」而不是「信息」，本文给出一条可执行的分类线，补上官方博客没讲的 API 层机制（缓存前缀、defer_loading、运行时注入），以及 HN 上 343 条讨论里两个没解决的真问题。"
-category: ai-tutorials
-tags: [Claude Code, 上下文工程, 提示词工程, CLAUDE.md, Claude Opus 5, Agent, prompt caching]
-coverImage: ""
-status: published
-locale: zh
-source: authored
-translationSlug: context-engineering-claude-5-deleted-80-percent-en
----
-
 # Anthropic 删掉了 Claude Code 80% 的系统提示词，评测分没动
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/context-engineering-claude-5-deleted-80-percent?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/context-engineering-claude-5-deleted-80-percent?utm_source=github&utm_medium=referral)**
 
 7 月 24 日，Anthropic 发了一篇由 Claude Code 团队成员 Thariq Shihipar 署名的文章，核心信息只有一句：
 
@@ -76,120 +65,10 @@ translationSlug: context-engineering-claude-5-deleted-80-percent-en
 
 缓存键取自渲染后提示词的**精确字节**。渲染顺序固定为 `tools` → `system` → `messages`。任何一个字节的变化，会让它**之后所有位置**的缓存全部失效。
 
-这一条直接推翻了"全部前置"的旧做法。把易变的东西（时间戳、会话 ID、当前模式）塞进 system prompt 的开头，等于宣布后面的一切都不能缓存——不管你在别处加了多少个 `cache_control` 标记。
-
-**2. Tool search 是追加，不是替换。**
-
-这是延迟加载能成立的关键，也是最容易被忽略的一条：ToolSearch 检索到的工具定义是**追加**到请求里的，不是替换掉原有的工具列表。所以动态发现工具**不会破坏已有的缓存前缀**。
-
-对比一下：如果你自己实现"按场景换一套工具"——今天给 agent 装 A 组工具，明天换 B 组——那么每次切换都会让整个缓存从位置 0 开始失效，因为 `tools` 渲染在最前面。**同样是"让工具集变化"，用 ToolSearch 是免费的，自己换工具列表是全价重来。**
-
-**3. Opus 5 把最小可缓存前缀从 1024 token 降到了 512。**
-
-这条数字变化没什么人提，但它恰恰是"拆成文件树"这个建议在**成本上**成立的前提。
-
-Opus 4.8 上最小可缓存前缀是 1024 token；Opus 5 上是 512。低于这个长度的前缀**不会报错，只是静默地不缓存**（`cache_creation_input_tokens` 返回 0）。也就是说，在上一代模型上，你把一个大 CLAUDE.md 拆成十个小文件，其中相当一部分小到根本进不了缓存——拆分反而让你失去了缓存收益。Opus 5 把门槛砍半之后，细粒度拆分才真正划算。
-
-顺带一提，这个最小值**在各代之间不是单调的**：Opus 5 / Fable 5 是 512，Opus 4.8 / Sonnet 5 是 1024，Opus 4.7 是 2048，而 Opus 4.6 / Haiku 4.5 高达 4096。一个 3K token 的提示词在 Opus 5 上能缓存，在 Opus 4.6 上静默地不能。**如果你的 agent 支持多模型，这个值需要按模型查，不能凭印象。**
-
-**4. 运行时注入指令，有一个不废掉缓存的正确姿势。**
-
-这条是我认为整套机制里最实用的一条，官方博客完全没提。
-
-产品运行中经常需要中途给模型加指令：模式切换了、用户临时改了偏好、系统状态变了。直觉做法是改 system prompt——而按第 1 条，这会让**整段对话历史**全部重新计费。
-
-正确做法是往 `messages` 数组里追加一条 `{"role": "system", "content": "..."}` 消息。它位于缓存前缀**之后**，所以历史缓存完好无损，同时它仍然带有 operator 权限（不同于把指令混进 user 消息里）。
-
-支持这个用法的有 Claude Opus 5、Opus 4.8、Fable 5 和 Mythos 5，**不需要 beta header**。注意 Claude Sonnet 5 **不支持**——在 Sonnet 5 上这么写会返回 400，需要回落到把指令放进 user 消息的 `<system-reminder>` 写法。
-
-## 四、一条可执行的分类线
-
-HN 上有一条评论我觉得代表了大多数人读完原文的状态：
-
-> 我很惊讶这篇文章有多抽象。……我到现在也不确定我那些 600 词的提示词模板算不算过度。
-
-原文确实没给判断标准。我把它归纳成一条，这条线能覆盖上面六组对照里的绝大多数情况：
-
-> **能从代码库里读出来的 → 删。读不出来的 → 留。**
-
-原文对 CLAUDE.md 的建议正是这个形状：保持轻量，简短描述这个 repo 是干什么的，**把大部分 token 花在代码库里的坑（gotchas）上**——比如"所有类型定义只放在一个巨型文件里，别处没有"。并且明确说：**避免陈述 Claude 通过看文件系统或 repo 就能知道的「显而易见的事」**。
-
-按这条线过一遍你自己的 CLAUDE.md：
-
-| 内容 | 判断 | 理由 |
-|---|---|---|
-| "本项目用 TypeScript + React" | **删** | 看 package.json 就知道 |
-| "组件放在 src/components" | **删** | 看目录结构就知道 |
-| "所有类型定义只在 types/index.ts，别处不要建" | **留** | 这是约定，代码里看不出来 |
-| "不要写注释" | **删** | 这是补偿旧模型的约束 |
-| "prisma schema 必须加 binaryTargets，否则 Docker 构建失败" | **留** | 这是踩过的坑，血换的 |
-| "分页排序方向必须和前端展示方向一致，禁止后端 DESC + 前端 reverse" | **留** | 这是判断依据，不是硬规则 |
-| "重要！你必须先读 README！" | **删** | 强调语气在这一代模型上会过度触发 |
-
-最后一行值得展开。原文明确说，**给例子反而会把新一代模型约束到某个特定的探索空间里**——建议改为「设计接口」：与其举例子演示怎么用工具，不如想清楚这个工具暴露了哪些参数、怎么让它们更有表达力。它举的例子是 Todo 工具：把 status 定义成 `pending / in_progress / completed` 这个枚举，本身就在暗示 Claude 该怎么用它；而"保持只有一项处于 in_progress"这条说明，定义了期望的行为。
-
-**枚举值本身就是提示词。**这是这篇文章里我最喜欢的一条。
-
-## 五、HN 上两个没解决的真问题
-
-343 条评论里，有两处争论我认为没有标准答案，但值得每个人自己有个立场。
-
-### 「判断力」这个词的重量
-
-Simon Willison 的观察和一条回应，构成了整场讨论最尖锐的一处：
-
-> **simonw**：我最近一直在提示 Fable 5「用你自己的判断力」处理测试之类的事情，效果不错——挺有意思的，现在「判断力」居然成了一个我们必须关心的模型特性。
-
-> **zmmmmm**：那个越狱出沙箱、黑进 Hugging Face 的模型，用的也是它自己的判断力。如果我们要依赖「判断力」，那么当它接触到任何行动有后果的关键系统时，你得对那份判断力有**非常大**的信心。
-
-这个反驳很难被绕开。同一个月内，Anthropic 一边在博客里说「删掉规则、信任判断力」，一边披露了一起模型在评测中自主逃出沙箱、串起真实 0day 攻破 Hugging Face 生产环境的事故（[完整攻击链复盘见这篇](/zh/articles/ai-sandbox-escape-open-source-debate)）。
-
-我的立场：这两件事不矛盾，但**边界在哪里必须写清楚**。「用判断力」适用于**可逆的、成本可控的**决策——注释密度、变量命名、要不要拆函数。它不适用于**不可逆的**操作——删文件、发请求、改生产配置。
-
-也就是说，删掉的应该是**风格类约束**，而不是**权限类边界**。这两者在旧提示词里混在一起，删的时候必须分开——而这恰恰是最容易删过头的地方。
-
-### 手动改 vs 写进 CLAUDE.md
-
-另一处分歧更日常：
-
-> **firasd**：模型爱写 `// 移除了某某` 这种注释，我就手动删掉，而不是去写「不要注释你删了什么！！」——因为你那时候是在**跟模型行为里很深的沟壑较劲**。
-
-> **novaleaf**：这不正是 AGENTS/CLAUDE.md 存在的意义吗？写进去一次，以后再也不用说。
-
-两边都对，因为他们在优化不同的东西。firasd 优化的是**认知负担**（不想为每个小毛病去找魔法咒语），novaleaf 优化的是**重复成本**。
-
-我的判断标准很简单：**这件事会不会遇到第三次？**
-
-- 一次性的、这个项目独有的 → 手改，别污染 CLAUDE.md
-- 每周都遇到、跨项目都遇到 → 写进去
-- 中间地带 → 手改，然后观察。第三次遇到时再写
-
-CLAUDE.md 是有维护成本的，而这个成本在你写下去那一刻不可见、在半年后模型换代时集中爆发——那些为旧模型写的补偿性约束，正是这篇文章教你去删的东西。**每加一条，就是给未来的自己留一条要审计的债。**
-
-### 顺便：讨论里最有价值的一条
-
-有条评论提出了一个和整篇文章不同的方向，我认为它比原文更超前：
-
-> **dataviz1000**：我最近的想法是，不要把精确的需求编码进 prompt 和上下文，而是**聚焦在验证器上，不对就回滚**。计算机科学里有很多地方在优化非确定性行为——比如 UDP 包，丢了就丢了；比如现代 CPU 的投机执行，猜错分支就回滚。理想情况下有一个**便宜的验证器**检查需求是否满足，不满足就回滚、更新 prompt、再来一次。
-
-这条把问题从「怎么把要求说清楚」重构成了「怎么廉价地检查要求有没有被满足」。前者的成本随需求复杂度指数上升（你得预判所有歧义），后者是线性的（你只需要能判断对错）。
-
-而且它和原文其实是一致的——原文提到「rubric（评分标准）也是一种引用形式」，让 Claude 通过动态工作流和验证 agent 来核对你在某个领域的品味（比如"什么才算好的 API 设计"）。**评分标准就是验证器。**只不过原文把它当成「引用」的一个子类顺带提了一句，而这条评论把它提到了架构主线的位置。
-
-如果你现在正在设计 agent 系统，这个视角值得认真考虑：**你的 prompt 预算，有多少应该从"描述要求"挪到"构造验证器"？**
-
-## 六、一句话判断
-
-如果这篇文章你只带走一句话：
-
-> **过去的提示词里，有一部分在描述任务，有一部分在补偿模型。模型换代时，第二部分会从资产变成负债——而且是带利息的负债，因为它现在会和用户意图冲突，冲突要靠 thinking token 来消解。**
-
-Anthropic 删的 80%，几乎全是第二部分。
-
-具体怎么做：Claude Code 里跑一下 `/doctor`——官方把这套最佳实践做进了这个命令，它会帮你自动精简 skill 和 CLAUDE.md 文件。但在跑之前，先自己按第四节那条分类线过一遍，你会更清楚它删掉的每一条为什么该删。
-
-最后提醒一次那个最容易删过头的地方：**风格约束该删，权限边界不该删。**前者是在补偿模型的能力，后者是在约束模型的行动范围。模型变强会让第一类失效，但**只会让第二类更重要**。
+...
 
 ---
 
-*本文事实依据来自 Anthropic 官方博客《The new rules of context engineering for Claude 5 generation models》（Thariq Shihipar，2026 年 7 月 24 日），Prompt Caching、工具搜索与中途 system 消息的机制细节引自 Anthropic 官方 API 文档，社区观点引自该文在 Hacker News 的讨论帖（434 分 / 343 条评论）。各项数值以官方文档为准。*
+**[👉 继续阅读全文：Anthropic 删掉了 Claude Code 80% 的系统提示词，评测分没动](https://tools.cooconsbit.com/zh/articles/context-engineering-claude-5-deleted-80-percent?utm_source=github&utm_medium=referral)**
+
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

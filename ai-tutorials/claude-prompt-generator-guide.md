@@ -1,17 +1,6 @@
----
-title: "Claude 提示词生成器指南：更快写出更好的 Prompt"
-slug: "claude-prompt-generator-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - prompt engineering
-  - prompt generator
-summary: "介绍如何使用 Anthropic 的提示词生成器，把一个模糊任务快速转成可测试的初稿，再继续完善结构、约束和上下文。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 提示词生成器指南：更快写出更好的 Prompt
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-prompt-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-prompt-generator-guide?utm_source=github&utm_medium=referral)**
 
 写 Prompt 最难的地方，往往不是“打磨”，而是“起步”。Anthropic 的提示词生成器就是为了解决这个问题而设计的：把一个模糊任务转成可用的第一版提示词，并尽量内置一些常见的最佳实践。
 
@@ -56,44 +45,10 @@ Anthropic 的官方建议很明确：如果你已经知道成功结果应该长�
 
 假设你要让 Claude 总结客服工单，给产品团队看。生成器可能会先帮你搭出任务、背景和输出结构。
 
-你接着可以把它改成这样：
+...
 
-```text
-任务：将下面的客服工单总结给产品经理。
-受众：需要优先处理 bug 和体验问题的产品团队。
-目标：识别重复问题、严重程度和建议的下一步动作。
-输出格式：
-1. 总结
-2. 主要问题
-3. 建议优先级
-约束：
-- 控制在 250 字以内
-- 使用清晰的商务表达
-- 不要编造工单中没有的信息
-```
+---
 
-这个版本更强，是因为它把判断规则讲清楚了。只要提示词里有受众、结构和约束，Claude 的输出通常会更稳定。
+**[👉 继续阅读全文：Claude 提示词生成器指南：更快写出更好的 Prompt](https://tools.cooconsbit.com/zh/articles/claude-prompt-generator-guide?utm_source=github&utm_medium=referral)**
 
-## 常见错误
-
-最常见的问题，是把生成器当成自动完成器：
-
-- 直接接受泛化输出，不做定制
-- 忘了说明受众是谁
-- 需要一致性时却没有给示例
-- 在延迟或成本敏感的任务里滥用复杂模板，却没有先确认简单提示词是否已经足够
-
-Anthropic 也提醒过，并不是所有问题都该靠提示词工程解决。如果问题其实出在模型选择、速度或成本上，单纯改提示词不一定有效。
-
-## 实用结论
-
-把提示词生成器用在“从 0 到 1”的阶段。然后再根据真实工作流，把提示词改得更具体、更短、更有针对性。好 Prompt 通常来自“生成、检查、修改”的循环。
-
-## 官方参考资料
-
-- [自动生成第一版提示词模板](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-generator)
-- [提示词工程概览](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [使用提示词模板和变量](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-templates-and-variables)
-- [生成提示词](https://docs.anthropic.com/en/api/prompt-tools-generate)
-
-以上资料检索于 2026年3月29日。提示词生成器的可用性、Console 行为和功能开放范围可能因产品界面和套餐而异，发布前请以 Anthropic 官方链接为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

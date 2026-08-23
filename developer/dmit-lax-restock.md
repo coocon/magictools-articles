@@ -1,12 +1,6 @@
----
-title: "DMIT 洛杉矶 LAX 补货：怎么选档位"
-slug: dmit-lax-restock
-category: developer
-locale: zh
-tags: [VPS, DMIT, 洛杉矶, 补货, CN2 GIA, 服务器选购]
-summary: "DMIT 洛杉矶 LAX 的 Premium（CN2 GIA 三网优化）系列补货了，这类档位常年缺货、补货靠抢。本文附 6 档完整价格表、机房截图，以及个人开发者该从哪一档下手的实际建议。"
-status: published
----
+# DMIT 洛杉矶 LAX 补货：怎么选档位
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/dmit-lax-restock?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/dmit-lax-restock?utm_source=github&utm_medium=referral)**
 
 DMIT 洛杉矶 LAX 的 Premium 系列补货了。
 
@@ -26,48 +20,10 @@ DMIT 洛杉矶 LAX 的 Premium 系列补货了。
 
 **第三，我用真金白银投过票。** Pocket 这档这两年调过价，我涨价后没搬走，续到现在。理由很朴素：横向比一圈，同样是真 GIA + 三网优化，这个配置和价格市面上还没有像样的对手。**贵过自己的过去，仍然便宜过所有同行**——愿意在涨价后继续续费的老用户比例，比任何测速图都能说明问题。
 
-![DMIT 洛杉矶机房页：机房位置、网络与中国优化路由说明](https://cdn.tools.cooconsbit.com/uploads/hermes/2026-08-13/1786610736000-f67dbc51.png)
+...
 
-## 本次补货的 6 个档位
+---
 
-LAX AS3 平台，Premium Network（CN2 GIA），月付价格：
+**[👉 继续阅读全文：DMIT 洛杉矶 LAX 补货：怎么选档位](https://tools.cooconsbit.com/zh/articles/dmit-lax-restock?utm_source=github&utm_medium=referral)**
 
-| 档位 | CPU | 内存 | SSD | 流量 | 带宽 | 月付 |
-|------|-----|------|-----|------|------|------|
-| TINY | 1 核 | 2GB | 20GB | 1000GB | 1Gbps | $10.90 |
-| Pocket | 2 核 | 2GB | 40GB | 1500GB | 4Gbps | $16.90 |
-| STARTER | 2 核 | 2GB | 80GB | 3000GB | 10Gbps | $34.90 |
-| MINI | 4 核 | 4GB | 80GB | 5000GB | 10Gbps | $62.90 |
-| MICRO | 4 核 | 4GB | 160GB | 7000GB | 10Gbps | $87.90 |
-| MEDIUM | 6 核 | 8GB | 160GB | 15000GB | 10Gbps | $199.90 |
-
-![DMIT 下单界面实拍：LAX AS3 Pro 三个热门档位 TINY / Pocket / STARTER，含 DDoS 防护与免费 Setup](https://cdn.tools.cooconsbit.com/uploads/hermes/2026-08-13/1786611950000-a82dff28.jpg)
-
-价格以官网实时为准，年付另有折扣，这里的数字只作参考。
-
-## 怎么选：三句话讲完
-
-**TINY（$10.90）—— 入门尝鲜。** 1 核 2G、20G 盘、1TB 流量、1Gbps 峰值。跑一个静态站、一个小服务、一条自用代理没问题。适合「先花十几刀验证一下 GIA 到底有没有传说中那么稳」的人。缺点是 20G 盘偏紧，Docker 玩两下就见底，1Gbps 峰值也明显低于上面几档。
-
-**Pocket（$16.90）—— 甜点档，个人开发者第一台就买它。** 2 核 2G、40G 盘、**1.5TB 流量、4Gbps 峰值带宽**。比 TINY 只多六刀，CPU 翻倍、盘翻倍、流量多 50%、峰值带宽是四倍。我自己这台 Pocket 上跑着 nginx + 全套证书自动续期、好几个站点、若干 Docker 服务、Node/Next.js 应用，还带一个朋友的 WordPress 和自建代理，内存常年有富余。**对个人开发者来说，VPS 的瓶颈几乎从来不是 CPU 内存，是网络质量。**
-
-**STARTER 及以上 —— 有实际流量再上。** STARTER（$34.90）相对 Pocket 主要是盘翻倍、流量翻倍、峰值 10Gbps；MINI 往上开始给 4 核 4G。判断标准很简单：**如果你现在说不出「我每月要跑多少 GB 流量」这个数字，那你就还不需要 STARTER。** 建议从 Pocket 起步，DMIT 支持原地升配，不用迁移数据——真跑满了再升，比一开始买大一号划算得多。
-
-## 不好的地方也说清楚
-
-软文也得能对账，这几点买之前想明白：
-
-- **AS3 是新平台，还在建设期**，官方自己在产品页标注了 SLA 可能低于成熟平台。磁盘性能和稳定性预期别按老平台对标，介意的谨慎入手。
-- **比普通国际线路贵一倍以上**。如果你的用户全在海外、根本不在乎国内访问质量，没必要为 GIA 付这份溢价，去买普通线路能省一半钱。
-- **流量包对下载党偏小**。1.5TB 建站自用绰绰有余，当下载机或大流量中转就别想了——GIA 的流量成本摆在那。
-- **上面的价格只是我截图时看到的**，官网随时可能调整，下单前自己核对。
-
-## 最后
-
-补货这事没什么悬念：想要 Pocket 的，现在有货就去下；预算紧的从 TINY 起步，反正能原地升；已经有明确流量需求的直接 STARTER 以上。
-
-下面是我的推荐链接。**走这个链接下单价格不变，我会得到一点推荐返利**，算是对这些文章的支持：
-
-👉 [DMIT 官网 — 洛杉矶 LAX CN2 GIA 三网优化 VPS](https://www.dmit.io/aff.php?aff=21892)
-
-进去直接看 LAX 的 Premium 系列，个人用途从 Pocket 开始，能用很久。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,17 +1,6 @@
----
-title: "字数统计工具怎么用：字数、字符、段落、阅读时长一次看清"
-slug: "word-counter-practical-guide"
-category: document
-tags:
-  - 字数统计
-  - 在线工具
-  - 写作效率
-  - 文档处理
-summary: "详细介绍 MagicTools 字数统计工具的实际用法，适合写文章、做作业、改标题和控制阅读时长时使用。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 字数统计工具怎么用：字数、字符、段落、阅读时长一次看清
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/word-counter-practical-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/word-counter-practical-guide?utm_source=github&utm_medium=referral)**
 
 ## 为什么很多人需要单独的字数统计工具？
 
@@ -54,35 +43,10 @@ MagicTools 的字数统计工具把这些信息集中展示，适合快速检查
 
 ### 学生交作业
 
-如果老师要求“约 800 字”或“1000 词左右”，直接把内容贴进来就能快速判断是否超出范围。
+...
 
-## 使用时要注意什么？
+---
 
-**第一，中文和英文的统计习惯不一样。**  
-英文更适合看单词数，中文更适合看字符数和段落数，所以不要只盯着 `Words`。
+**[👉 继续阅读全文：字数统计工具怎么用：字数、字符、段落、阅读时长一次看清](https://tools.cooconsbit.com/zh/articles/word-counter-practical-guide?utm_source=github&utm_medium=referral)**
 
-**第二，阅读时长只是估算值。**  
-它适合做大概判断，比如“这篇文大概 3 分钟能读完”，但不适合作为特别严格的指标。
-
-**第三，句子数是按常见标点规则估算的。**  
-如果文本里有很多特殊格式、代码块或不完整句子，结果可能和人工理解略有差异。
-
-## 常见问题 FAQ
-
-**Q：这个工具会上传我的内容吗？**
-
-A：从页面实现来看，统计在浏览器里实时完成，适合处理普通写作草稿和日常文本。
-
-**Q：能不能统计换行数？**
-
-A：可以，工具里有 `Lines` 指标，适合检查台词稿、配置文本或分行内容。
-
-**Q：适合统计中文吗？**
-
-A：适合。统计中文时建议重点看字符数、段落数和行数。
-
-## 小结
-
-如果你经常写文章、改文案、交作业，或者想给内容补一个“预计阅读时间”，这个工具会比普通编辑器更直接。它的优点不是功能花哨，而是把常用统计项放在一个页面里，打开就能用。
-
-立即访问 [tools.cooconsbit.com/tools/word-counter](https://tools.cooconsbit.com/tools/word-counter) 试一下。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

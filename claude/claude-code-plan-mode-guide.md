@@ -1,13 +1,6 @@
----
-title: "Claude Code Plan Mode 实战：先规划后动手，把返工率打下来"
-slug: claude-code-plan-mode-guide
-category: claude
-locale: zh
-translationSlug: claude-code-plan-mode-guide-en
-tags: [Claude Code, Plan Mode, 规划模式, 工作流, 代码重构, AI 编程]
-summary: "Plan Mode 是 Claude Code 的只读规划模式：先调研代码库、产出实施方案，经你批准后才动手改代码。本文讲清怎么进入 Plan Mode（Shift+Tab 循环切换）、它到底拦住了什么、什么任务该用什么任务不该用，以及让规划真正提质量的四个技巧。"
-status: published
----
+# Claude Code Plan Mode 实战：先规划后动手，把返工率打下来
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-code-plan-mode-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-code-plan-mode-guide?utm_source=github&utm_medium=referral)**
 
 用 Claude Code 最贵的不是 token，是返工：它自信满满地改了八个文件，你看完发现方向就错了，只能全部回滚重来。Plan Mode 就是针对这个问题的开关——先让 Claude 只读调研、给出方案，你点头之后它才碰代码。
 
@@ -41,28 +34,10 @@ status: published
 - 有架构分歧的功能（"加实时通知"——WebSocket 还是轮询？）
 - 修一个根因不明的 bug：先让它只读排查、给出诊断，避免"边猜边改"污染现场
 
-**不该开：**
+...
 
-- 改错别字、调一行样式这类显而易见的小修
-- 你已经把改法说得明明白白，只差执行
-- 纯查询任务（"这个函数在哪被调用"）——直接问就行，规划反而绕路
+---
 
-对小任务开 Plan Mode 的代价是多一轮往返；对大任务不开的代价是成片返工。误判的话，宁可偏保守。
+**[👉 继续阅读全文：Claude Code Plan Mode 实战：先规划后动手，把返工率打下来](https://tools.cooconsbit.com/zh/articles/claude-code-plan-mode-guide?utm_source=github&utm_medium=referral)**
 
-## 让规划真正提质量的四个技巧
-
-**1. 逼它先提问再出方案。** 在规划时补一句"如果需求有歧义，先问我"。规划阶段暴露的每个问题，都是执行阶段省下的一次返工。
-
-**2. 要求方案带验证步骤。** 好的计划不止列"改哪些文件"，还要列"改完怎么证明是对的"——跑哪个测试、看哪条日志。把验收标准写进计划，执行完才有对账依据。
-
-**3. 把计划落成文件。** 让 Claude 把批准后的方案写进 `tasks/todo.md` 之类的文件，边执行边勾选。会话中断或上下文被压缩后，这份文件就是恢复现场的锚点。
-
-**4. 方向跑偏就回到规划。** 执行中发现前提错了，不要让它"顺手修正"着继续跑——切回 Plan Mode 重新评估。跑偏后硬推的成本，几乎总是高于停下来重规划。
-
-## 和其他机制的配合
-
-Plan Mode 不是孤立功能，它和 Claude Code 的其他能力天然互补：规划阶段可以派**子代理**去并行调研不同子系统，主上下文只收结论；批准后的执行阶段配合 **auto-accept** 模式，机械改动不再逐个确认；而"什么情况必须先规划"这条团队约定，最适合沉淀在 **CLAUDE.md** 里让每次会话自动遵守。
-
-一句话总结：Plan Mode 把 AI 编程从"下指令、赌结果"变成"看方案、再放行"。任务越大，这一轮审批省下的返工越多。
-
-配套阅读：站内的《Claude Code 快速上手指南》适合还没建立基础工作流的读者，《Claude Code 进阶实战：10 个官方技巧》覆盖了会话恢复、Checkpoint 回滚等与 Plan Mode 互补的能力。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

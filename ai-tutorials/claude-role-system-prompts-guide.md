@@ -1,17 +1,6 @@
----
-title: "Claude 角色提示词指南：什么时候该用 System Prompt"
-slug: "claude-role-system-prompts-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - system prompts
-  - prompt engineering
-summary: "讲清楚 Claude 里的角色提示词和 system prompt 该如何使用，以及为什么 Anthropic 建议把角色定义和具体任务分开。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 角色提示词指南：什么时候该用 System Prompt
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-role-system-prompts-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-role-system-prompts-guide?utm_source=github&utm_medium=referral)**
 
 在 Anthropic 的官方文档里，角色提示词是 system prompt 的一个高价值用法。它的核心逻辑并不复杂：先通过 `system` 参数告诉 Claude“你是谁、应该以什么视角工作”，再用用户消息描述当前这一轮任务。
 
@@ -64,38 +53,10 @@ Anthropic 的建议非常明确：如果某条要求在多个任务之间都成�
 [在这里粘贴内容]
 ```
 
-这样的结构最大的好处，是角色定义可以长期复用，而当前任务随时可以替换。
+...
 
-## 为什么这种拆分方式更稳
+---
 
-把角色和任务分开之后，提示词更容易测试、修改和复用。你不需要每次都重复解释“请以产品运营视角回答”“请保持简洁、面向管理层”，只需要在 system prompt 里定义一次即可。
+**[👉 继续阅读全文：Claude 角色提示词指南：什么时候该用 System Prompt](https://tools.cooconsbit.com/zh/articles/claude-role-system-prompts-guide?utm_source=github&utm_medium=referral)**
 
-在 API 或重复性工作流里，这种拆分尤其重要。因为它让提示词架构更加清晰，也更容易排查到底是哪一层指令出了问题。
-
-## 常见误区
-
-角色提示词常见的误用方式主要有几种：
-
-- 角色定义太空泛，比如只写“你是专家”
-- 把经常变化的任务要求塞进 system prompt
-- 以为角色本身就能弥补上下文缺失
-- 把 role prompting 当成模糊任务说明的替代品
-
-Anthropic 的文档其实说得很清楚：角色可以帮助 Claude 更聚焦，但它不能替代明确任务、材料和输出要求。
-
-## 怎么判断一条要求该不该放进 system prompt
-
-你可以问自己两个问题：
-
-1. 这条要求在多个相关任务之间是否都成立？
-2. 它是否真的改变 Claude 的思考方式或表达方式？
-
-如果答案都是“是”，那它大概率应该放进 system prompt。否则，它更可能属于当前任务说明的一部分。
-
-## 官方参考资料
-
-- [Giving Claude a role with a system prompt](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/system-prompts)
-- [Be clear, direct, and detailed](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

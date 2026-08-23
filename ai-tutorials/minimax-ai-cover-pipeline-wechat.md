@@ -1,17 +1,6 @@
----
-title: "用 MiniMax 生图给公众号做每日封面：一条全自动管线的实战复盘"
-slug: minimax-ai-cover-pipeline-wechat
-summary: "公众号头条封面要 2.35:1，每天手做一张太累，纯模板又太素。我们把「码农早餐」的封面改成了全自动：MiniMax image-01 出营销风底图，SVG 文字层合成标题，sharp 裁到精确比例，上传 COS 后由 Playwright 灌进公众号草稿。这篇是完整的实战复盘：为什么 AI 不能直接画标题（中文必乱码）、21:9 怎么裁出 2.35:1、『留白』prompt 如何把主体挤出画面、英文单词被折行腰斩怎么修，全程附三版真实前后对比图。"
-category: ai-tutorials
-tags: [MiniMax, AI生图, 公众号运营, 图片处理, 自动化, sharp, prompt工程, 内容管线]
-coverImage: "https://cdn.tools.cooconsbit.com/article-images/wechat-ai-cover/v3-marketing-final.png"
-status: published
-locale: zh
-source: authored
-translationSlug: minimax-ai-cover-pipeline-wechat-en
----
-
 # 用 MiniMax 生图给公众号做每日封面：一条全自动管线的实战复盘
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/minimax-ai-cover-pipeline-wechat?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/minimax-ai-cover-pipeline-wechat?utm_source=github&utm_medium=referral)**
 
 我们的公众号「码农早餐」每天早上 8 点推送一期技术圈日报。内容早就全自动了，但封面一直是短板：要么运营手动找图，要么用 SVG 模板生成一张信息卡片——工整，但太素，在订阅列表里毫无点击欲。
 
@@ -47,66 +36,10 @@ SVG 文字层合成：压暗渐变 + 品牌徽章 + 标题大字
 
 主体整个被挤到一侧，剩下 60% 的画面是纯色空白。在方图上「留白」是构图，在 21:9 宽幅上「留白」就是灾难——模型会把 negative space 理解成「把东西堆到一边去」。
 
-更要命的是一个微信特性：**公众号分享到会话时，缩略图是从封面中央裁 1:1 方图**。按上面这张图，用户在聊天窗口里看到的将是一片纯色橙——主体被整个裁掉。
+...
 
-修法很简单，prompt 里把留白类措辞全删，换成明确的构图指令：
+---
 
-```
-main subject centered in the middle of the frame,
-symmetric balanced composition filling the full width
-```
+**[👉 继续阅读全文：用 MiniMax 生图给公众号做每日封面：一条全自动管线的实战复盘](https://tools.cooconsbit.com/zh/articles/minimax-ai-cover-pipeline-wechat?utm_source=github&utm_medium=referral)**
 
-一次生效：
-
-![第二版：主体居中，构图饱满](https://cdn.tools.cooconsbit.com/article-images/wechat-ai-cover/v2-flat-centered.png)
-
-## 三、第二版还不够：好看，但不「营销」
-
-第二版构图没问题了，但放进订阅列表一看还是差口气：小清新插画风，没有标题，用户扫一眼根本不知道今天讲什么。封面的本职是**卖点击**，不是当装饰画。
-
-最终版做了两件事。
-
-**底图换成营销风。** prompt 从「奶油色扁平插画」改成「暗色科技海报」：深色底、橙色光效、戏剧性打光，同时明确要求 `main visual subject placed on the right half, left half darker and clean`——给左侧的文字区让位。
-
-**文字层堆上去。** 一张 940×400 的透明 SVG，从左到右一层渐变压暗（scrim），再放品牌徽章、日期、当日头条标题大字、底部 slogan。就算某天底图跑偏，scrim 也能保证标题的对比度——**可读性不赌 AI 的发挥**。
-
-![最终版：营销风底图 + 程序合成的标题文字层](https://cdn.tools.cooconsbit.com/article-images/wechat-ai-cover/v3-marketing-final.png)
-
-三张图放在一起看，这就是同一条管线三天内的进化：插画 → 居中 → 营销。而代码里改动的核心只有两处：一个 prompt 常量，一个 SVG 模板函数。
-
-## 四、文字层的排版细节，比想象中多
-
-「往图上写字」听起来简单，实际排版规则一条都不能少：
-
-- **英文单词不能腰斩。** 第一版折行按字符中点硬切，把 "Claude" 切成了 "Clau / de"。修法是先 token 化：ASCII 单词是不可拆分的整体，CJK 逐字，折行只发生在 token 边界。
-- **视觉宽度要加权。** 英文字符约半个汉字宽，`"OpenAI 发布 GPT-5.6"` 按字符数算 17 个字，按视觉宽算只有约 12 个汉字位。字号自适应必须按视觉宽算，否则英文多的标题会显得字小得可怜。
-- **行首标点上提。** 折行后第二行如果以逗号、句号开头（排版禁则），把标点上提到第一行行尾。
-- **两行封顶。** 超长标题截断加省略号，绝不挤第三行。
-
-另一个本地开发的小坑：SVG 里的 emoji（我们徽章里原本有个 ☕）经 librsvg 渲染会变成纯色剪影。别修它，直接不用 emoji。
-
-## 五、工程护栏：生图挂了怎么办
-
-这条管线每天由 cron 无人值守地跑，任何一环都不能成为单点故障：
-
-- **MiniMax 的业务错误藏在 HTTP 200 里。** 限流（1002）、鉴权失败（1004）、余额不足（1008）、内容安全拦截（1026）全都返回 200，错误码在 `base_resp.status_code` 里——只判 HTTP 状态码等于没做错误处理。
-- **只有限流值得重试。** 1002 走 2s/5s 退避；鉴权、余额、敏感内容重试一万次也是那个结果，直接抛。
-- **生图失败不断管线。** 任何异常都回落到旧的 SVG 模板封面。封面素一天可以接受，日报断更不可以。
-
-## 六、附赠发现：公众号编辑器会自动转存外链图
-
-把封面塞进公众号草稿时还有个意外收获。都说「公众号图片必须用微信素材库 URL」，我们原本以为要逆向素材库上传接口——实测发现根本不用：
-
-**往编辑器里粘贴含外链 `<img>` 的 HTML，微信前端会自动把图转存到自己的 CDN**（实测约 4 秒一张，先落 `mmbiz.qlogo.cn` 过渡，保存后固化为 `mmbiz.qpic.cn` 永久地址）。
-
-唯一的坑：**转存没完成就点「保存为草稿」会丢图**。所以自动化脚本里要轮询正文里所有 `<img>` 的 src，全部变成微信域名后再保存。
-
-## 收尾
-
-复盘下来，这条管线里真正值钱的经验就三条：
-
-1. **分层，别让 AI 干它不擅长的事。** 氛围交给生图，信息交给程序。中文标题、品牌元素、日期这些「必须精确」的东西，一个都不要交给模型。
-2. **宽幅生图的 prompt 要写构图指令。** 「留白」这类审美词在 21:9 上会被模型放大成半屏空白；「主体居中、铺满全宽」这类工程词才稳定。
-3. **无人值守的管线，每一环都要有回落。** AI 接口天生不可靠，靠退避重试 + 降级方案兜底，而不是祈祷。
-
-现在每天早上，从「今天的头条是什么」到「一张带标题的营销风封面躺在公众号草稿箱里」，中间没有任何人工步骤。这大概就是 AI 时代内容运营该有的样子：人定风格，机器执行。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

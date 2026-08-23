@@ -1,17 +1,6 @@
----
-title: "时间戳转换工具完全指南：Unix 时间戳与日期时间互转"
-slug: "timestamp-converter-guide"
-category: developer
-tags:
-  - 时间戳
-  - Unix时间
-  - 开发者工具
-  - 日期时间
-summary: "Unix 时间戳是后端开发中处理时间的基础概念。本文详解时间戳的定义、秒级与毫秒级的区别、时区陷阱与 2038 年问题，并提供 JavaScript、Python、Go 等语言的代码示例，帮助开发者正确处理时间相关逻辑。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 时间戳转换工具完全指南：Unix 时间戳与日期时间互转
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/timestamp-converter-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/timestamp-converter-guide?utm_source=github&utm_medium=referral)**
 
 ## 什么是 Unix 时间戳？
 
@@ -120,139 +109,10 @@ const ts = new Date('2026-03-18T10:00:00Z').getTime() / 1000;
 console.log(ts);                     // 1742292000
 ```
 
-### Python
-
-```python
-import time
-from datetime import datetime, timezone, timedelta
-
-# 获取当前时间戳
-int(time.time())                     # 秒：1742292000
-time.time_ns() // 1_000_000          # 毫秒：1742292000000
-
-# 时间戳 → datetime（UTC）
-dt_utc = datetime.fromtimestamp(1742292000, tz=timezone.utc)
-print(dt_utc)                        # 2026-03-18 10:00:00+00:00
-
-# 时间戳 → datetime（北京时间 UTC+8）
-tz_shanghai = timezone(timedelta(hours=8))
-dt_sh = datetime.fromtimestamp(1742292000, tz=tz_shanghai)
-print(dt_sh)                         # 2026-03-18 18:00:00+08:00
-
-# datetime → 时间戳
-ts = dt_utc.timestamp()
-print(int(ts))                       # 1742292000
-```
-
-### Go
-
-```go
-package main
-
-import (
-    "fmt"
-    "time"
-)
-
-func main() {
-    // 获取当前时间戳
-    fmt.Println(time.Now().Unix())        // 秒
-    fmt.Println(time.Now().UnixMilli())   // 毫秒
-    fmt.Println(time.Now().UnixNano())    // 纳秒
-
-    // 时间戳 → time.Time
-    t := time.Unix(1742292000, 0)
-    fmt.Println(t.UTC())                  // 2026-03-18 10:00:00 +0000 UTC
-
-    // 北京时间
-    loc, _ := time.LoadLocation("Asia/Shanghai")
-    fmt.Println(t.In(loc))               // 2026-03-18 18:00:00 +0800 CST
-
-    // time.Time → 时间戳
-    ts := time.Date(2026, 3, 18, 10, 0, 0, 0, time.UTC).Unix()
-    fmt.Println(ts)                       // 1742292000
-}
-```
-
-### Shell 命令
-
-```bash
-# 获取当前时间戳（Linux/macOS）
-date +%s
-
-# 时间戳 → 日期（Linux GNU date）
-date -d @1742292000 "+%Y-%m-%d %H:%M:%S"
-
-# 时间戳 → 日期（macOS BSD date）
-date -r 1742292000 "+%Y-%m-%d %H:%M:%S"
-```
+...
 
 ---
 
-## 常见陷阱与注意事项
+**[👉 继续阅读全文：时间戳转换工具完全指南：Unix 时间戳与日期时间互转](https://tools.cooconsbit.com/zh/articles/timestamp-converter-guide?utm_source=github&utm_medium=referral)**
 
-### 陷阱一：时区混乱
-
-这是最常见的 Bug 来源。时间戳本身是 UTC 无时区的，但将其转换为可读日期时，必须明确指定时区：
-
-```javascript
-// ❌ 危险：依赖服务器本地时区，不同环境结果不同
-new Date(timestamp * 1000).toString()
-
-// ✅ 安全：明确指定 UTC
-new Date(timestamp * 1000).toISOString()
-
-// ✅ 安全：明确指定目标时区
-new Date(timestamp * 1000).toLocaleString('zh-CN', {
-  timeZone: 'Asia/Shanghai'
-})
-```
-
-**黄金法则**：数据库和 API 传输始终使用 UTC 时间戳或 ISO 8601 字符串（含时区标记），只在**最终展示给用户**时转换为本地时间。
-
-### 陷阱二：2038 年问题
-
-32 位有符号整数最大值是 `2,147,483,647`，对应 **2038 年 1 月 19 日 03:14:07 UTC**。使用 32 位整数存储时间戳的旧系统，在那之后将溢出归零（回到 1970 年）。
-
-**现代系统应使用 64 位整数**存储时间戳。JavaScript 的 `Number` 类型为 64 位浮点数，可安全表示到公元 275760 年。MySQL 的 `TIMESTAMP` 类型（32位）有此限制，应改用 `DATETIME` 或 `BIGINT` 存储。
-
-### 陷阱三：夏令时（DST）
-
-部分国家实行夏令时，在夏令时切换时刻，同一个本地时间可能对应两个不同的 UTC 时间（或反过来）。始终用 UTC 时间戳存储，用 IANA 时区数据库（`Asia/Shanghai`、`America/New_York`）转换，可避免夏令时问题。
-
----
-
-## 常见问题 FAQ
-
-**Q：数据库存时间应该用时间戳还是日期字符串？**
-
-A：推荐存 **Unix 时间戳（整数）或 `DATETIME`（UTC）**，不推荐存字符串。理由：① 时间戳索引和范围查询效率高；② 不受字符集影响；③ 语言和框架都能直接解析整数。如果用 MySQL，建议 `BIGINT` 存毫秒时间戳（兼容 JS），或 `DATETIME` 存 UTC 时间。避免 `TIMESTAMP` 类型（有 2038 问题，且受服务器时区影响）。
-
-**Q：如何处理跨时区的时间比较？**
-
-A：将所有时间转换为 UTC 时间戳后再比较。时间戳是单调递增的，`ts_a > ts_b` 就代表 A 时刻晚于 B 时刻，不受时区影响。永远不要直接比较两个未标注时区的本地时间字符串。
-
-**Q：`1970-01-01` 之前的时间怎么表示？**
-
-A：Unix 时间戳支持负数。`-1` 表示 1969-12-31 23:59:59 UTC。现代系统和编程语言均支持负数时间戳，可以表示 1970 年之前的历史时间。
-
-**Q：为什么 `new Date()` 在不同时区的服务器上返回不同的字符串？**
-
-A：`new Date().toString()` 使用的是**运行环境的本地时区**，服务器时区不同，输出自然不同。使用 `new Date().toISOString()` 始终返回 UTC 格式（`2026-03-18T10:00:00.000Z`），在任何时区都一致。
-
-**Q：JavaScript 的 `Date.now()` 精度够用吗？**
-
-A：`Date.now()` 精度为毫秒（ms），对大多数业务场景足够。需要更高精度（如性能测量）时，使用 `performance.now()`（微秒精度）。注意：出于安全考虑，浏览器会对 `performance.now()` 的精度做一定模糊处理。
-
----
-
-## 小结
-
-Unix 时间戳是后端开发的基础知识，正确使用能避免大量时间相关的 Bug：
-
-- **单位区分**：13 位 = 毫秒（JS/Java），10 位 = 秒（Python/Go/MySQL）
-- **时区原则**：存储用 UTC，展示时转本地时区
-- **2038 警惕**：新系统避免 MySQL `TIMESTAMP`，改用 `DATETIME` 或 `BIGINT`
-- **比较时间**：转换为时间戳后用数值比较，不要比较字符串
-
-遇到时间戳转换需求，直接使用 [MagicTools 时间戳工具](/tools/timestamp) 快速完成，无需手算。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,17 +1,6 @@
----
-title: "Claude 文件创建指南：把提示词变成可编辑成品"
-slug: "claude-file-creation-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - 文件创建
-  - 文档
-summary: "介绍 Claude 的文件创建功能，包括开启方式、支持的文件类型、提示词写法，以及如何安全高效地产出可编辑文件。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 文件创建指南：把提示词变成可编辑成品
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-file-creation-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-file-creation-guide?utm_source=github&utm_medium=referral)**
 
 Claude 现在可以在对话中直接创建文件，这让工作流从“提问后复制粘贴”变成了“提问、审核、下载”。Anthropic 将这个能力定位为一种更高效的草稿生成方式，可以直接产出可编辑的文档、表格、演示文稿和 PDF。
 
@@ -60,40 +49,10 @@ Anthropic 官方案例里，最适合的场景大致有这些：
 - 从 PDF 中提取数据并整理成结构化文件
 - 把多个来源合并成一份交付物，再继续微调
 
-这些任务之所以合适，是因为 Claude 擅长信息整理和格式转换，而不是在没有上下文的情况下空写内容。
+...
 
-## 安全和审核习惯
+---
 
-Anthropic 提到，文件创建功能运行在一个沙盒化环境里，网络访问受限。这个设计有帮助，但不能替代人工审核。
+**[👉 继续阅读全文：Claude 文件创建指南：把提示词变成可编辑成品](https://tools.cooconsbit.com/zh/articles/claude-file-creation-guide?utm_source=github&utm_medium=referral)**
 
-建议养成这些习惯：
-
-- 处理敏感或外部输入时，监控 Claude 的行为。
-- 手动检查公式、计算结果和引用。
-- 对连接的数据源和项目上下文保持谨慎。
-- 把下载下来的文件先当作草稿，而不是最终版。
-
-更准确的理解是“加速草拟”，而不是“完全自动生产”。
-
-## 一个可复用的起步模板
-
-你可以直接套用这个结构：
-
-```text
-帮我创建一份[文件类型]，面向[受众]。
-使用[数据来源或笔记]。
-结构包括[章节或表格列]。
-语气：[风格]。
-约束：[字数、格式或准确性要求]。
-```
-
-这种模板有效，是因为它把任务写成了可验证、可调整的要求。
-
-## 官方参考资料
-
-- [Create and edit files with Claude](https://support.anthropic.com/en/articles/12111783-create-and-edit-files-with-claude)
-- [Create and edit files with Claude to eliminate hours of busy work](https://support.anthropic.com/en/articles/12143746-create-and-edit-files-with-claude-to-eliminate-hours-of-busy-work)
-- [Files API](https://docs.anthropic.com/en/docs/build-with-claude/files)
-- [Building with Claude overview](https://docs.anthropic.com/en/docs/overview)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

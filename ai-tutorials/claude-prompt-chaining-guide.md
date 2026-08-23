@@ -1,17 +1,6 @@
----
-title: "Claude Prompt Chaining 指南：把复杂任务拆成可靠步骤"
-slug: "claude-prompt-chaining-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - prompt chaining
-  - prompt engineering
-summary: "基于 Anthropic 官方文档，介绍如何用 prompt chaining 把复杂任务拆成更容易控制的多个步骤。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude Prompt Chaining 指南：把复杂任务拆成可靠步骤
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-prompt-chaining-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-prompt-chaining-guide?utm_source=github&utm_medium=referral)**
 
 当一个任务不止一个关键步骤时，prompt chaining 往往是让 Claude 表现更稳定的最好办法。Anthropic 的官方建议很直接：如果工作天然能拆成多个阶段，就不要强行把所有内容塞进一个 prompt 里。
 
@@ -56,60 +45,10 @@ Prompt 4：检查草稿是否遗漏要点，并润色语言。
 
 Anthropic 的 chaining 指南建议用 XML 标签在 prompts 之间传递结果。这样做的好处是，模型更容易把“指令”和“数据”分开。
 
-```text
-<source>
-[把原始材料放在这里]
-</source>
+...
 
-<task>
-只提取决策和待解决问题。
-</task>
-```
+---
 
-这样一来，每一步都有清晰的输入输出边界，不会把说明文字和实际内容混在一起。
+**[👉 继续阅读全文：Claude Prompt Chaining 指南：把复杂任务拆成可靠步骤](https://tools.cooconsbit.com/zh/articles/claude-prompt-chaining-guide?utm_source=github&utm_medium=referral)**
 
-## 适合落地的工作流
-
-处理重要任务时，可以按这个顺序来：
-
-1. 把任务拆成几个明确的子步骤。
-2. 给每一步只设一个目标。
-3. 用结构化格式把结果传给下一步。
-4. 只修有问题的那一环，不要动不动整条链重来。
-
-最后一点尤其重要。如果第三步质量差，就先改第三步，而不是整条流程反复重跑。
-
-## 自我修正链
-
-Anthropic 还提到，Claude 可以检查自己的输出。这在高风险任务里很有用，因为第二遍往往能发现遗漏、逻辑不顺或表达不清。
-
-一个简单版本是：
-
-1. 先生成第一版。
-2. 再让 Claude 按目标检查草稿并指出缺口。
-3. 最后只修改薄弱部分。
-
-这通常比完全重写更稳，因为可以保留好的部分，只修复有问题的地方。
-
-## 常见错误
-
-最常见的 chaining 错误很简单：
-
-- 每一步都太宽泛
-- 一个子任务里混了多个目标
-- 没有说明下一步应该接收什么结果
-- 只有一环出问题，却把整条链全部重跑
-
-如果某一步没法用一句话说明白，它通常还是太大了。
-
-## 核心原则
-
-prompt chaining 不是把 prompt 写得更长，而是把每一步写得更小、更干净、更容易评估。对于需要结构、准确性和可追踪性的任务，这通常比一个超长 prompt 更可靠。
-
-## 官方参考资料
-
-- [Chain complex prompts for stronger performance](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/chain-prompts)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [Be clear, direct, and detailed](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

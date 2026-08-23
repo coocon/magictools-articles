@@ -1,19 +1,6 @@
----
-title: "Claude Files API：上传一次，反复复用文档"
-slug: "claude-files-api-guide"
-category: ai-tutorials
-locale: zh
-translationSlug: "claude-files-api-guide-en"
-tags:
-  - claude
-  - anthropic
-  - files api
-  - api
-summary: "介绍 Claude Files API 的实际用法，包括一次上传、反复复用 file_id、支持的文件类型，以及它在什么场景下最能减少重复上传。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude Files API：上传一次，反复复用文档
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-files-api-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-files-api-guide?utm_source=github&utm_medium=referral)**
 
 Files API 解决的是一个很直接的工作流问题：如果你总是把同一批文档、图片或数据集发给 Claude，就不应该每次都重新上传。这个 API 允许你先上传一次，拿到 `file_id`，然后在后续的 Messages 请求里直接引用这个文件。
 
@@ -54,47 +41,10 @@ Anthropic 文档里提到的主要支持类型包括：
 
 ## 一个好用的理解方式
 
-你可以把 Files API 理解成应用和模型之间的一层间接引用。你的应用只需要存一次文件，后面传引用而不是原始内容。这样会带来几个明显好处：
+...
 
-- 减少重复上传
-- 请求体更简洁
-- 同一份源材料可以复用到多轮提示词
-- 长期材料更容易管理
+---
 
-如果你的流程里会反复使用同一份参考材料，这个模式很值得用。
+**[👉 继续阅读全文：Claude Files API：上传一次，反复复用文档](https://tools.cooconsbit.com/zh/articles/claude-files-api-guide?utm_source=github&utm_medium=referral)**
 
-## 一个实际场景
-
-假设你的团队每周都要审一份合规 PDF。没有 Files API 时，每次请求都要重新带上这份文档。用了 Files API 之后，你只需要上传一次 PDF，保留 `file_id`，后面可以用不同问题去问 Claude。
-
-这类方式尤其适合：
-
-1. 增量分析
-2. 多轮复审
-3. 同一份源文件的反复问答
-4. 用新草稿和稳定基线文件做对比
-
-## 需要注意的地方
-
-要注意的主要是这些：
-
-- Files API 还处在 beta 阶段，后续可能变化
-- 某些平台暂时不支持
-- 文件大小和存储限制仍然存在
-- 不同文件类型仍然需要对应的 content block
-
-Anthropic 文档还说明，Files API 目前不支持 Amazon Bedrock 和 Google Vertex AI，所以如果你要跨平台部署，要提前考虑兼容性。
-
-## 什么时候该用
-
-当同一份源文件会被反复使用，重复上传已经开始浪费时间或拖慢请求时，就应该考虑 Files API。反过来，如果你只是临时贴一段短文本，一次性提示就已经足够。
-
-判断很简单：如果文件是长期输入，就存一次复用；如果只是临时片段，就直接内联。
-
-## 官方参考资料
-
-- [Files API](https://docs.anthropic.com/en/docs/build-with-claude/files)
-- [Features overview](https://docs.anthropic.com/en/docs/build-with-claude/overview)
-- [Building with Claude](https://docs.anthropic.com/en/docs/overview)
-
-以上资料检索于 2026年3月29日。beta 可用性、平台支持和文件类型处理方式可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

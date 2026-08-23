@@ -1,17 +1,6 @@
----
-title: "行数统计工具使用教程：总行数、空行、重复行都能看"
-slug: "line-counter-guide"
-category: document
-tags:
-  - 行数统计
-  - 文本处理
-  - 在线工具
-  - 重复行检查
-summary: "介绍 MagicTools 行数统计工具的功能和用法，适合日志检查、数据清点、文本排查和列表去重前的预处理。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 行数统计工具使用教程：总行数、空行、重复行都能看
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/line-counter-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/line-counter-guide?utm_source=github&utm_medium=referral)**
 
 ## 为什么只统计“总行数”还不够？
 
@@ -58,34 +47,10 @@ MagicTools 的行数统计工具不只是计数，还能帮助你定位文本结
 
 ## 推荐的使用方法
 
-1. 先把原始文本贴进去。
-2. 看顶部统计卡片，判断是否存在空行和重复行。
-3. 如果要讨论具体行，展开 `Add Line Numbers`。
-4. 如果要排查异常内容，展开 `Per-line Stats` 看哪一行过长或为空。
+...
 
-## 适合哪些人？
+---
 
-- 处理日志的开发或运维
-- 需要整理文本名单的运营
-- 审核多行配置内容的测试或技术支持
-- 想快速检查导出数据的人
+**[👉 继续阅读全文：行数统计工具使用教程：总行数、空行、重复行都能看](https://tools.cooconsbit.com/zh/articles/line-counter-guide?utm_source=github&utm_medium=referral)**
 
-## 常见问题 FAQ
-
-**Q：最后一行没有换行也会算进去吗？**
-
-A：会，只要输入框里有内容，就会被当作一行处理。
-
-**Q：重复行是怎么判断的？**
-
-A：按整行文本判断，内容一样就算重复。
-
-**Q：能不能只看某几行的长度？**
-
-A：可以先打开 `Per-line Stats`，逐行查看字符数和内容预览。
-
-## 小结
-
-如果你经常面对“看起来很多行，但不知道问题在哪”的文本，这个工具会很有帮助。它不是单纯告诉你“有几行”，而是进一步告诉你空行多不多、重复严不严重、哪些行可能异常。
-
-工具地址：[tools.cooconsbit.com/tools/line-counter](https://tools.cooconsbit.com/tools/line-counter)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

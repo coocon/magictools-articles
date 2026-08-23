@@ -1,20 +1,6 @@
----
-title: "Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了"
-slug: claude-code-auto-mode-permission-trap
-category: claude
-locale: zh
-translationSlug: claude-code-auto-mode-permission-trap-en
-tags: [Claude Code, 权限管理, auto 模式, API 中转, 故障排查, 开发者工作流, claude-code-lab]
-lab:
-  testedAt: "2026-07-28"
-  ccVersion: "2.1.220"
-  model: "auto mode (classifier: claude-opus-5[1m])"
-  platform: macOS
-  status: reproducible
-docsUrl: https://docs.claude.com/en/docs/claude-code/settings
-summary: "auto 权限模式在放行 Bash 前会额外调用一次当前会话模型，来判定这条命令安不安全——判定器和干活的是同一个模型。模型一旦不可用，你会撞进一个反直觉的半瘫状态：读文件、搜代码全都正常，但一条 cat 都跑不了。这篇文章记录了一次真实排查：我先后提出三个听起来都很合理的假设，又用对照实验把它们逐个推翻，最后只剩下一条真正可靠的退路。"
-status: published
----
+# Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-code-auto-mode-permission-trap?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-code-auto-mode-permission-trap?utm_source=github&utm_medium=referral)**
 
 会话跑到一半，一条再普通不过的命令被拦了下来：
 
@@ -60,101 +46,10 @@ auto 模式的交易很划算：用一次模型调用，换掉几十次"要执�
 
 我的 `~/.claude/settings.json` 里写着 `"model": "opus[1m]"`，同时 `ANTHROPIC_BASE_URL` 指向一个第三方 API 中转。这两条凑在一起，指向一个很顺的解释：第三方中转对**非常规模型 ID** 的支持普遍最薄弱——1M 上下文变体、预览版、带后缀的特化型号，往往在官方端点可用、在中转上缺失。判定请求打到一个中转不认识的模型 ID，自然拿不到结果。
 
-于是我改了配置，又执行 `/model opus` 让它在当前会话立刻生效（**`settings.json` 的 model 字段只在新会话读取**，改完文件不切模型的话，同一个报错会原样复现——我就白白多撞了一次）。
+...
 
-然后重跑命令，报错变成了：
+---
 
-```
-claude-opus-5 is temporarily unavailable, so auto mode cannot
-determine the safety of Bash right now.
-```
+**[👉 继续阅读全文：Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了](https://tools.cooconsbit.com/zh/articles/claude-code-auto-mode-permission-trap?utm_source=github&utm_medium=referral)**
 
-模型 ID 换掉了，判定器依旧不可用。**假设一出局。**
-
-真实情况要平淡得多：这个模型在我这条接入路径上整体不可用——可能是中转的上游故障，可能是额度，跟 ID 是不是"非常规"没关系。我把一个合理的怀疑当成了确定的结论，中间省掉了验证那一步。
-
-不过这次失败的修复送了我一份意外收获：正是因为报错里的 ID 跟着 `/model` 一起变了，我才拿到了"判定器绑定会话模型"的硬证据。**排错时被推翻的假设，经常比被证实的假设信息量更大。**
-
-## 假设二：白名单能兜底
-
-第二个想法更有诱惑力。我顺手把高频命令写成精确前缀规则塞进了 `permissions.allow`：
-
-```json
-"allow": ["Bash(cat *)", "Bash(ls *)", "Bash(jq *)", "Bash(rg *)"]
-```
-
-推理是这样的：命中白名单的命令应该直接放行，压根不用惊动判定器——那白名单就成了分类器故障时的降级通道。听起来严丝合缝。
-
-而且我当时"有证据"：故障期间，一条命中 `Bash(jq *)` 的命令确实跑通了。
-
-但这条证据是假的。复盘整个会话就会发现，**那段时间还有好几条根本没进白名单的复合命令也跑通了**——这次故障是间歇性的，判定器时通时断。那条 `jq` 之所以成功，只是因为它撞上了判定器活着的那几秒。我拿一次巧合当成了机制。
-
-真正有说服力的实验，得能产生阴性结果。所以我在故障持续期间跑了这条：
-
-```bash
-ls /path/to/project/articles/claude/
-```
-
-`Bash(ls *)` **是改动之前就写在白名单里的老规则**，命令本身也没有任何复合结构，是最干净的一次匹配。结果照样被拦，报的还是同一句"无法判定安全性"。**假设二出局。**
-
-结论要改写：**在 auto 模式下，白名单不是护城河，Bash 一律要过判定器。**
-
-这里的方法论教训比结论本身更值钱：**排查间歇性故障时，"某条命令成功了"几乎不能证明任何事**，因为你无法区分"它走了豁免路径"和"判定器那一秒恰好活着"。有说服力的只有失败——一条本该被豁免的命令失败了，豁免路径就不存在。想验证机制，就去设计那个能失败的实验。
-
-## 假设三：换个模型家族总行了吧
-
-第二个假设倒下后，还剩最后一个念头：既然不是 ID 后缀的问题，会不会是 opus 这一个模型家族在这条接入路径上局部不可用？换个完全不同的家族试试——`/model sonnet`。
-
-这个假设比前两个更谨慎，也更该是对的：opus 和 sonnet 是两套独立的模型，如果只是某一个在闹脾气，换家族应该能绕开。
-
-重跑同一条命令：
-
-```
-claude-sonnet-5 is temporarily unavailable, so auto mode cannot
-determine the safety of Bash right now.
-```
-
-模型 ID 又变了，判定器还是不可用。**假设三出局。**
-
-这一次结论比前两次都干脆：**问题不在某个具体模型身上，是整条判定链路本身不可用**——大概率是我这边的中转到分类接口这一段出了故障，跟前台模型是 opus 还是 sonnet 完全无关。三次换 ID、三次同样的报错，唯一变化的只有报错文本里那个跟着 `/model` 走的字符串，这本身也是最后一次坐实"判定器绑定会话模型"这条结论的机会。
-
-## 那到底该怎么办
-
-三个假设全倒之后，剩下的东西反而最干净：**没有任何配置层面的修法能绕开一条整体不可用的判定链路**。你不知道它什么时候恢复，也无法从模型选择上下手，因为问题根本不在模型选择这一层。
-
-**唯一可靠的一条：切换权限模式。** 按 `Shift+Tab` 回到默认模式。它的放行依据是你本人，一个判定请求都不发，判定器死活跟你没关系。手动确认是啰嗦，但这是故障期间唯一还站得住的路——也是三次对照实验之后剩下的唯一选项。
-
-**白名单仍然值得认真配，但别把它当灾备。** 它省掉的确认弹窗是实打实的日常收益，只是在分类器故障时帮不上忙。顺便一提，`deny` 的优先级高于 `allow`，所以可以放心把只读命令放宽，真正想拦的写进 `deny` 就不会被覆盖：
-
-```json
-{
-  "permissions": {
-    "allow": [
-      "Bash(cat *)", "Bash(head *)", "Bash(tail *)", "Bash(find *)",
-      "Bash(rg *)", "Bash(ls *)", "Bash(jq *)", "Bash(wc *)",
-      "Bash(git status*)", "Bash(git diff*)", "Bash(git log*)",
-      "Bash(npm run build*)", "Bash(npm run typecheck*)", "Bash(npm test*)"
-    ],
-    "deny": [
-      "Bash(rm -rf *)",
-      "Read(./secrets/**)"
-    ]
-  }
-}
-```
-
-## 这件事的普遍教训
-
-抛开 Claude Code，这次故障讲的是一件更普遍的事：**只要你用模型去实现某个基础设施功能，模型的可用性就成了这个功能可用性的下界。**
-
-安全判定、路由分发、意图识别、内容审核——这些"用模型做中间件"的设计，好处是灵活到静态规则做不到的程度，成本是给系统多接了一个会抖动的外部依赖。判断它值不值，只看一个问题：这个功能有没有一条**不依赖模型的降级路径**。auto 模式的降级路径不是某个配置项，而是"退回另一种模式"——这意味着你必须事先知道它存在，出事时才用得上。
-
-还有三条排查层面的经验：
-
-- **报错里的"半瘫"特征比错误文本本身信息量大。** A 功能能用、B 功能不能用，说明它们走的不是同一条链路。顺着这个不对称往下挖，比反复重试和刷状态页有效得多。
-- **间歇性故障里，成功不构成证据。** 假设二的乌龙就是这么来的。要验证机制，去找那个能失败的实验。
-- **三个假设、三次同样的报错，才配得上"结论"两个字。** 单独看假设一失败，你会怀疑是自己没改对；单独看假设三失败，你会怀疑是这次运气不好。只有三次独立验证（去掉 1M 后缀、测试白名单豁免、整体换模型家族）全部落到同一个错误上，才排除得掉"我操作错了"这个解释，剩下的才轮到"这是系统性故障"。
-
-一句话总结：auto 模式让模型替你审模型，省下的是几十次确认，押上的是权限系统的可用性——这笔交易没有保险，只有退路，而退路就是 `Shift+Tab`。
-
-配套阅读：站内的《Claude Code Plan Mode 实战》讲的是另一种权限模式如何降低返工率，《Claude Code Hooks：自定义自动化工作流》介绍了在权限系统之外拦截和改写工具调用的机制。两者都指向本文这条结论：不依赖模型往返的那层保护，才是出事时你真正握得住的。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,17 +1,6 @@
----
-title: "Claude Code Quickstart Guide: A Practical First Session"
-slug: "claude-code-quickstart-guide-en"
-category: ai-tutorials
-tags:
-  - claude code
-  - anthropic
-  - terminal
-  - coding
-summary: "A practical first-session guide to Claude Code: install it, log in, ask useful questions, and complete a first code change with a clean workflow."
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude Code Quickstart Guide: A Practical First Session
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-code-quickstart-guide-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-code-quickstart-guide-en?utm_source=github&utm_medium=referral)**
 
 Claude Code is Anthropic's terminal-based coding assistant. The fastest way to get value from it is not to memorize every command. It is to set up a clean first session, ask for a concrete task, and let Claude inspect the codebase before you tell it what to change.
 
@@ -42,78 +31,10 @@ Or, for the newer native installer:
 curl -fsSL claude.ai/install.sh | bash
 ```
 
-After installation, change into a project folder and launch Claude Code:
+...
 
-```bash
-cd /path/to/your/project
-claude
-```
+---
 
-Claude will prompt you to log in if needed. Once authenticated, your session is ready to use.
+**[👉 Continue reading: Claude Code Quickstart Guide: A Practical First Session](https://tools.cooconsbit.com/en/articles/claude-code-quickstart-guide-en?utm_source=github&utm_medium=referral)**
 
-## Start with questions about the codebase
-
-Your first prompt should usually be descriptive, not prescriptive. Start by asking Claude to explain what it sees:
-
-- What does this project do?
-- Where is the main entry point?
-- What technologies does this repository use?
-- Explain the folder structure
-
-This is the safest first step because it lets Claude inspect the project before you ask for a change. You get a better answer, and Claude gets the context it needs to work like a teammate instead of a guessing machine.
-
-## Make your first change
-
-Once Claude understands the codebase, give it a concrete fix:
-
-```text
-There's a bug where users can submit an empty form. Find the cause and fix it.
-```
-
-Anthropic describes the typical workflow clearly: Claude locates the relevant code, understands the surrounding context, implements a solution, and runs tests if they are available. That is the right mental model for first-time use.
-
-## Use follow-up prompts to steer the work
-
-Claude Code works best when you keep the conversation focused:
-
-- Ask for a plan before a large edit
-- Ask it to explain a risky change
-- Ask it to narrow the scope if the result is too broad
-- Ask it to verify the fix with tests or a smaller reproduction
-
-This is the main habit to build in the first week. A good first session is not about getting the perfect answer immediately. It is about shaping the work in small, checkable steps.
-
-## Helpful daily commands
-
-Anthropic's quickstart highlights a few commands that matter early:
-
-```bash
-claude
-claude "fix the build error"
-claude -p "explain this function"
-claude -c
-claude -r
-```
-
-Inside a session, `/help` shows the available commands, and `/clear` resets conversation history when you want to start fresh.
-
-## A practical first-session checklist
-
-Use this sequence the first time you try Claude Code:
-
-1. Install the CLI
-2. Log in
-3. Open a real project
-4. Ask Claude to explain the repository
-5. Give one narrow task
-6. Review the output before expanding scope
-
-That workflow is simple on purpose. It helps you learn how Claude behaves in your environment before you rely on it for larger edits.
-
-## Official References
-
-- [Quickstart](https://docs.anthropic.com/en/docs/claude-code/quickstart)
-- [Claude Code overview](https://docs.anthropic.com/en/docs/claude-code/overview)
-- [Slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands)
-
-Sources reviewed on March 29, 2026. Feature availability, plan limits, and interface details can change, so confirm current behavior in the linked official Anthropic resources.
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

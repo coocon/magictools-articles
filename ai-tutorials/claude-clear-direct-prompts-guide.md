@@ -1,17 +1,6 @@
----
-title: "Claude 提示词基础：如何写出清晰直接的请求"
-slug: "claude-clear-direct-prompts-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - prompting
-  - prompt engineering
-summary: "基于 Anthropic 官方提示词工程建议，讲清楚如何通过更具体的上下文、目标和格式要求，让 Claude 输出更稳定。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 提示词基础：如何写出清晰直接的请求
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-clear-direct-prompts-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-clear-direct-prompts-guide?utm_source=github&utm_medium=referral)**
 
 Anthropic 在官方提示词工程文档里给出的一个最重要建议，其实也是最容易被忽略的建议：要清晰、直接、具体。很多人觉得 Claude 回答得“太泛”，并不是模型本身不行，而是输入给它的任务边界太模糊。
 
@@ -63,51 +52,10 @@ Claude 当然还是会给出一个答案，但它必须替你做很多猜测。�
 [在这里粘贴草稿]
 ```
 
-第二种写法的优势非常明显：受众、语气、结构、长度全部被明确了，Claude 不需要再靠猜。
+...
 
-## 一个实用的写法流程
+---
 
-如果你觉得某次 Claude 输出太泛、太虚或者不够准，可以按这个流程重新写：
+**[👉 继续阅读全文：Claude 提示词基础：如何写出清晰直接的请求](https://tools.cooconsbit.com/zh/articles/claude-clear-direct-prompts-guide?utm_source=github&utm_medium=referral)**
 
-1. 用一句话说清楚任务本身。
-2. 补上 Claude 无法自行推断的背景信息。
-3. 明确你要的输出格式和边界条件。
-4. 根据结果偏差，进一步收紧或调整要求。
-
-这个过程的本质，是把你脑子里“默认存在”的信息写出来。很多时候，用户自己其实知道想要什么，只是没有把它表达成可执行的指令。
-
-## 哪些背景信息最值得补充
-
-Anthropic 的官方资料里提到的一些高价值上下文包括：
-
-- 输出最终要拿来做什么
-- 目标受众是谁
-- 任务处在什么工作流程里
-- 什么样的结果才算成功
-
-如果 Claude 给出的答案总是“差点意思”，通常就是这几类信息里少了一项或几项。
-
-## 常见错误
-
-下面这些问题在真实使用里非常常见：
-
-- 提示词内部互相矛盾
-- 要求很高的准确性，但不给任何源材料
-- 想要固定格式，却不直接写出格式
-- 说“简短一点”“更专业一点”，却不解释具体标准
-
-Anthropic 也建议用一个很简单的测试方法：把你的提示词拿给一个不熟悉背景的同事看。如果对方不知道你到底想要什么，Claude 大概率也不会完全明白。
-
-## 真正要追求的不是“更复杂”，而是“更可执行”
-
-清晰提示词并不意味着必须写得像机器命令一样生硬。你依然可以自然表达。区别在于，你给 Claude 的信息现在足够让它可靠执行，而不是靠猜测补全。
-
-当你开始这样写提示词，输出质量会明显更稳定。不是因为提示词更长了，而是因为每一条信息都在帮助 Claude 更准确地完成任务。
-
-## 官方参考资料
-
-- [Be clear, direct, and detailed](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [Getting started with Claude](https://support.anthropic.com/en/articles/8114491-how-do-i-get-started-with-claude-ai)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

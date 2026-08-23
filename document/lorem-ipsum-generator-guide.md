@@ -1,17 +1,6 @@
----
-title: "Lorem Ipsum 生成器怎么用：做网页原型和占位文案更快"
-slug: "lorem-ipsum-generator-guide"
-category: document
-tags:
-  - lorem ipsum
-  - 占位文本
-  - 原型设计
-  - 在线工具
-summary: "介绍 MagicTools Lorem Ipsum 生成器的用法，适合网页原型、UI 设计、前端开发和演示稿占位。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Lorem Ipsum 生成器怎么用：做网页原型和占位文案更快
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/lorem-ipsum-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/lorem-ipsum-generator-guide?utm_source=github&utm_medium=referral)**
 
 ## 什么情况下会用到 Lorem Ipsum？
 
@@ -59,27 +48,10 @@ Lorem Ipsum 的作用就是提供一段“像正文但不必认真读”的占�
 
 它的核心价值不是“生成拉丁文”，而是让你更快验证：
 
-- 段落宽度是否舒服
-- 行高是否合适
-- 卡片高度会不会被撑开
-- 列表组件在多项内容下是否还能稳定显示
+...
 
-## 常见问题 FAQ
+---
 
-**Q：为什么不用自己随便打几句字？**
+**[👉 继续阅读全文：Lorem Ipsum 生成器怎么用：做网页原型和占位文案更快](https://tools.cooconsbit.com/zh/articles/lorem-ipsum-generator-guide?utm_source=github&utm_medium=referral)**
 
-A：可以，但随机文本很容易不够均匀，排版参考意义不大。占位文本更适合看布局。
-
-**Q：适合中文网站原型吗？**
-
-A：适合做结构验证。如果你要检查中文断行、字重、字距，还是需要换成真实中文内容再看一次。
-
-**Q：一次能生成多少？**
-
-A：页面里不同模式有不同上限，常见的原型和演示需求基本够用。
-
-## 小结
-
-Lorem Ipsum 生成器是个很典型的“平时不起眼，做设计和前端时却很常用”的工具。需要占位文本时，现成生成、直接复制，比临时拼凑内容高效得多。
-
-访问地址：[tools.cooconsbit.com/tools/lorem-ipsum](https://tools.cooconsbit.com/tools/lorem-ipsum)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

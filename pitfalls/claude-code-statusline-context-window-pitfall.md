@@ -1,14 +1,6 @@
----
-title: "Fable 5 明明是 1M 上下文，状态栏却显示 200k：别急着换工具，先抓一份现场数据"
-slug: claude-code-statusline-context-window-pitfall
-category: pitfalls
-locale: zh
-tags: [Claude Code, statusline, 上下文窗口, Bug 复盘, LLM]
-summary: "Claude Fable 5 官方确认 1M token 上下文窗口，但 Claude Code 底部状态栏的分母一直是 200k。第一反应是「换个更好的 statusline」——错了。本文复盘完整排障过程：用一行 tee 抓下 statusline 的 stdin 现场，实锤官方字段对新模型误报 200000，最后用一张模型表修正。附赠一个通用教训：换工具修不了数据源的错。"
-status: published
-source: authored
-translationSlug: claude-code-statusline-context-window-pitfall-en
----
+# Fable 5 明明是 1M 上下文，状态栏却显示 200k：别急着换工具，先抓一份现场数据
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-code-statusline-context-window-pitfall?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-code-statusline-context-window-pitfall?utm_source=github&utm_medium=referral)**
 
 ## 现象
 
@@ -52,74 +44,10 @@ printf "%s" "$input" > /tmp/statusline-debug.json   # 临时调试行，用完�
 jq '.model, .context_window' /tmp/statusline-debug.json
 ```
 
-```json
-{
-  "id": "claude-fable-5",
-  "display_name": "Fable 5"
-}
-{
-  "total_input_tokens": 76334,
-  "context_window_size": 200000,
-  "used_percentage": 38
-}
-```
+...
 
-实锤了：**模型 id 明明是 `claude-fable-5`，Claude Code 报的 `context_window_size` 却是 200000。** 这不是脚本算错，是上游数据源就错了——Claude Code 不认识新模型的窗口大小时，会回落到 200k 默认值（对应已知 issue #76751，1M 会话误报 200k）。
+---
 
-到这一步，「换 statusline」的方案可以正式毙掉：谁来读这个字段都是 200000。
+**[👉 继续阅读全文：Fable 5 明明是 1M 上下文，状态栏却显示 200k：别急着换工具，先抓一份现场数据](https://tools.cooconsbit.com/zh/articles/claude-code-statusline-context-window-pitfall?utm_source=github&utm_medium=referral)**
 
-## 根因
-
-三层叠加：
-
-1. **官方字段误报**：Claude Code 对 1M 窗口模型（实测 `claude-fable-5`）的 `context_window_size` 报 200000
-2. **脚本兜底写死**：脚本里字段缺失时 `ctx_size=200000`，进一步固化了这个值
-3. **原有修正条件太苛刻**：脚本此前只在「已用量超过报告值」时才修正为 1M——意味着必须先用掉 20 万 token，分母才会变对。在那之前，百分比一直按 200k 算，红色告警全是虚惊
-
-## 修复：一张模型表 + 保留兜底
-
-既然上游字段靠不住，就在脚本里维护一张**已知 1M 窗口模型表**，按 `model.id` 强制修正：
-
-```bash
-model_id=$(printf '%s' "$input" | jq -r '.model.id // empty')
-
-# 官方字段对 1M 窗口模型误报 200k（#76751，实测 claude-fable-5 报 200000）
-# 已知 1M 窗口模型按表强制修正；[1m] 后缀显式声明 1M，优先于模型表
-case "$model_id" in
-  *"[1m]"*)
-    ctx_size=1000000
-    ;;
-  *fable-5*|*mythos-5*|*opus-5*|*sonnet-5*|*opus-4-8*|*opus-4-7*|*opus-4-6*|*sonnet-4-6*)
-    if [ -z "$ctx_size" ] || [ "$ctx_size" -le 200000 ] 2>/dev/null; then
-      ctx_size=1000000
-    fi
-    ;;
-esac
-[ -z "$ctx_size" ] && ctx_size=200000
-# 兜底：未知模型用量超过报告窗口时，也按 1M 修正
-if [ -n "$ctx_used" ] && [ "$ctx_used" -gt "$ctx_size" ] 2>/dev/null; then
-  ctx_size=1000000
-fi
-```
-
-表里的型号（Fable/Mythos 5、Opus 5/4.8/4.7/4.6、Sonnet 5/4.6）都是官方文档确认 1M 窗口的。原来那条「用量超过报告值就修正」的逻辑保留，作为表外未知模型的兜底。
-
-验证不用等真实会话——刚才抓的 debug JSON 就是现成测试用例：
-
-```bash
-bash ~/.claude/statusline-command.sh < /tmp/statusline-debug.json
-# magictools | Fable 5 | Ctx 7% (79k/1M)
-```
-
-同一份输入，38% 变 7%，分母 200k 变 1M。改完记得删掉调试行、清掉 `/tmp` 的落盘文件。
-
-## 一个容易忽略的尾巴：1M ≠ 可用 1M
-
-Claude Code 会为 auto-compact 预留缓冲，1M 窗口的实际可用预算约 **830k** 左右。所以状态栏按 1M 算百分比时，心里要留一档：80% 飘红时就该收尾了，别等 100%。
-
-## 带走的教训
-
-1. **换工具之前，先确认坏的是不是数据源。** 所有下游消费同一份上游数据时，换下游是无效动作。这次如果直接换了社区 statusline，结果还是 200k，还多引入一个依赖。
-2. **瞬时数据要落盘再排障。** stdin、管道、hook 输入这类「看不到的现场」，加一行 tee/重定向落盘，比盯着结果猜快得多。抓下来的现场还能直接当回归测试的输入。
-3. **写死的兜底值要有失效预案。** `ctx_size=200000` 在写下的那天是对的，模型迭代后就成了暗雷。兜底值旁边最好留一张按标识符查的修正表，并给表外情况保留动态修正逻辑。
-4. **新模型上线后，把「工具链对它的认知」也当成待验证项。** 模型能力升级了，编辑器、CLI、监控脚本里关于它的硬编码假设（窗口大小、价格、tokenizer）不会自动跟上。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,17 +1,6 @@
----
-title: "CSS 生成器怎么用：圆角、阴影、渐变和 transform 可视化生成"
-slug: "css-generator-guide"
-category: developer
-tags:
-  - CSS生成器
-  - 前端开发
-  - 在线工具
-  - UI样式
-summary: "介绍 MagicTools CSS 生成器的实际用法，适合前端开发、页面调样式、快速生成圆角、阴影、渐变和变换代码。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# CSS 生成器怎么用：圆角、阴影、渐变和 transform 可视化生成
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/css-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/css-generator-guide?utm_source=github&utm_medium=referral)**
 
 ## 为什么前端写 CSS 时还需要生成器？
 
@@ -62,28 +51,10 @@ MagicTools 的 CSS 生成器适合做“先可视化调出来，再复制代码�
 **第一，先在生成器里把效果调顺眼，再复制到项目里。**  
 这样比在代码里来回试更直观。
 
-**第二，注意生成器适合“生成片段”，不是替代完整样式系统。**  
-调完以后，最好还是回到项目中结合整体设计规范使用。
+...
 
-**第三，背景图片类配置要确认最终地址可用。**  
-如果用了背景图链接，复制到正式项目里前记得检查资源路径。
+---
 
-## 常见问题 FAQ
+**[👉 继续阅读全文：CSS 生成器怎么用：圆角、阴影、渐变和 transform 可视化生成](https://tools.cooconsbit.com/zh/articles/css-generator-guide?utm_source=github&utm_medium=referral)**
 
-**Q：可以直接下载代码吗？**
-
-A：可以，页面支持复制，也支持下载为 CSS 文件。
-
-**Q：适合 Tailwind 用户吗？**
-
-A：适合做效果验证。先用它把参数调出来，再决定是否改写成 Tailwind 类名或保留原生 CSS。
-
-**Q：是不是所有样式都能生成？**
-
-A：不是。它覆盖的是前端里最常见、最容易反复调的那几类属性。
-
-## 小结
-
-CSS 生成器的核心价值在于降低试错成本。尤其是圆角、阴影、渐变这类视觉属性，先看效果再拿代码，会比纯手写顺很多。
-
-访问地址：[tools.cooconsbit.com/tools/css](https://tools.cooconsbit.com/tools/css)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

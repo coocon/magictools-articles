@@ -1,17 +1,6 @@
----
-title: "The Day GitHub Went Down for 7.5 Hours, Cursor Launched Its Own Code Host"
-slug: github-outage-cursor-origin-en
-summary: "On August 17, GitHub suffered a 7-hour-35-minute critical incident — its 9th critical in two months. The same day, Cursor launched Origin, a git forge 'designed for agent scale,' three days after SpaceX closed its $60B acquisition. Is the moat cracking? We fact-checked both stories."
-category: developer
-tags: [GitHub, Cursor, code hosting, Git, outage, developer tools]
-coverImage: ""
-status: published
-locale: en
-source: authored
-translationSlug: github-outage-cursor-origin
----
-
 # The Day GitHub Went Down for 7.5 Hours, Cursor Launched Its Own Code Host
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/github-outage-cursor-origin-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/github-outage-cursor-origin-en?utm_source=github&utm_medium=referral)**
 
 Two things happened on August 17, 2026. Neither is earth-shattering on its own; on the same day, they make a narrative.
 
@@ -42,37 +31,10 @@ Cursor's Origin is real, but much of what circulated about it is wrong. Per the 
 
 **What it is**: Cursor's own git forge, in early beta, rolling out to all **paid** plans starting August 17. Current features: repository hosting (standard git clone/push/pull), opening/reviewing/merging PRs, web-based code browsing and search, two-way GitHub mirror sync (GitHub remains the source of truth, with PR comments syncing both ways in real time), an Origin CLI, and third-party apps (Vercel preview deploys; Depot/Buildkite CI — the latter can run your existing GitHub Actions workflows as-is). The AI-native part: every repo has a built-in agent you can ask about the code, have edit code, update PRs, and push branches. More "agent-native features ship soon."
 
-**What it isn't**: there's no issue tracker, no wiki, no standalone pricing, and no free tier — the docs state plainly, "It is not available on free plans." The "$20/month" figure floating around is Cursor Pro's subscription price attached to Origin by mistake (Origin comes bundled with paid plans; it isn't sold separately). The "3 private repos on the free tier" claim is pure fabrication.
-
-**Two pieces of context**: Cursor acquired the code review company Graphite in December 2025, and Graphite founder Tomas Reimers is one of Origin's developers — he showed up in the HN launch thread to claim it. The bigger backdrop: three days before the launch (August 14), SpaceX completed its **$60 billion** all-stock acquisition of Cursor's parent Anysphere, confirmed in an SEC 8-K.
-
-And one detail no screenwriter would dare pitch: **Origin was knocked over by the GitHub outage on its own launch day** — its GitHub sync depends on GitHub, and Cursor posted its own incident. The challenger got taken down, on debut day, by the incumbent it's challenging.
-
-## What HN Is Fighting About: Blame, Migration, and Why Migration Is Hard
-
-**The blame war.** One camp says LLM-era traffic is crushing traditional forges — "usage is up tens of x, agents are pushing slop" (130 replies under that comment). The rebuttal: "LLM code isn't the problem; Microsoft mismanagement is." Someone asked the practical question: why not solve this with pricing and rate limits?
-
-**Migration testimonies.** The loudest destination is Forgejo/Codeberg: "We ditched GitHub for Forgejo and couldn't be happier — the migration took a few hours and we treated it as a hackathon." "Moved everything to Codeberg months ago and set up an annual donation; what broke me was GitHub force-feeding Copilot." One commenter offered a decision framework: want the GitHub experience → Forgejo/Gitea; just want managed hosting → GitLab/Codeberg; have your own infra → gitolite+CGit. The founder of federated newcomer tangled.org was in the thread recruiting.
-
-**Why people stay** may be the most sober part of the discussion. A user who has self-hosted GitLab for six years testified it's "not always smooth sailing" — upgrade rollbacks and maintenance costs are real. The deeper counterargument: GitHub's value is the **unity of the entire open-source world** — cross-project search, shared Actions, a single contribution graph; forge balkanization destroys the public good of "everyone in one place." Organizations deeply bound to the Actions ecosystem effectively have no options — "the real problem is replacing Actions."
-
-## Verdict: The Beginning of Cracks, Not a Cracked Moat
-
-Weighing the evidence:
-
-**For the "moat is cracking" case**: 50 incidents and 9 criticals in two months is hard data from the official API, not vibes; the status-page whitewashing is documented trust erosion; community discussion shifted for the first time from "complain and carry on" to serious evaluation with real completed migrations; and Cursor's timing was surgical — "agent scale" targets exactly the pain point HN spent all day arguing about, with SpaceX's resources behind it.
-
-**The counter-evidence is just as hard**: Origin today is an early beta behind a paywall, with no issues and no free tier — it cannot substitute for GitHub's open-source ecosystem. One HN commenter put it in a sentence: "this is a beta for paid plans, not a GitHub alternative." Right now it's a **parasitic layer** on GitHub (it lives off GitHub sync), not a replacement. And "editor + hosting + models" consolidating under one Musk-affiliated company is already a stated dealbreaker for some developers.
-
-So the accurate framing: GitHub's reliability crisis and a credibly funded, AI-native challenger showed up on the same day for the first time. But the challenger is nowhere near ready to absorb an exodus — and GitHub's deepest moat was never uptime; it's the network effect of the ecosystem.
-
-For the individual developer, there's exactly one actionable takeaway, and it's the cheapest insurance this outage offers: spend ten minutes adding a second remote to your critical repos (GitLab, Codeberg, or self-hosted — any will do); it's one `git remote set-url --add --push` command. You can watch the platform war from the sidelines. An afternoon of failed pushes is something you don't want twice.
+...
 
 ---
 
-*Sources:*
-*GitHub status page: [Incident zkxwbgr0cnmx](https://www.githubstatus.com/incidents/zkxwbgr0cnmx) (frequency stats from the [githubstatus API](https://www.githubstatus.com/api/v2/incidents.json))*
-*Cursor official: [Origin changelog](https://cursor.com/changelog/origin-code-hosting) / [Origin docs](https://cursor.com/docs/origin)*
-*Hacker News: [outage main thread (529 pts)](https://news.ycombinator.com/item?id=49330597) / [Ask HN: Alternatives to GitHub (491 pts)](https://news.ycombinator.com/item?id=49331033) / [Origin launch thread](https://news.ycombinator.com/item?id=49334209)*
-*SpaceX–Cursor acquisition: [Seeking Alpha (SEC 8-K)](https://seekingalpha.com/news/4633335-spacex-completes-60b-acquisition-of-cursor-as-musk-led-firm-tries-to-gain-edge-in-ai-coding)*
-*Opinion piece: [GitHub has an availability problem](https://dhruv2038.bearblog.dev/github-has-an-availability-problem-is-it-time-to-look-elsewhere/)*
+**[👉 Continue reading: The Day GitHub Went Down for 7.5 Hours, Cursor Launched Its Own Code Host](https://tools.cooconsbit.com/en/articles/github-outage-cursor-origin-en?utm_source=github&utm_medium=referral)**
+
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

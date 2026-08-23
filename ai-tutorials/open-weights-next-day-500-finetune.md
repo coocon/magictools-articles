@@ -1,17 +1,6 @@
----
-title: "权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型"
-slug: open-weights-next-day-500-finetune
-summary: "Kimi K3 权重上架、Dario 发否认信之后的第一个工作日，HN 头版没有继续吵政策，而是摆出了两本账：一家立陶宛团队花 500 美元 GPU 时间，用 GRPO 把一个 9B 开源模型在电商目录审核任务上训到 87.3%，打赢了包括 GPT-5.5、Gemini 3.1 Pro、Claude Fable 5 在内的全部五个前沿配置，单价便宜 68 倍；另一边，一位 Modal 工程师写下「用开源模型感觉出奇地好」拿了 303 分。本文核实实验细节、如实列出评论区的三记重锤（自建基准自训自评、500 美元只是最便宜的账单项、Ramp 营收数据的归因谬误），以及这两篇各自的利益相关。"
-category: ai-tutorials
-tags: [开源模型, 微调, 强化学习, GRPO, Kimi K3, 垂直模型, 模型经济学, DeepSeek, Modal]
-coverImage: ""
-status: published
-locale: zh
-source: authored
-translationSlug: open-weights-next-day-500-finetune-en
----
-
 # 权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/open-weights-next-day-500-finetune?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/open-weights-next-day-500-finetune?utm_source=github&utm_medium=referral)**
 
 昨天我们记录了 7 月 27 日的[「同一天」](/articles/kimi-k3-weights-land-dario-denial)：Kimi K3 的 2.8 万亿参数权重踩线上架 Hugging Face，Dario Amodei 同日亲笔发文否认「想禁开源」。那是政策层的对峙。
 
@@ -46,60 +35,10 @@ translationSlug: open-weights-next-day-500-finetune-en
 
 **价格**：每千条 listing，微调后的 9B 花 **0.5 美元**；最便宜的前沿配置（Gemini）是 19 美元，最强的是 34 美元，最贵的（GPT-5.5-pro）是 172 美元。按 Shopify 量级的每天 4000 万次判定折算：一年 700 万美元对 5 亿美元。
 
-**速度**：模型在大约 250 步（约一天）时就越过了前沿模型的分数带，剩下 750 步都在挤上限。
-
-文章还有个容易被略过的细节：那 2,800 字符的精调提示词不是免费的——它让各家的输入 token 账单**每次调用**膨胀 28% 到 55%。作者的总结句写得漂亮：「提示词里的任务知识是按次付租金的，权重里的任务知识是一次性买断的。」
-
-文中还列了几个业界同款：Bridgewater 用自家分析师标注训的模型比最好的前沿模型少犯约 30% 的错；法律 AI 公司 Harvey 用 RL 训开源模型，在自家评分标准上超过了 GPT-5.5 和 Opus 4.8；Intercom 的客服模型 Fin Apex 每周处理近两百万工单。
-
-## 三、评论区的三记重锤
-
-按惯例，先说这篇文章的立场：Fermisense **卖的就是这个服务**，文末就是「预约 30 分钟审计」的按钮。这不自动否定数据，但读的时候要带着这个背景。HN 评论区的质疑，恰好锤在最要害的三处：
-
-**第一锤：自建基准，自训自评。** 得分很高的一条评论一针见血：「他们自己造了基准，然后**直接对着它的打分函数训练**。」另一位追问：没有独立的留出测试集，这和过拟合有什么区别？这个质疑和我们[读 K3 评测表](/articles/kimi-k3-weights-land-dario-denial)时的习惯是同一件事——**先问分数是谁定义的，再看分数是多少**。公道地说，垂直微调的场景里「练兵场即考场」有其合理性（业务目标本来就是唯一标准），但「打赢前沿模型」这个说法的分量，确实要打折扣：前沿模型是在别人家的考场上被考的。
-
-**第二锤：500 美元是整个故事里最便宜的一行。** 评论 h_mirin 说得直白：贵的从来不是 GPU 时间，是**造数据和养模型**。17.7 万个带标准答案的回合怎么来的？上线之后数据漂移了谁重训？有人补刀：调超参的试错轮次「保准超过 5000 美元」，只是不写进标题。还有个更冷的账：前沿模型每隔几个月免费变强一次，「什么都不做，等下一版」经常是回报最高的策略——公平的对比对象不是今天的前沿，是你还在维护微调模型时**已经发布的那个**前沿。
-
-**第三锤：开篇那组营收数据是归因谬误。** 文章引 Ramp 数据说 AI 支出前四分位的公司三年营收翻倍、零支出的只涨 15%。评论区不客气：「营收翻倍的公司才有钱花在 AI 上」——因果方向完全可能是反的，拿头部 AI 支出者对比全体零支出者，「智识上不诚实」。这一锤跟实验本身无关，但提醒你这篇文章的叙事框架是营销框架。
-
-评论区也有把问题拉回本质的声音。最好的一条只有一句话：「**瓶颈从来不是模型大小，是有没有一个真正理解业务的人来定义奖励函数。**」那个 7 倍的不对称惩罚，才是这 500 美元里最值钱的部分。
-
-## 四、另一篇：303 分的「感觉」
-
-同一个头版上，Matthew Saltz 的帖子几乎是前一篇的镜像——没有任何数字，全是感受。
-
-他在 Modal 工作（利益相关：Modal 当天刚上线 K3 托管端点，他自己坦承了这层关系），晚上回家想写点侧碰项目，个人的 Claude 套餐不够用，于是花五分钟把开源编程助手 opencode 指向了自己的 K3 端点。然后他写道：
-
-> 「感觉……自由，不知怎么的。端点是我的，数据从我的笔记本到那里再回来。它像是**我的东西**。……最贴切的形容是：在大而华丽的编辑器里泡了很久之后，重新打开 vim。」
-
-评论区先照例泼了冷水——「这不就是给 Modal 打广告」「租来的硬件算什么『自己的基础设施』」——然后迅速变成了一场**晒作业大会**，这才是这个帖子真正的价值：
-
-- 有人用 DeepSeek V4 Flash 通过 Matrix 跑了个私人助理，拍张医嘱照片就自动加日历、归档 PDF、查地图，**每月成本约 2 美元**；
-- 有人周末用 Fable 的溢出额度写了个单容器的个人 agent，套上 Gemma 之后能跑在树莓派 5 上；
-- 一位高赞评论给出了方法论：「Claude Code 流行是因为它擅长把『给我做个百万美元 SaaS』这种模糊人话变成几千行代码。开源小模型不擅长这个。**但软件开发本来就不是这么做的**——如果你用它迭代小而清晰的函数，GLM 不比 Claude 差」;
-- 也有人反着优化：不换模型，改造 harness 去迁就开源模型的工具调用习惯,「TTFT 和吞吐都快得多」。
-
-注意这些人没有一个在谈论 benchmark。他们谈论的是月账单、数据去向和掌控感。
-
-## 五、我的解读：政策层下面那层，已经用脚投票了
-
-把这两天连起来看，有三点值得记下。
-
-**第一，「蒸馏」这个词的政策温度和市场温度是脱节的。** Dario 立场文的三项主张里有一条是「打击工业级蒸馏」。而在 K3 的帖子下面，一条平静的技术评论写着：「等不及有人把 K3 蒸馏成 Qwen 27B 大小的模型了，好换掉我本地那个。」在政策层，蒸馏是地缘安全议题；在开发者层，蒸馏是「让好东西跑在我的机器上」的日常需求。任何监管方案都要面对这个温差——需求侧的引力不会因为立场文而消失。
-
-**第二，护城河正在从模型移向 harness。** Saltz 评论区反复出现同一个观察：K3、GLM、DeepSeek 模型本身够用了，缺的是像 Claude Code 一样好用的 harness。这与我们在[关灯工厂那篇](/articles/lights-off-software-factory-postmortem)里聊过的判断严丝合缝：Claude Code 的优势来自 Anthropic 把 RL 做进了 harness 里——模型和工具是配套训练的。开源阵营拿到了权重，还没拿到这层配套。有评论预测六个月内会出现最好的开源 harness，这个预测本身无法验证，但方向值得盯：**下一场竞争的主战场，很可能不在权重文件里。**
-
-**第三，「微调打赢前沿」的新闻会越来越多，读法比结论重要。** 这类故事有个固定结构：垂直任务 + 自建评分 + 惊人的成本比。三个问题可以过滤掉大部分噪音：分数是谁定义的？造数据和养模型的全生命周期成本是多少？等三个月免费拿下一代前沿模型，差距还在吗？过滤完之后剩下的部分依然成立——**高频、可验证、边界清晰**的任务上，一个买断制的小模型确实能同时赢质量和成本，Shopify 每天 4000 万次分类推理就是不靠新闻稿的存量证据。至于低频、开放、无法打分的任务，前沿模型的「泛光灯」暂时无可替代——评论区那个比喻很准：大模型是泛光灯，微调小模型是激光笔，激光笔能在那一个点上亮得和泛光灯一样，价格是它的零头。
-
-权重落地第一天，大家在等开闸；第二天，就已经有人在改造水渠了。政策辩论还会继续，但这一层的进度条不等任何人。
+...
 
 ---
 
-**参考链接**
+**[👉 继续阅读全文：权重落地第二天，HN 在算账：500 美元微调的 9B 模型打赢了五个前沿大模型](https://tools.cooconsbit.com/zh/articles/open-weights-next-day-500-finetune?utm_source=github&utm_medium=referral)**
 
-- [Fermisense: The Rise of Intelligence Ownership（500 美元微调实验原文）](https://fermisense.com/when-machines-take-the-wheel/)
-- [HN 讨论：$500 RL fine-tune（250 分）](https://news.ycombinator.com/item?id=49078454)
-- [Matthew Saltz: Using an open model feels surprisingly good](https://matthewsaltz.com/blog/using-an-open-model-feels-surprisingly-good/)
-- [HN 讨论：Using an open model（303 分）](https://news.ycombinator.com/item?id=49078583)
-- [Telnyx：Kimi K3 上线推理 API](https://telnyx.com/release-notes/kimi-k3-telnyx-inference)
-- 站内前情：[Kimi K3 权重踩线上架，同一天 Anthropic CEO 发文否认「想禁开源」](/articles/kimi-k3-weights-land-dario-denial) · [当 API token 卖到官方价的 3%](/articles/llm-token-relay-market-anatomy) · [「关灯」软件工厂跑了四个月](/articles/lights-off-software-factory-postmortem)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,17 +1,6 @@
----
-title: "Claude 提示词改进器指南：把弱 Prompt 变成可靠模板"
-slug: "claude-prompt-improver-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - prompt engineering
-  - prompt improver
-summary: "介绍如何使用 Anthropic 的提示词改进器，把不稳定的初稿升级成更清晰、更结构化、可重复使用的模板。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 提示词改进器指南：把弱 Prompt 变成可靠模板
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-prompt-improver-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-prompt-improver-guide?utm_source=github&utm_medium=referral)**
 
 提示词改进器适合“已经有初稿，但输出还是不稳定”的阶段。它不是让你从零开始写 Prompt，而是帮助你把已有草稿系统性升级。Anthropic 的这个工具尤其适合需要重复产出、结构稳定、容错率低的场景。
 
@@ -62,37 +51,10 @@ Anthropic 把这个过程拆成四步：
 
 不要默认生成出来的推理说明就已经完美。如果输出太啰嗦、太慢，或者偏离你的使用场景，就继续收紧说明，让模型专注在真正的任务上。
 
-## 一个实际例子
+...
 
-假设你有一个分类客服工单的提示词，但分类经常漂移，推理也不稳定。提示词改进器可以帮你重建这个提示词，让它包含：
+---
 
-- 更明确的任务定义
-- 更清楚的分类标签
-- 每个分类对应的示例工单
-- 更结构化的输出格式
+**[👉 继续阅读全文：Claude 提示词改进器指南：把弱 Prompt 变成可靠模板](https://tools.cooconsbit.com/zh/articles/claude-prompt-improver-guide?utm_source=github&utm_medium=referral)**
 
-这种改进比临时重写更耐用，因为它让提示词更容易测试，也更容易长期复用。
-
-## 常见错误
-
-最常见的问题通常是流程错误：
-
-- 没有提供真实的失败反馈就去改进
-- 明明任务需要示例，却没有加入示例
-- 改进后却忽略输出格式
-- 把本来应该由模型选择解决的问题，错误地交给提示词改进器
-
-如果使用得当，结果应该更容易测试、更容易维护，也更容易向团队解释。
-
-## 实用结论
-
-当一版提示词已经有用，但还不够稳定时，就用提示词改进器。目标不是“让 Prompt 看起来更漂亮”，而是把它改成一个可重复、可信赖的模板。
-
-## 官方参考资料
-
-- [使用提示词改进器优化你的提示词](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-improver)
-- [提示词工程概览](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [使用示例（多示例提示）](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/multishot-prompting)
-- [使用 XML 标签组织提示词](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/use-xml-tags)
-
-以上资料检索于 2026年3月29日。提示词改进器的可用性、Console 行为和功能开放范围可能因产品界面和套餐而异，发布前请以 Anthropic 官方链接为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

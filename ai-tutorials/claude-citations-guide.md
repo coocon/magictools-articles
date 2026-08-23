@@ -1,17 +1,6 @@
----
-title: "Claude 引用指南：让回答更容易核对"
-slug: "claude-citations-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - 引用
-  - research
-  - anthropic
-summary: "基于 Anthropic 官方文档，介绍 Claude 引用功能的适用场景、工作方式和提示词结构，帮助你让答案更可核查。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 引用指南：让回答更容易核对
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-citations-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-citations-guide?utm_source=github&utm_medium=referral)**
 
 Claude 的引用功能只有一个核心目标：让答案更容易核对。你不再只是得到一段流畅的回答，而是可以把它和你提供的资料一一对照。对于政策文本、研究材料、合同、内部笔记这类内容，这一点尤其重要。
 
@@ -58,70 +47,10 @@ Anthropic 的引用文档描述了一个简单流程：
 
 如果问题有多个子项，建议明确分点。这样 Claude 更容易把每个答案对齐到对应来源。
 
-## 可直接复用的示例
+...
 
-如果你在分析政策文档，最好让 Claude 把“结论”和“证据”分开。
+---
 
-示例：
+**[👉 继续阅读全文：Claude 引用指南：让回答更容易核对](https://tools.cooconsbit.com/zh/articles/claude-citations-guide?utm_source=github&utm_medium=referral)**
 
-```text
-请审阅附带的政策文档，并回答以下问题：
-
-1. 版本 A 和版本 B 有哪些变化？
-2. 哪些变化会影响用户权限？
-3. 给管理者写一句话总结。
-
-每个答案都要带引用。
-```
-
-如果你在比较研究笔记，应该要求 Claude 区分一致和冲突。
-
-示例：
-
-```text
-请比较这两份研究摘要。
-
-任务：找出两份资料的共同点、分歧点，以及每个结论的证据。
-输出格式：三个部分，分别是一致点、分歧点、结论。
-约束：每个事实性陈述都要保留来源引用。
-```
-
-## 什么时候最适合用引用
-
-引用功能通常在以下情况下更可靠：
-
-- 源材料结构清晰
-- 问题足够具体，能从提供的文档中直接回答
-- 你在提示词里明确要求使用引用
-- 输出格式不要太复杂，否则会影响引用的保留
-
-Anthropic 还指出，如果提示词没有明确要求，Claude 可能不太愿意自动给出引用，尤其是在某些结构化输出格式里。最稳妥的做法，是直接把“必须引用”写进提示词。
-
-## 常见错误
-
-最常见的问题都可以避免：
-
-- 开了引用，却没有提供对应资料
-- 问题太大，无法仅凭提供的文档回答
-- 期待图片也能获得同样的引用效果
-- 输出格式过度复杂，结果把引用挤掉了
-
-如果问题太开放，Claude 也许仍然能回答得不错，但可追踪性会弱很多。把任务收窄，并明确证据要求，效果会更稳定。
-
-## 一个稳定的工作流
-
-如果你是在做研究或文档审核，可以用下面这个顺序：
-
-1. 先让 Claude 提取相关原文。
-2. 再让 Claude 用通俗语言解释这些原文。
-3. 最后让 Claude 输出带引用的总结。
-
-这个顺序可以把“提取”和“解释”分开，降低幻觉风险，也方便人工复核。
-
-## 官方参考资料
-
-- [Citations](https://docs.anthropic.com/en/docs/build-with-claude/citations)
-- [Using Research on Claude](https://support.anthropic.com/en/articles/11088861-using-research-on-claude)
-- [Vision](https://docs.anthropic.com/en/docs/build-with-claude/vision)
-
-以上资料检索于 2026年3月29日。功能可用性、模型支持和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

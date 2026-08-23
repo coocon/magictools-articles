@@ -1,11 +1,6 @@
----
-title: "思维链提示：让 Claude 一步步解决复杂问题"
-slug: prompt-chain-of-thought
-category: claude
-tags: [prompt-engineering, chain-of-thought, reasoning, advanced]
-summary: "掌握思维链（Chain of Thought）提示技巧，学习如何引导 Claude 进行逐步推理，解决数学、逻辑和多步骤复杂问题。"
-status: published
----
+# 思维链提示：让 Claude 一步步解决复杂问题
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/prompt-chain-of-thought?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/prompt-chain-of-thought?utm_source=github&utm_medium=referral)**
 
 ## 什么是思维链提示？
 
@@ -52,54 +47,10 @@ Claude 提供了 Extended Thinking 功能。开启后，Claude 会在回答前�
 
 ## Few-Shot CoT：用示例教 Claude 推理
 
-通过提供带推理过程的示例，Claude 会模仿同样的推理模式：
+...
 
-```
-问题：小明有 5 个苹果，给了小红 2 个，又买了 3 个。小明现在有几个苹果？
-推理：
-- 起始：5 个
-- 给出 2 个：5 - 2 = 3 个
-- 买入 3 个：3 + 3 = 6 个
-答案：6 个
+---
 
-问题：一家店上午卖了 45 件商品，下午卖了 38 件，退货 7 件。当天实际售出多少件？
-推理：
-```
+**[👉 继续阅读全文：思维链提示：让 Claude 一步步解决复杂问题](https://tools.cooconsbit.com/zh/articles/prompt-chain-of-thought?utm_source=github&utm_medium=referral)**
 
-Claude 会自动按照示例中的推理格式继续。
-
-## 任务分解策略
-
-对于特别复杂的问题，可以主动把任务拆成子问题：
-
-```
-请分三步完成以下任务：
-1. 首先，分析这段 Python 代码的时间复杂度
-2. 然后，找出其中的性能瓶颈
-3. 最后，提供优化方案并解释为什么更快
-```
-
-这比一句"优化这段代码"有效得多，因为每个子步骤都强制 Claude 进行独立的推理。
-
-## 适用场景总结
-
-| 场景 | 推荐技巧 |
-|------|---------|
-| 数学/逻辑题 | "请一步步推理" |
-| 高风险决策 | Extended Thinking |
-| 固定推理格式 | Few-Shot CoT |
-| 复杂多步任务 | 主动任务分解 |
-
-## 常见问题
-
-### 所有问题都需要思维链吗？
-
-不需要。对于简单的事实查询、翻译、文案生成等任务，思维链反而会增加不必要的冗余。思维链最适合需要多步推理的问题——数学计算、逻辑推断、代码调试和多条件决策。
-
-### Extended Thinking 和手动 CoT 有什么区别？
-
-手动 CoT 是你在提示词中要求 Claude "一步步思考"。Extended Thinking 是 Claude 的内置功能，推理深度更大，适合真正高难度的问题。两者可以结合使用，但通常 Extended Thinking 已经足够好。
-
-### 思维链会不会让回答变得太长？
-
-会。如果你只需要最终答案，可以在提示词中加入"在推理结束后，用一行单独给出最终答案"。这样你既获得了推理带来的准确性，又能快速找到结论。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

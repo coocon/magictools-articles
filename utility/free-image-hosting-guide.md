@@ -1,17 +1,6 @@
----
-title: "免费图床工具完全指南：上传、管理和外链使用"
-slug: "free-image-hosting-guide"
-category: utility
-tags:
-  - 图床
-  - 图片托管
-  - CDN
-  - 在线工具
-summary: "详细介绍 MagicTools 免费图床工具的使用方法，包括文件上传流程、支持格式、CDN 外链获取、上传记录管理，以及在 Markdown 和博客中使用图片外链的实用技巧。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 免费图床工具完全指南：上传、管理和外链使用
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/free-image-hosting-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/free-image-hosting-guide?utm_source=github&utm_medium=referral)**
 
 ## 什么是图床？为什么需要它？
 
@@ -54,101 +43,10 @@ MagicTools 的图床工具基于**腾讯云 COS**（Cloud Object Storage）和 C
 - **服务器带宽压力小**：大文件上传不占用应用服务器资源
 - **安全可控**：预签名 URL 有时效限制，防止滥用
 
-上传完成后，界面会显示文件的**外链 URL**。
+...
 
-### 第四步：获取并使用外链
+---
 
-上传成功后你会看到类似这样的外链：
+**[👉 继续阅读全文：免费图床工具完全指南：上传、管理和外链使用](https://tools.cooconsbit.com/zh/articles/free-image-hosting-guide?utm_source=github&utm_medium=referral)**
 
-```
-https://cdn.cooconsbit.com/uploads/2024/03/screenshot-abc123.png
-```
-
-点击「复制链接」按钮即可将 URL 复制到剪贴板，然后粘贴到任何需要的地方。
-
-## 在 Markdown 中使用图片外链
-
-获取图片外链后，在 Markdown 中插入图片的语法是：
-
-```markdown
-![图片描述文字](https://cdn.cooconsbit.com/uploads/2024/03/screenshot-abc123.png)
-```
-
-方括号内是图片的 alt 文本（对 SEO 和无障碍访问很重要），圆括号内是图片 URL。
-
-**带链接的图片**（点击图片跳转）：
-
-```markdown
-[![图片描述](图片URL)](跳转链接)
-```
-
-**指定图片尺寸**（部分 Markdown 处理器支持）：
-
-```markdown
-<img src="图片URL" width="600" alt="图片描述">
-```
-
-## 上传记录管理
-
-所有上传记录都保存在你的账号下，登录后访问 [Dashboard](https://tools.cooconsbit.com/dashboard) 并切换到「我的上传」标签页即可查看。
-
-**管理功能包括：**
-- 查看所有历史上传文件（文件名、大小、上传时间）
-- 一键复制文件外链
-- 预览图片
-- 删除不需要的文件（同时从 COS 中删除）
-
-**整理技巧**：定期清理不再使用的图片，既节省存储空间，也避免旧文章中出现失效图片的情况（删除后外链立即失效）。
-
-## 使用技巧与注意事项
-
-### 图片压缩建议
-
-上传前建议先压缩图片，以减小文件体积、加快加载速度：
-
-- **截图类**：使用 [Squoosh](https://squoosh.app/) 将 PNG 压缩为 WebP，通常可减小 50%~70% 体积
-- **照片类**：JPG 格式质量设为 80%~85% 即可，肉眼几乎看不出差异
-- **图标/线条图**：使用 SVG 格式，无限缩放且文件极小
-
-### 文件命名规范
-
-上传时文件名会成为 URL 的一部分，建议遵循以下规范：
-- 使用英文和数字，避免中文（URL 编码后会变成乱码）
-- 用连字符 `-` 代替空格（如 `product-screenshot-v2.png`）
-- 添加有意义的描述（如 `dashboard-dark-mode.png`），方便日后查找
-
-### 每日限额说明
-
-- **登录用户**：每日最多上传 10 次（自然日 0 点重置）
-- **管理员账号**：无上传次数限制
-- 单次上传建议不超过 50MB（服务器性能考虑）
-
-如果 10 次限额不够用，可以考虑将大量图片整理打包后用其他 COS 工具批量上传，MagicTools 图床主要针对日常轻度使用场景。
-
-## 常见问题 FAQ
-
-**Q：上传的图片外链是永久有效的吗？**
-
-A：只要你不在 Dashboard 中手动删除该文件，外链就会一直有效。文件存储在腾讯云 COS 中，平台承诺数据持久性。但需要注意：如果你删除了上传记录，对应的文件和外链会立即失效，请谨慎操作用于正式文档的图片。
-
-**Q：最大能上传多大的文件？**
-
-A：理论上 COS 直传不限制单个文件大小，但出于服务稳定性考虑，建议单文件不超过 100MB。视频文件建议控制在 50MB 以内。对于超大文件，更推荐使用专业的视频平台（如腾讯视频、B 站）而非图床工具。
-
-**Q：如何在 Markdown 博客文章中批量使用图片外链？**
-
-A：推荐的工作流是：①写文章时先用占位符（如 `TODO_IMAGE_1`）标记图片位置；②将所有截图批量上传到 MagicTools 图床，记录每张图片对应的外链；③写完后统一替换占位符为真实 URL。这样可以避免写作时频繁切换工具打断思路。
-
-**Q：图片可以用于商业项目吗？**
-
-A：MagicTools 图床存储的是你自己上传的文件，使用权归你所有。但需要确保你上传的内容有合法使用权（不侵犯他人版权），平台不对内容的版权归属负责。
-
-**Q：上传的图片会被公开访问吗？**
-
-A：是的，外链 URL 是公开可访问的，知道链接的任何人都可以查看图片。不要上传包含敏感信息的图片（如身份证、银行卡、密码截图等）。如需私密存储，请使用加密的云盘服务。
-
-## 小结
-
-MagicTools 图床工具通过腾讯云 COS + CDN 架构，提供了稳定、快速的免费图片托管服务。对于博客作者、技术写作者和内容创作者而言，它解决了「图片无处托管」的痛点，配合 Markdown 编辑器使用效果更佳——先上传图片获取外链，再粘贴到编辑器，完整的文档创作闭环一站式完成。
-
-访问 [tools.cooconsbit.com/tools/upload](https://tools.cooconsbit.com/tools/upload) 立即上传你的第一张图片。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

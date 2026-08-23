@@ -1,17 +1,6 @@
----
-title: "文本对比工具使用说明：快速找出两个版本哪里改了"
-slug: "diff-checker-guide"
-category: document
-tags:
-  - 文本对比
-  - diff
-  - 在线工具
-  - 校对
-summary: "介绍 MagicTools 文本对比工具的实际用法，适合合同修改、文案校对、代码片段比对和配置文件检查。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 文本对比工具使用说明：快速找出两个版本哪里改了
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/diff-checker-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/diff-checker-guide?utm_source=github&utm_medium=referral)**
 
 ## 为什么要用文本对比工具？
 
@@ -58,30 +47,10 @@ scheduledAt: ""
 
 不是所有代码片段都在仓库里。有时只是别人发来两段脚本，这时候直接粘贴比打开 IDE 更快。
 
-## 使用时的限制
+...
 
-**第一，它是按行比较，不是按语义理解。**  
-也就是说，只要一行有变化，这一行就会被认为不同。
+---
 
-**第二，空格和大小写的变化也会算差异。**  
-如果你对格式特别敏感，这反而是优点；如果你只关心意思是否变化，就需要人工再判断一次。
+**[👉 继续阅读全文：文本对比工具使用说明：快速找出两个版本哪里改了](https://tools.cooconsbit.com/zh/articles/diff-checker-guide?utm_source=github&utm_medium=referral)**
 
-## 常见问题 FAQ
-
-**Q：可以比较中文内容吗？**
-
-A：可以，普通中文段落、通知、合同条款都能正常比较。
-
-**Q：能比较代码吗？**
-
-A：可以，但它是文本级对比，不是语法级分析。用于快速检查很方便。
-
-**Q：适合多长的内容？**
-
-A：常见的文档片段、代码段、配置内容都没问题。内容越长，越建议先分模块比较。
-
-## 小结
-
-文本对比工具的价值不在“高级”，而在节省时间。原文放左边，修改稿放右边，几秒钟就能看清楚哪些地方新增了、哪些地方删掉了，特别适合需要复核版本差异的工作。
-
-工具地址：[tools.cooconsbit.com/tools/diff](https://tools.cooconsbit.com/tools/diff)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

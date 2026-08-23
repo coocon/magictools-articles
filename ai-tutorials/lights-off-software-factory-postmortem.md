@@ -1,17 +1,6 @@
----
-title: "「关灯」软件工厂跑了四个月，他的联合创始人手写了两周代码善后"
-slug: lights-off-software-factory-postmortem
-summary: "7 月下旬，一篇《Why Software Factories Fail》冲上 Hacker News 390 分。作者 Dex Horthy 不是 AI 怀疑论者——他靠教人用 coding agent 出名，视频累计百万播放。2025 年 7 月他把自己公司改成『没人看代码』的关灯工厂，11 月第三次事故后，联合创始人在 VS Code 里手写了整整两周代码重建。本文拆解他给出的根因：强化学习的打分机制里，『破坏可维护性』没有任何惩罚——这不是使用技巧问题，是模型训练问题。"
-category: ai-tutorials
-tags: [软件工厂, AI编程, coding agent, 强化学习, RLVR, 代码质量, SWE-bench, 理解债, Claude Code]
-coverImage: ""
-status: published
-locale: zh
-source: authored
-translationSlug: lights-off-software-factory-postmortem-en
----
-
 # 「关灯」软件工厂跑了四个月，他的联合创始人手写了两周代码善后
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/lights-off-software-factory-postmortem?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/lights-off-software-factory-postmortem?utm_source=github&utm_medium=referral)**
 
 7 月下旬，一篇标题为《Why Software Factories Fail》（为什么软件工厂会失败）的长文冲上 Hacker News 首页，截至写稿时拿到 **390 分**，评论区吵了几百楼。它基于作者在 AI Engineer World's Fair 2026 上的主题演讲，副标题更扎心：**harness engineering is not enough**——光靠工程手段兜底，是不够的。
 
@@ -57,79 +46,10 @@ Dex 的团队在 2025 年 7 月全面转向关灯模式：人只读 spec 和工�
 
 Dex 的答案要从 coding 模型怎么训练说起。强化学习（RLVR）的循环大致是：让 agent 生成解题轨迹，用某个「打分器」判分，然后更新权重让高分轨迹更常出现。这个循环要跑几百万次，所以打分必须又快又准。
 
-问题就出在打分上。以 SWE-bench Multilingual 为例——任务是从 Redis、Django、fastlane 这类开源库里挖出来的真实 issue，每个大约 15 分钟工作量，打分只有两条：
-
-- `FAIL_TO_PASS`：你修好要修的东西了吗？
-- `PASS_TO_PASS`：你有没有把别的弄坏？
-
-过了就是 1，没过就是 0。他举了个真实例子：fastlane 的 zip action 对两个可选参数直接调 `.empty?`，不传参就崩。人类当年的修复是**两行代码**——给参数补上默认空数组。而模型在评测里怎么修的、修得优不优雅、有没有顺手留下一堆防御性 try-catch 和摧毁类型系统的强转——**完全不影响得分**。
-
-他把这句话单独放大加粗：
-
-> **there is no penalty for eroding codebase maintainability**（破坏代码库的可维护性，没有任何惩罚）
-
-更麻烦的是时间尺度的错配：
-
-> 测试几秒钟就能给你反馈，但坏架构的代价，要用几周、几个月甚至几年来计量。
-
-坏的设计决策埋下去，几个月后才以事故的形式爆炸——而没有任何机制能把这次事故「反向传播」回当初那个决策。RL 需要一个快速、可靠的裁判，而「可维护性」恰恰没有这样的裁判。于是这套哲学最刺的一句话出现了：
-
-> 如果模型能可靠地分辨好代码和坏代码，它一开始就会把好的那版写出来。
-
-顺带一提，这套逻辑也解释了另一件事：Claude Code 为什么能在一年内从零干到约 90 亿美元年化收入，把更早出现、上下文工程做得也不差的 aider、cline 们甩在身后——公认的解释是 Anthropic **在 harness 内部做了 RL**，第一次让模型针对它将要搭载的那套工具本身进行训练。RL 决定了模型擅长什么。而 RL 没教的东西，再多的 loop 和 prompt 也补不回来。
-
-## 四、数据侧的旁证，和必要的免责声明
-
-Faros AI 今年发了一份报告，观察各团队自年初大规模采用 AI 编程工具之后的变化：review 评论多了 25%，评论变长了 22.7%，**31.3% 的 PR 完全跳过 review 直接合并**；每 PR 事故数 +242.7%，月度事故 +57.9%，每工程师 bug 数 +54%。
-
-必须实事求是地说：Dex 自己都标注了，这是**相关性信号，不是实锤**——采用 AI 工具的时期恰好也是很多团队疯狂提速的时期，因果很难剥离。但他的评价是「方向上和我亲眼所见一致」。
-
-## 五、反方观点：HN 评论区没有全信
-
-这篇文章在 Hacker News 上并非一边倒，几条主要的反驳值得原样呈现：
-
-**「你的实验过时了。」** 点赞很高的一条评论指出，业界普遍认为模型在 2025 年秋到 2026 年春之间发生了阶跃式提升，「7 月那次失败的经验，对现在这代模型可能已经不适用」。Dex 在文中预判了这个反驳，他的回应是：模型在「单次解题」上确实好了很多，但在「长期维持代码库质量」上，据他观察没什么变化——同时他也坦承：**这一点他证明不了，因为根本不存在衡量这个能力的基准测试**。
-
-**「StrongDM 那边好像跑得挺好。」** 有评论者指出，StrongDM 关灯工厂的团队成员已经出来开了家咨询公司，从结果看这条路没有失败，问题可能不是「不可能」，而是「大多数人不够严谨」。
-
-**「为什么不直接在 RL 里给坏设计加惩罚？」** 这条问到了点子上。事实上业界正在做：Abundant AI 的 SWE-Marathon 在构建约 400 小时量级的超长任务、用复合奖励替代单一 pass/fail；Cognition 的 Frontier Code 用变异测试的思路惩罚「写了等于没写」的测试，还在 diff 上跑代码质量裁判模型。Dex 对这些的态度是「方向对，但现在还不敢把代码库押上去」——裁判模型的天花板，仍然是那个悖论：能可靠判断好坏的模型，早就自己写出好代码了。
-
-**「模块化就能绕过去。」** 有人提出：既然 agent 不擅长维护性,那就由人类先定好模块化架构，再放 agent 去填充模块内部——维护性不重要的地方随便 vibe。这其实和 Dex 自己的解法殊途同归。
-
-## 六、他的解法：不是关灯，是把人的判断前移
-
-文章结尾给出的方案，说穿了非常保守：把 code review 加回来，然后**用规划降低 review 的成本**。四个阶段，每一段都是人机协作而不是全自动：
-
-1. **产品评审**：一页纸讲清楚「解决什么问题」和「成功长什么样」，能用 HTML mockup 就别用三段文字吵架；
-2. **系统架构**：服务、接口、库表怎么对话，用时序图和 contract 对齐；
-3. **程序设计**：他认为被严重低估的一环——在写实现之前，先对齐类型、函数签名、调用栈树、文件树 diff。这些东西模型起草、人来吵架，每一条都是你原本要在 code review 时（最贵的时刻）才被迫做的决策；
-4. **垂直切片**：拒绝模型最爱的「水平计划」（先全部建表、再全部写服务层、再全部写 API），改成每次打穿一条能跑通、能用 curl 戳一戳的细缝，每 100-200 行代码看一眼、纠一次偏。
-
-他也没有走向另一个极端：团队里约 **40% 的任务照样一把梭**给 agent，只有中大型改动才走完整流程。核心的账是：**30 分钟规划，省下几小时 review**。放弃「10-100 倍快、还不用看代码」的幻想，换取「2-3 倍快、并且安全」的现实。
-
-最后一条建议只有五个词：**Read the dang code**（把代码读了，就现在）。
-
-## 七、我的解读：这和「删掉 80% 提示词」是同一枚硬币
-
-Google 的 Addy Osmani 随后写了一篇回应《Software Factories, Light and Dark》，贡献了一个可能比原文流传更久的词：**理解债（comprehension debt）**——代码总量和「人类仍然理解的部分」之间不断拉大的差距。关灯工厂不偿还这笔债，它以最快的速度举债，而且**测试一路全绿**。清算不会以戏剧性的方式到来，它会「安静地、迟到地」到来。
-
-把这篇和我们之前写过的[《Anthropic 删掉了 Claude Code 80% 的系统提示词》](/articles/context-engineering-claude-5-deleted-80-percent)放在一起看，会看到一个有意思的分工：上下文工程决定的是**单次产出的上限**——提示词删得再漂亮、harness 搭得再精巧，都是在优化「这一把」的质量；而 Dex 谈的是另一个维度：**代码库的长期命运，取决于人类保留了多少理解**。前者是可以卷出来的，后者目前卷不出来，因为它没有进入任何一个训练循环的奖励函数。
-
-对普通开发者，这篇文章可操作的启示大概是三条：
-
-1. **警惕「测试全绿」带来的安全感。** 绿色只证明了打分器关心的那部分。你的代码库里此刻正在发生什么，打分器不知道，模型也不知道——只有读代码的人知道。
-2. **把和 agent 吵架的时间花在写代码之前。** 类型、签名、调用栈、文件布局，这些在规划阶段改一句话的事，到了 review 阶段就是 2000 行看不懂的 diff。
-3. **给自己的项目记一个「3-6 个月」的闹钟。** 如果一个重度依赖 agent 的代码库开始让你觉得「改一处、崩三处」，那不是你退步了，是理解债到期了。
-
-最后值得说明：Dex 在文章开头就自曝立场——他的公司 HumanLayer 卖的就是「人机协作」工具，这篇文章天然利好他的生意。但读完全文你会发现，他最有力的论据恰恰不需要你信任他：SWE-bench 的打分规则是公开的，任何人都可以去核实那个 0 和 1 之间，确实没有给「好设计」留位置。
+...
 
 ---
 
-**参考链接**
+**[👉 继续阅读全文：「关灯」软件工厂跑了四个月，他的联合创始人手写了两周代码善后](https://tools.cooconsbit.com/zh/articles/lights-off-software-factory-postmortem?utm_source=github&utm_medium=referral)**
 
-- 原文：[Why Software Factories Fail (or: harness engineering is not enough)](https://github.com/humanlayer/advanced-context-engineering-for-coding-agents/blob/main/wsff.md)
-- [Hacker News 讨论（390 分）](https://news.ycombinator.com/item?id=49023019)
-- [Addy Osmani: Software Factories, Light and Dark](https://addyo.substack.com/p/software-factories-light-and-dark)
-- [AI Engineer World's Fair 2026 演讲视频](https://www.youtube.com/watch?v=Ib5GBkD555M)
-- [Faros AI: AI Acceleration Whiplash 报告](https://www.faros.ai/research/ai-acceleration-whiplash)
-- [Simon Willison 谈 StrongDM 的软件工厂](https://simonwillison.net/2026/Feb/7/software-factory/)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

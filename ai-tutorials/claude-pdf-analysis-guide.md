@@ -1,17 +1,6 @@
----
-title: "Claude PDF 分析指南：提取文字、表格和图形信息"
-slug: "claude-pdf-analysis-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - pdf
-  - 视觉识别
-summary: "介绍如何用 Claude 分析 PDF，涵盖限制条件、提示词结构，以及提取文字、表格、图表和视觉信息的实用工作流。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude PDF 分析指南：提取文字、表格和图形信息
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-pdf-analysis-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-pdf-analysis-guide?utm_source=github&utm_medium=referral)**
 
 Claude 可以直接分析 PDF，这让它很适合处理那些同时包含文字、表格、图表和版式信息的文档。Anthropic 的 PDF 支持建立在 Claude 的视觉能力之上，因此模型不仅能读文字，也能理解文档中的图形上下文。
 
@@ -69,24 +58,10 @@ Claude 在这些流程里通常表现不错：
 - 把演示稿或手册总结成行动项
 - 把 PDF 作为 Claude 生成另一份文件的来源材料
 
-最好的提示词通常描述的是最终交付物，而不只是“帮我提取内容”。
+...
 
-## 视觉感知提示
+---
 
-因为 PDF 支持依赖视觉能力，所以图片提示的一些原则也适用：
+**[👉 继续阅读全文：Claude PDF 分析指南：提取文字、表格和图形信息](https://tools.cooconsbit.com/zh/articles/claude-pdf-analysis-guide?utm_source=github&utm_medium=referral)**
 
-- 先放文档，再放任务。
-- 尽量使用清晰、可读性高的 PDF。
-- 先要求引用或具体数值，再要求判断。
-- 高风险任务一定要人工复核输出。
-
-如果某一页里的图表、表格或示意图很关键，最好明确告诉 Claude。它可以理解视觉上下文，但仍然需要明确的任务指引。
-
-## 官方参考资料
-
-- [PDF support](https://docs.anthropic.com/en/docs/build-with-claude/pdf-support)
-- [Vision](https://docs.anthropic.com/en/docs/build-with-claude/vision)
-- [Features overview](https://docs.anthropic.com/en/docs/build-with-claude/overview)
-- [Create and edit files with Claude](https://support.anthropic.com/en/articles/12111783-create-and-edit-files-with-claude)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

@@ -1,11 +1,6 @@
----
-title: "结构化输出与多模态：格式化响应与图文理解"
-slug: prompt-structured-output
-category: claude
-tags: [prompt-engineering, structured-output, multimodal, vision, advanced]
-summary: "学习如何让 Claude 输出 JSON、XML 等结构化格式，以及如何利用 Claude 的视觉能力理解图片、文档和图表。"
-status: published
----
+# 结构化输出与多模态：格式化响应与图文理解
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/prompt-structured-output?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/prompt-structured-output?utm_source=github&utm_medium=referral)**
 
 ## 获取 JSON 格式输出
 
@@ -58,75 +53,10 @@ Claude 会从 `{` 继续，确保输出纯 JSON，不会添加"好的，以下�
 </review>
 ```
 
-XML 标签的优势在于支持嵌套和属性，比纯 JSON 更灵活地表达层级关系。
+...
 
-## 处理边界情况
+---
 
-结构化输出时需要预防几种常见问题：
+**[👉 继续阅读全文：结构化输出与多模态：格式化响应与图文理解](https://tools.cooconsbit.com/zh/articles/prompt-structured-output?utm_source=github&utm_medium=referral)**
 
-```
-输出要求：
-- 始终返回有效 JSON，即使输入数据异常
-- 如果无法分析某个字段，使用 null 而非空字符串
-- 数组字段在没有数据时返回 []，不要省略
-- 不要在 JSON 外添加任何解释文字
-```
-
-这些约束能让你的程序稳定解析 Claude 的输出。
-
-## 多模态：图片理解
-
-Claude 具备强大的视觉能力。通过 API 发送图片时，可以结合文字提示进行分析：
-
-```
-请分析这张截图中的 UI 界面：
-1. 列出所有可见的 UI 组件
-2. 指出不符合设计规范的地方
-3. 给出改进建议
-
-以 JSON 数组格式输出，每项包含 component、issue、suggestion 三个字段。
-```
-
-### 常见图片分析场景
-
-| 场景 | 提示词示例 |
-|------|-----------|
-| OCR 文字提取 | "提取图片中的所有文字，保持原始排版" |
-| 图表数据读取 | "读取柱状图中的数据，以表格形式输出" |
-| UI 描述 | "描述这个界面的布局结构和交互元素" |
-| 文档解析 | "提取这张发票中的关键信息：日期、金额、供应商" |
-
-## 视觉 + 结构化输出的组合
-
-将视觉能力和结构化输出结合是最强大的应用模式：
-
-```
-请分析这张产品截图，以 JSON 格式输出：
-{
-  "product_name": "产品名称",
-  "price": "价格",
-  "rating": "评分",
-  "key_features": ["特征列表"],
-  "visible_issues": ["界面问题"]
-}
-```
-
-这种组合非常适合构建自动化数据提取管线。
-
-## 常见问题
-
-### Claude 能 100% 保证输出有效 JSON 吗？
-
-在大多数情况下可以，尤其是使用预填充技巧时。但在极端情况下（非常长的输出被截断），JSON 可能不完整。建议在代码中始终使用 try-catch 包裹 JSON 解析，并设置重试机制。
-
-### Claude 能处理哪些类型的图片？
-
-Claude 支持 JPEG、PNG、GIF 和 WebP 格式的图片。它可以理解照片、截图、图表、文档扫描件、手写笔记等。但对于极小的文字、模糊的图片或高度抽象的艺术作品，准确率会下降。
-
-### 结构化输出和自由格式输出哪个更好？
-
-取决于用途。如果输出需要被程序解析（API 集成、数据管线），一定使用结构化输出。如果是给人阅读的内容（文章、邮件、报告），自由格式通常更自然。两者也可以结合——让 Claude 在 JSON 的特定字段中放入自由格式文本。
-
-### 发送图片时有什么限制？
-
-通过 API 单次请求最多可以发送 20 张图片。图片会消耗 token 配额，高分辨率图片消耗更多。建议在发送前适当压缩图片，保持关键细节清晰即可，不需要超高分辨率。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

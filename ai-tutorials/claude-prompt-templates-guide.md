@@ -1,17 +1,6 @@
----
-title: "Claude 提示词模板指南：复用好提示词而不丢质量"
-slug: "claude-prompt-templates-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - prompt templates
-  - prompt engineering
-summary: "介绍如何在 Claude 中使用提示词模板和变量，让重复任务保持一致、可测试、也更容易维护。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 提示词模板指南：复用好提示词而不丢质量
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-prompt-templates-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-prompt-templates-guide?utm_source=github&utm_medium=referral)**
 
 提示词模板是把“临时提问”推进到“可复用工作流”的关键一步。Anthropic 的官方文档把模板描述成固定内容和变量内容的组合，这正好适合那些会反复出现、但每次输入不同的任务。
 
@@ -74,52 +63,10 @@ Anthropic 把模板内容分成两类：
 - 在不同用户或文档之间复用同一流程
 - 从其他系统动态传入数据给 Claude
 
-如果变量命名清楚，模板本身也更容易排查问题。
+...
 
-## 用 Console 提高迭代速度
+---
 
-Anthropic 提到 Console 里会用 `{{variable}}` 这种双大括号做占位符。这样你就可以直接测试不同值，而不用重写整个 prompt。
+**[👉 继续阅读全文：Claude 提示词模板指南：复用好提示词而不丢质量](https://tools.cooconsbit.com/zh/articles/claude-prompt-templates-guide?utm_source=github&utm_medium=referral)**
 
-推荐的流程很简单：
-
-1. 先写稳定的指令块。
-2. 把变化部分标记成变量。
-3. 在 Console 里测试不同值。
-4. 反复调整，直到输出稳定。
-
-## 好模板的纪律
-
-模板最好保持简洁而明确：
-
-- 固定部分负责稳定行为
-- 变量部分只放变化内容
-- 变量名要体现角色，不要含糊
-- 每次运行都保持一致的输出结构
-
-如果一个模板开始分裂出太多可选分支，通常说明这个流程应该拆成多个独立 prompt。
-
-## 常见错误
-
-最常见的问题是：
-
-- 把指令和数据混在一起
-- 把本该固定的东西做成变量
-- 每次都重写模板，而不是维护版本
-- 以为 claude.ai 支持模板变量，但实际上不支持
-
-最后这一点尤其重要。Anthropic 的文档明确说明，prompt templates 和 variables 适用于 API 或 Console，所以不要把 claude.ai 的工作流建立在这个能力上。
-
-## 核心结论
-
-提示词模板能让 Claude 的重复工作更可预测。它不只是方便，而是让经常变化输入、但不希望变化输出质量的工作流程保持可维护的办法。
-
-如果一个 prompt 已经稳定可用，而且你知道它还会被反复使用，就应该尽快把它整理成模板。
-
-## 官方参考资料
-
-- [Use prompt templates and variables](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-templates-and-variables)
-- [Automatically generate first draft prompt templates](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-generator)
-- [Use our prompt improver to optimize your prompts](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/prompt-improver)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

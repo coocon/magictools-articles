@@ -1,17 +1,6 @@
----
-title: "Claude 样式与个性化指南：控制语气、格式和表达方式"
-slug: "claude-styles-and-personalization-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - styles
-  - 个性化
-  - 语气
-summary: "介绍 Claude 的样式、个人偏好和项目指令如何协同工作，让你在不重复写说明的情况下控制语气和输出格式。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 样式与个性化指南：控制语气、格式和表达方式
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-styles-and-personalization-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-styles-and-personalization-guide?utm_source=github&utm_medium=referral)**
 
 Claude 提供了好几层个性化设置，而且每一层解决的问题都不同。如果把它们混成一类，就很容易出现重复指令和输出不一致的问题。只要分清楚各自作用，Claude 的表现就会稳定很多。
 
@@ -73,62 +62,10 @@ Anthropic 的个性化说明把这三层区分得很清楚：个人偏好是广�
 2. 它是不是只在某个项目里有效？如果是，放到项目指令。
 3. 它是不是主要在控制语气、格式或表达方式？如果是，放到样式。
 
-这样可以避免最常见的问题：把所有偏好都塞进同一个地方，然后期待 Claude 自己理顺。
+...
 
-## 怎样做一个有用的样式
+---
 
-有用的样式应该具体，而不是空泛。
+**[👉 继续阅读全文：Claude 样式与个性化指南：控制语气、格式和表达方式](https://tools.cooconsbit.com/zh/articles/claude-styles-and-personalization-guide?utm_source=github&utm_medium=referral)**
 
-不好用的例子：
-
-- 友好一点
-- 写得更好
-- 更专业一点
-
-更好的例子：
-
-- 除非我要求更多，否则回答不要超过 120 字
-- 使用短段落和通俗英文
-- 做推荐时先给结论
-- 解释时保持结构清晰，方便学习
-
-Anthropic 还支持通过写作样本或直接描述方式来创建自定义样式，这让样式对已有固定写作风格的人很实用。
-
-## 样式和项目如何协同
-
-它们可以一起用。
-
-例如：
-
-- 项目指令可以要求 Claude 以技术编辑的身份回答
-- 样式可以让输出更简洁、更干净
-- 项目知识库可以保存参考资料
-
-这种组合很有效，因为每一层只负责一件事。项目负责让 Claude 不跑题，样式负责让输出风格稳定。
-
-## 常见错误
-
-最常见的错误，是拿样式去解决任务本身的问题。如果 Claude 总是答非所问，仅仅改语气不会修好问题。你大概率需要更清晰的项目指令，或者更明确的提示词。
-
-另一个错误是把样式写得过宽。样式如果试图定义所有东西，就会变得难维护，也难推理。
-
-把样式聚焦在表达方式，不要让它承担知识层面的职责。
-
-## 一个实用配置示例
-
-如果你每周都要写报告，可以这样配：
-
-- 个人偏好：默认回答简短、直接
-- 项目指令：按“状态、风险、下一步”的顺序总结
-- 样式：简洁
-
-这样既不用每次重复说明，又能让输出保持一致。
-
-## 官方参考资料
-
-- [Configuring and Using Styles](https://support.anthropic.com/en/articles/10181068-configuring-and-using-styles)
-- [Understanding Claude's Personalization Features](https://support.anthropic.com/en/articles/10185728-understanding-claude-s-personalization-features)
-- [How can I create and manage projects?](https://support.anthropic.com/en/articles/9519177-how-can-i-create-and-manage-projects)
-- [Be clear, direct, and detailed](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct)
-
-以上资料检索于 2026年3月29日。功能可用性和界面细节可能会变化，发布前请以 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

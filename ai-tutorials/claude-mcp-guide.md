@@ -1,17 +1,6 @@
----
-title: "Claude MCP 指南：用可复用的方式把 Claude 连接到工具和数据"
-slug: "claude-mcp-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - mcp
-  - integrations
-summary: "了解如何使用 Model Context Protocol，把 Claude 连接到工具、数据库和服务，并保持集成方式统一、可复用。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude MCP 指南：用可复用的方式把 Claude 连接到工具和数据
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-mcp-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-mcp-guide?utm_source=github&utm_medium=referral)**
 
 Model Context Protocol，简称 MCP，是 Anthropic 用来把 Claude 连接到工具和数据源的标准化方式。核心思路很简单：与其为每个系统单独写一套一次性的集成，不如通过统一协议把工具暴露给 Claude，让它以一致的方式调用。
 
@@ -48,47 +37,10 @@ Anthropic 把 MCP 主要放在两个地方讲：
 
 例如，Claude Code 可以通过 MCP 去查看工单、查询数据，或者和设计、通信工具协作。Anthropic 的文档也说明，Messages API 的 MCP connector 可以直接连接远程 MCP server。
 
-## MCP 适合什么场景
+...
 
-MCP 很适合下面这些需求：
+---
 
-- 查询结构化数据
-- 从内部系统拉取信息
-- 在工作流中触发工具动作
-- 在多个应用之间复用同一套集成
+**[👉 继续阅读全文：Claude MCP 指南：用可复用的方式把 Claude 连接到工具和数据](https://tools.cooconsbit.com/zh/articles/claude-mcp-guide?utm_source=github&utm_medium=referral)**
 
-当同一个工具需要在多个地方使用时，MCP 尤其有价值。如果你的团队希望 Claude Code、自定义客户端，甚至其他支持 MCP 的工具都能访问同一数据源，协议化的做法会省掉大量重复开发。
-
-## 需要注意的限制
-
-Anthropic 也明确了几个边界：
-
-- Messages API 的 MCP connector 目前主要支持 tool calls，不是完整 MCP 特性集。
-- 对于这个 connector，远程 server 需要通过 HTTP 公网可达。
-- Claude Code 有自己的一套 MCP 配置和命令流程。
-
-所以，MCP 应该被看作标准化桥梁，而不是“所有客户端都支持全部功能”的承诺。
-
-## 常见错误
-
-最常见的错误有：
-
-- 把 MCP 当成单一产品，而不是协议
-- 忽略不同客户端对 MCP 支持范围不一样
-- 一次暴露太多工具，却没有明确使用目标
-- 假设 Claude Code 和 Messages API 的配置会完全相同
-
-好的 MCP 设计仍然需要明确任务范围。协议可以简化集成，但不能替代系统设计。
-
-## 一个简单判断
-
-如果某个 Claude 工作流总是需要同一份外部数据，或者总要执行同一个外部动作，而且这个需求在多个地方都会出现，那 MCP 通常是更干净的集成路径。
-
-## 官方参考资料
-
-- [Model Context Protocol (MCP)](https://docs.anthropic.com/en/docs/mcp)
-- [MCP connector](https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector)
-- [Connect Claude Code to tools via MCP](https://docs.anthropic.com/en/docs/claude-code/mcp)
-
-以上资料检索于 2026年3月29日。产品支持范围、传输方式要求和功能可用性可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
-
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

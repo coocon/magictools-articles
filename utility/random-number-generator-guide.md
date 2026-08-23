@@ -1,17 +1,6 @@
----
-title: "随机数生成器怎么用：区间取数、批量生成、去重抽取都可以"
-slug: "random-number-generator-guide"
-category: utility
-tags:
-  - 随机数
-  - 抽签工具
-  - 在线工具
-  - 批量生成
-summary: "介绍 MagicTools 随机数生成器的实际用法，适合抽奖、分组、测试数据和随机取样。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 随机数生成器怎么用：区间取数、批量生成、去重抽取都可以
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/random-number-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/random-number-generator-guide?utm_source=github&utm_medium=referral)**
 
 ## 随机数生成器不只是“抽一个数字”
 
@@ -62,22 +51,10 @@ MagicTools 的随机数生成器除了能设最小值和最大值，还支持批
 3. 如果不能重复，就打开 `Unique numbers`。
 4. 生成后直接复制结果。
 
-## 常见问题 FAQ
+...
 
-**Q：为什么我开了去重后提示数量不合法？**
+---
 
-A：因为你要求的数量大于可选数字总数，缩小数量或放大区间即可。
+**[👉 继续阅读全文：随机数生成器怎么用：区间取数、批量生成、去重抽取都可以](https://tools.cooconsbit.com/zh/articles/random-number-generator-guide?utm_source=github&utm_medium=referral)**
 
-**Q：适合做正式抽奖吗？**
-
-A：适合日常抽取、演示和轻量使用。如果是正式商业活动，通常还需要配套留档和规则说明。
-
-**Q：一次最多能生成多少？**
-
-A：页面支持批量生成，常见的测试和抽样需求都够用。
-
-## 小结
-
-随机数生成器最实用的地方，是把“区间、数量、是否去重”放到一个页面里处理干净。无论你是抽签、随机取样，还是临时造一批整数测试数据，都可以很快完成。
-
-访问地址：[tools.cooconsbit.com/tools/random-number](https://tools.cooconsbit.com/tools/random-number)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

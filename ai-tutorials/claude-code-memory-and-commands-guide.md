@@ -1,17 +1,6 @@
----
-title: "Claude Code 的记忆与命令：CLAUDE.md、斜杠命令和工作流快捷方式"
-slug: "claude-code-memory-and-commands-guide"
-category: ai-tutorials
-tags:
-  - claude code
-  - anthropic
-  - 记忆
-  - 斜杠命令
-summary: "了解 Claude Code 的记忆系统与斜杠命令，帮助你把项目规则、个人偏好和常用工作流组织起来。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude Code 的记忆与命令：CLAUDE.md、斜杠命令和工作流快捷方式
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-code-memory-and-commands-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-code-memory-and-commands-guide?utm_source=github&utm_medium=referral)**
 
 当你不再在每次会话里重复同样的指令时，Claude Code 才会真正变得高效。Anthropic 的记忆系统和斜杠命令正好解决了这个问题。前者负责跨会话保留上下文，后者负责在会话中快速执行常见操作。
 
@@ -69,35 +58,10 @@ Anthropic 官方特别强调的内置命令，在日常使用中非常实用：
 - `/permissions`：查看或调整权限
 - `/help`：查看可用命令
 
-这些命令能让你不离开当前会话就完成调整，不必每次都重新输入长提示词。
+...
 
-## 面向重复任务的自定义命令
+---
 
-Anthropic 也支持用 Markdown 文件定义自定义斜杠命令。对于经常重复的工作，这非常有用。
+**[👉 继续阅读全文：Claude Code 的记忆与命令：CLAUDE.md、斜杠命令和工作流快捷方式](https://tools.cooconsbit.com/zh/articles/claude-code-memory-and-commands-guide?utm_source=github&utm_medium=referral)**
 
-项目命令放在 `.claude/commands/`，个人命令放在 `~/.claude/commands/`。你可以把它们用在这些场景里：
-
-- 代码审查清单
-- 安全检查提示
-- 重构说明
-- 文档更新流程
-
-如果你经常让 Claude 做同类任务，把它做成命令通常比写一大段提示词更好，因为更容易复用，也更容易保持一致。
-
-## 一个简单的记忆策略
-
-可以用三层规则来管理：
-
-1. 团队规则放项目记忆
-2. 个人默认设置放用户记忆
-3. 一次性要求放当前会话
-
-这样 Claude Code 会更稳定，也能避免你把所有内容都堆进一个提示词里。
-
-## 官方参考资料
-
-- [Manage Claude's memory](https://docs.anthropic.com/en/docs/claude-code/memory)
-- [Slash commands](https://docs.anthropic.com/en/docs/claude-code/slash-commands)
-- [Quickstart](https://docs.anthropic.com/en/docs/claude-code/quickstart)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

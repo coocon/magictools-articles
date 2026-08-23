@@ -1,17 +1,6 @@
----
-title: "文本排序工具怎么用：按字母、长度、随机打乱一键完成"
-slug: "text-sorter-guide"
-category: document
-tags:
-  - 文本排序
-  - 列表整理
-  - 在线工具
-  - 去重
-summary: "介绍 MagicTools 文本排序工具的常见用法，包括按字母排序、按长度排序、随机打乱、去重和删除空行。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# 文本排序工具怎么用：按字母、长度、随机打乱一键完成
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/text-sorter-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/text-sorter-guide?utm_source=github&utm_medium=referral)**
 
 ## 文本排序工具适合处理什么内容？
 
@@ -57,33 +46,10 @@ MagicTools 的文本排序工具就是为这种“按行处理”的任务准备
 
 这样能减少因为空格不同而导致“看起来一样、实际上没去重”的情况。
 
-## 有哪些细节值得注意？
+...
 
-**第一，工具按整行处理。**  
-如果一行里有多个字段，比如“姓名,手机号,邮箱”，它不会只排姓名，而是把整行当作一个整体。
+---
 
-**第二，随机打乱适合临时使用。**  
-如果你需要可复现的随机顺序，还是建议保留结果副本。
+**[👉 继续阅读全文：文本排序工具怎么用：按字母、长度、随机打乱一键完成](https://tools.cooconsbit.com/zh/articles/text-sorter-guide?utm_source=github&utm_medium=referral)**
 
-**第三，长度排序特别适合筛选标题和文案。**  
-想找出最短标题、最长标签、过长的字段内容时，这个功能很实用。
-
-## 常见问题 FAQ
-
-**Q：能处理中文吗？**
-
-A：可以。中文、英文、数字混合内容都能排序。
-
-**Q：去重时会保留哪一条？**
-
-A：会保留当前处理顺序里第一次出现的那一行。
-
-**Q：适合几千行内容吗？**
-
-A：常见的关键词表、名单、分类列表都可以直接处理。
-
-## 小结
-
-文本排序工具看起来简单，但在处理关键词、名单、标签、导出列表时非常高频。尤其是排序、去重、删空行三个动作放在同一个页面里，会比在表格软件里来回操作更直接。
-
-访问地址：[tools.cooconsbit.com/tools/text-sorter](https://tools.cooconsbit.com/tools/text-sorter)
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

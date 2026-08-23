@@ -1,11 +1,6 @@
----
-title: "Claude Tool Use: Let AI Call External Tools and Functions"
-slug: "claude-api-tool-use-en"
-category: "claude"
-tags: [claude-api, tool-use, function-calling, advanced]
-summary: "Learn Claude's Tool Use feature to let AI autonomously call your defined functions and APIs for weather queries, database operations, web searches, and more."
-status: "published"
----
+# Claude Tool Use: Let AI Call External Tools and Functions
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-api-tool-use-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-api-tool-use-en?utm_source=github&utm_medium=referral)**
 
 ## What is Tool Use
 
@@ -78,62 +73,10 @@ if response.stop_reason == "tool_use":
     print(final.content[0].text)
 ```
 
-## TypeScript Example
+...
 
-```typescript
-import Anthropic from "@anthropic-ai/sdk";
+---
 
-const client = new Anthropic();
+**[👉 Continue reading: Claude Tool Use: Let AI Call External Tools and Functions](https://tools.cooconsbit.com/en/articles/claude-api-tool-use-en?utm_source=github&utm_medium=referral)**
 
-const tools: Anthropic.Tool[] = [
-  {
-    name: "get_weather",
-    description: "Get current weather for a city",
-    input_schema: {
-      type: "object" as const,
-      properties: {
-        city: { type: "string", description: "City name" }
-      },
-      required: ["city"]
-    }
-  }
-];
-
-const response = await client.messages.create({
-  model: "claude-sonnet-4-20250514",
-  max_tokens: 1024,
-  tools,
-  messages: [{ role: "user", content: "What's the weather in Tokyo?" }],
-});
-
-// Handle tool_use blocks in response.content
-```
-
-## The tool_choice Parameter
-
-Control tool usage behavior with `tool_choice`:
-
-- `{"type": "auto"}`: Default — Claude decides whether to use tools
-- `{"type": "any"}`: Force Claude to use some tool
-- `{"type": "tool", "name": "get_weather"}`: Force a specific tool
-
-## Best Practices
-
-- **Write clear descriptions**: The more detailed your tool descriptions, the better Claude can determine when to use them
-- **Handle errors**: When tool execution fails, return `is_error: true` with an error message in the `tool_result`
-- **Limit tool count**: Too many tools reduce accuracy — aim for 10 or fewer
-- **Validate parameters**: Always validate Claude's generated parameters before executing actual functions
-
-## FAQ
-
-### How is Tool Use different from asking Claude to output JSON in the prompt?
-
-Tool Use provides a structured interaction protocol where Claude strictly generates parameters according to your JSON Schema definition, making it far more reliable than freeform JSON output. Additionally, Tool Use supports multi-turn tool calls, making it suitable for complex multi-step tasks.
-
-### Can Claude call multiple tools in a single request?
-
-Yes. Claude may return multiple `tool_use` blocks in a single response. You need to execute each tool and return all results together.
-
-### Does Tool Use cost extra?
-
-Tool definitions count toward input tokens, so more tools and longer descriptions mean higher costs. Keep descriptions concise and only include relevant tools in each request.
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

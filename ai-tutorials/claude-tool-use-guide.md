@@ -1,17 +1,6 @@
----
-title: "Claude 工具调用指南：构建可靠的动作型工作流"
-slug: "claude-tool-use-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - tool use
-  - api
-summary: "介绍 Claude 的工具调用能力，涵盖客户端工具、服务端工具、顺序式工作流，以及什么时候结构化工具调用比纯提示词更可靠。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 工具调用指南：构建可靠的动作型工作流
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-tool-use-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-tool-use-guide?utm_source=github&utm_medium=referral)**
 
 Claude 的工具调用能力，决定了它不只是一个聊天模型，还可以成为动作型工作流的入口。它不再只返回文本，还能判断什么时候需要工具、生成结构化参数，并在拿到结果后继续完成任务。Anthropic 的文档把它分成客户端工具和服务端工具，这也是实现时最有用的理解方式。
 
@@ -50,55 +39,10 @@ Anthropic 的总览里还有一个关键区分：有些工具跑在你的系统�
 4. 由你的应用执行这个工具。
 5. 把结果回传给 Claude，让它完成最终回答。
 
-这种模式尤其适合天然的顺序型任务。比如 Claude 先查订单状态，再利用返回的数据起草客户回复或生成摘要。
+...
 
-## 什么情况下比纯提示词更好
+---
 
-如果答案已经在模型当前上下文里，纯提示词就够了。只要答案依赖实时查询、私有数据或真实动作，工具调用通常更可靠。实际里最常见的四种情况是：
+**[👉 继续阅读全文：Claude 工具调用指南：构建可靠的动作型工作流](https://tools.cooconsbit.com/zh/articles/claude-tool-use-guide?utm_source=github&utm_medium=referral)**
 
-- 答案必须是最新的
-- 答案依赖私有数据
-- 任务需要一个结构化副作用
-- 你希望流程可重复，而不是临时手工处理
-
-只要满足其中任意一条，工具调用往往就是更合适的设计。
-
-## 怎么写工具调用提示词
-
-好的工具调用提示词要明确任务和结果格式，但不需要过度解释实现细节。它只要让 Claude 知道何时调用工具、拿到结果后该做什么，以及哪些行为不能做。
-
-```text
-你在帮我回复客户。
-
-如果需要订单状态，请调用 lookup_order 工具，并传入订单号。
-拿到结果后，请写一段简洁回复，说明当前状态和下一步。
-如果工具没有返回结果，不要自己猜状态。
-```
-
-这个提示词有效，是因为它说明了调用时机、后续动作和约束条件。
-
-## 常见错误
-
-最容易出问题的地方通常是这些：
-
-- 工具描述过于模糊
-- schema 和真实输入不一致
-- 忘记告诉 Claude 如何处理工具结果
-- 明明一个普通提示词就够了，却硬上工具调用
-
-Anthropic 的示例很清楚：工具调用不是提示词设计的替代品，而是结构化延伸。
-
-## 何时组合其他能力
-
-工具调用和其他 Claude 能力一起使用时更强。长上下文适合工具需要大量背景信息的场景；引用适合你需要可追溯答案的场景；MCP 适合你想通过标准协议连接多个外部系统的时候。
-
-组合方式可以不同，但原则不变：模型负责推理，工具负责执行。
-
-## 官方参考资料
-
-- [Tool use with Claude](https://docs.anthropic.com/en/docs/agents-and-tools/tool-use/overview)
-- [Features overview](https://docs.anthropic.com/en/docs/build-with-claude/overview)
-- [MCP connector](https://docs.anthropic.com/en/docs/agents-and-tools/mcp-connector)
-- [Computer use tool](https://docs.anthropic.com/en/docs/build-with-claude/computer-use)
-
-以上资料检索于 2026年3月29日。功能可用性、beta header 和支持的工具类型可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

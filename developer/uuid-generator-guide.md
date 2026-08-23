@@ -1,17 +1,6 @@
----
-title: "UUID 生成器怎么用：批量生成 v4 UUID 并切换多种格式"
-slug: "uuid-generator-guide"
-category: developer
-tags:
-  - UUID
-  - 开发工具
-  - 批量生成
-  - 在线工具
-summary: "介绍 MagicTools UUID 生成器的使用方法，支持批量生成 v4 UUID、大小写切换和多种输出格式。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# UUID 生成器怎么用：批量生成 v4 UUID 并切换多种格式
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/uuid-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/uuid-generator-guide?utm_source=github&utm_medium=referral)**
 
 ## UUID 生成器适合哪些场景？
 
@@ -76,3 +65,7 @@ A：页面使用浏览器的随机能力生成，适合在线快速使用。
 UUID 生成器的重点不只是“能生成”，而是省掉你后续改格式的时间。数量、大小写、展示格式都能直接调好，复制后马上就能放进接口、数据库脚本或示例文档里。
 
 工具地址：[tools.cooconsbit.com/tools/uuid](https://tools.cooconsbit.com/tools/uuid)
+
+---
+
+**[👉 到网站阅读（体验更好）：UUID 生成器怎么用：批量生成 v4 UUID 并切换多种格式](https://tools.cooconsbit.com/zh/articles/uuid-generator-guide?utm_source=github&utm_medium=referral)**

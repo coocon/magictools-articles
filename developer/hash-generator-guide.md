@@ -1,17 +1,6 @@
----
-title: "Hash 生成器使用教程：MD5、SHA-1、SHA-256、SHA-512 一次生成"
-slug: "hash-generator-guide"
-category: developer
-tags:
-  - Hash
-  - MD5
-  - SHA256
-  - 开发工具
-summary: "介绍 MagicTools Hash 生成器的用法，适合开发调试、校验文本摘要、快速生成 MD5 和多种 SHA 哈希值。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Hash 生成器使用教程：MD5、SHA-1、SHA-256、SHA-512 一次生成
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/hash-generator-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/hash-generator-guide?utm_source=github&utm_medium=referral)**
 
 ## Hash 生成器通常拿来做什么？
 
@@ -83,3 +72,7 @@ A：页面会同时算出多种结果，你复制需要的那一种即可。
 Hash 生成器是开发里很典型的“高频小工具”。平时不觉得重要，但一到联调、比对、写测试时就很省时间。能同时生成多种算法结果，也减少了来回切换工具的麻烦。
 
 工具地址：[tools.cooconsbit.com/tools/hash](https://tools.cooconsbit.com/tools/hash)
+
+---
+
+**[👉 到网站阅读（体验更好）：Hash 生成器使用教程：MD5、SHA-1、SHA-256、SHA-512 一次生成](https://tools.cooconsbit.com/zh/articles/hash-generator-guide?utm_source=github&utm_medium=referral)**

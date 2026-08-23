@@ -1,11 +1,6 @@
----
-title: "Agent Tool Orchestration: Multi-step Reasoning and Task Decomposition"
-slug: claude-agent-tools-en
-category: claude
-tags: [agent-sdk, tool-orchestration, multi-agent, advanced]
-summary: "Deep dive into Agent SDK's tool orchestration. Master multi-step reasoning, task decomposition, and multi-agent collaboration patterns for complex task handling."
-status: published
----
+# Agent Tool Orchestration: Multi-step Reasoning and Task Decomposition
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-agent-tools-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-agent-tools-en?utm_source=github&utm_medium=referral)**
 
 ## Tool Chains: Sequencing Multi-step Operations
 
@@ -38,67 +33,10 @@ agent = Agent(
 result = agent.run("Analyze data from https://api.example.com/q4-data and generate a Markdown report")
 ```
 
-## Multi-Agent Collaboration: The Handoff Pattern
+...
 
-When tasks span multiple domains, use Handoffs to let different Agents handle their specialties:
+---
 
-```python
-from claude_agent_sdk import Agent, tool
+**[👉 Continue reading: Agent Tool Orchestration: Multi-step Reasoning and Task Decomposition](https://tools.cooconsbit.com/en/articles/claude-agent-tools-en?utm_source=github&utm_medium=referral)**
 
-researcher = Agent(
-    name="Researcher",
-    instructions="You are responsible for searching and gathering information, then hand off to the editor.",
-    tools=[search_web],
-)
-
-editor = Agent(
-    name="Editor",
-    instructions="You organize and polish content into a final article.",
-    tools=[format_report],
-)
-
-orchestrator = Agent(
-    name="Orchestrator",
-    instructions="Coordinate the researcher and editor to produce content.",
-    handoffs=[researcher, editor],
-)
-
-result = orchestrator.run("Write an article about the latest advances in quantum computing")
-```
-
-## Task Decomposition Strategies
-
-The key to handling complex tasks is proper decomposition. Common patterns include:
-
-- **Orchestrator pattern**: A primary Agent breaks down the task and delegates to specialized sub-agents
-- **Pipeline pattern**: Agents process sequentially in relay, each handling one stage
-- **Parallel pattern**: Multiple Agents process independent subtasks simultaneously, then merge results
-
-## Validation and Error Recovery Between Steps
-
-Adding validation logic between steps in a multi-step flow is critical:
-
-```python
-@tool
-def validate_output(data: str, schema: str) -> str:
-    """Validate that the previous step's output matches the expected format"""
-    if not data or len(data) < 10:
-        return "Validation failed: data is empty or too short. Please retry the previous step."
-    return "Validation passed"
-```
-
-When a step fails, the Agent can automatically retry or switch to an alternative approach, ensuring overall flow robustness.
-
-## FAQ
-
-### What is the difference between Handoff and calling multiple tools?
-
-A Handoff transfers full control to another Agent that has its own independent instructions and toolset. Multi-tool calling means the same Agent uses different tools within its own context. Handoffs are ideal for scenarios with clear domain specialization.
-
-### How do multiple Agents share context?
-
-Agents share context through message history passed via Handoffs. The orchestrator Agent forwards the current conversation state to the next Agent, ensuring no information is lost.
-
-### How do I control costs when tool chains become long?
-
-You can set the `max_turns` parameter on an Agent to limit the maximum number of execution steps. Adding validation tools at key checkpoints also prevents wasteful repeated calls. Choosing an appropriate model for each step further helps control costs.
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

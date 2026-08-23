@@ -1,17 +1,6 @@
----
-title: "Claude 入门指南：新手第一周的实用工作流"
-slug: "claude-getting-started-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - ai assistant
-  - prompt engineering
-summary: "基于 Anthropic 官方入门文档与提示词工程说明，帮助新手在第一周内建立可复用的 Claude 使用习惯。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 入门指南：新手第一周的实用工作流
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-getting-started-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-getting-started-guide?utm_source=github&utm_medium=referral)**
 
 Claude 真正开始有用，往往不是在你第一次“随便问点什么”的时候，而是在你把它当作一位可协作的同事来使用的时候。Anthropic 官方的入门资料反复强调一件事：从简单任务开始，明确表达目标，并通过后续追问逐步把结果修正到位。
 
@@ -46,45 +35,10 @@ Anthropic 的官方资料里有两个核心建议反复出现：
 - 把零散笔记整理成结构化清单
 - 比较两个方案，并要求 Claude 用通俗方式解释取舍
 
-这些任务足够具体，你能很快判断结果是否真的有帮助。这个反馈闭环，正是上手速度的关键。
+...
 
-## 可以直接拿来试的起步提示词
+---
 
-```text
-我刚开始使用 Claude，想让你帮我处理一个重复出现的任务。
+**[👉 继续阅读全文：Claude 入门指南：新手第一周的实用工作流](https://tools.cooconsbit.com/zh/articles/claude-getting-started-guide?utm_source=github&utm_medium=referral)**
 
-任务：总结下面的笔记。
-受众：我的直属经理，需要快速了解进展。
-目标：输出一个简短总结，包含三个部分：关键决策、待解决问题、下一步动作。
-约束：控制在 200 字以内，使用清晰的商务表达。
-
-笔记内容：
-[在这里粘贴你的笔记]
-```
-
-这个提示词有效，是因为它同时交代了任务、受众、目标和格式要求。这些正是 Anthropic 在官方资料中最强调的信息。
-
-## 新用户最常犯的错误
-
-入门阶段最常见的问题往往都很基础：
-
-- 只提一个大概方向，却不说明结果要拿来做什么
-- 把多个不相关任务塞进同一个提示词
-- 第一版不满意时不给具体反馈
-- 默认 Claude 已经知道你的风格、背景和流程
-
-Anthropic 的提示词文档里有一个很好用的判断标准：把同样的话交给一个聪明但刚入职的新同事，如果他还是会困惑，那你的提示词大概率还需要补充。
-
-## 第一周之后怎么继续提升
-
-第一周的重点不是把提示词写得越来越长，而是写得越来越有结构。你可以开始保存那些效果好的提示词，把角色、任务、原始材料、输出格式拆分得更清楚。等某类任务重复出现时，就把它整理成模板。
-
-这一步非常重要。因为你开始从“随手问一问”转向“建立自己的轻量工作流”。这正是 Anthropic 官方资料真正想帮助用户形成的使用方式。
-
-## 官方参考资料
-
-- [Getting started with Claude](https://support.anthropic.com/en/articles/8114491-how-do-i-get-started-with-claude-ai)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [Be clear, direct, and detailed](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/be-clear-and-direct)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

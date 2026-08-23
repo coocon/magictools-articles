@@ -1,17 +1,6 @@
----
-title: "Claude Projects 指南：为重复任务建立专属工作区"
-slug: "claude-projects-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - projects
-  - 知识库
-summary: "学习如何用 Claude Projects 管理重复工作、附加项目知识，并在多个对话中保持上下文一致。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude Projects 指南：为重复任务建立专属工作区
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-projects-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-projects-guide?utm_source=github&utm_medium=referral)**
 
 当同一批上下文会反复出现在多轮对话里时，Claude Projects 会非常有用。你不需要每次都重新解释背景，只要建立一个带有独立聊天记录、项目知识和项目指令的工作区，就能重复使用这套设置。
 
@@ -59,42 +48,10 @@ Anthropic 还提到，当项目知识超过单次上下文窗口容量时，系�
 - 用户调研材料
 - 已确认的核心话术
 
-然后再加上类似这样的项目指令：
+...
 
-```text
-你正在协助一个 B2B 软件产品的活动规划。
-请使用简洁、专业的语气。
-优先给出具体建议，不要只说泛泛而谈的话。
-如有相关内容，请参考已上传的品牌和受众资料。
-```
+---
 
-这样，Claude 就能在所有相关对话中维持一致的工作上下文。
+**[👉 继续阅读全文：Claude Projects 指南：为重复任务建立专属工作区](https://tools.cooconsbit.com/zh/articles/claude-projects-guide?utm_source=github&utm_medium=referral)**
 
-## Projects 不能替代什么
-
-Projects 不能替代好的提示词设计。你在每一次对话里仍然要说清楚你要什么。
-
-它也不能替代内容治理。如果项目知识本身很乱、过时或者范围太大，Claude 也只能继承这份混乱。Projects 也需要维护。
-
-## 常见错误
-
-最常见的问题是：
-
-- 上传了太多不相关文件
-- 项目指令写得太笼统
-- 以为 Claude 会自动推断出知识库里的所有细节
-- 把只会做一次的事情硬塞进 Projects
-
-如果任务并不重复，普通聊天反而更简单。
-
-## 可用性说明
-
-Anthropic 明确说明 Projects 属于付费 Claude 计划。如果你使用的是免费计划，或者你的工作区有不同的管理员限制，可用性可能会不同。
-
-## 官方参考资料
-
-- [What are projects?](https://support.anthropic.com/en/articles/9517075-what-are-projects)
-- [What is the Pro plan?](https://support.anthropic.com/en/articles/8325606-what-is-claude)
-- [Getting started with Claude](https://support.anthropic.com/en/articles/8114491-how-do-i-get-started-with-claude-ai)
-
-以上资料检索于 2026年3月29日。功能可用性、套餐限制和界面细节可能会变化，发布前请以链接中的 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

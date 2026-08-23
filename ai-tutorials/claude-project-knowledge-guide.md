@@ -1,17 +1,6 @@
----
-title: "Claude 项目知识库指南：复用上下文，不用每次重复"
-slug: "claude-project-knowledge-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - projects
-  - 知识库
-  - 协作
-summary: "如何使用 Claude Projects、项目知识库和项目指令，把重复出现的上下文固定下来，避免在每次对话中反复解释。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 项目知识库指南：复用上下文，不用每次重复
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-project-knowledge-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-project-knowledge-guide?utm_source=github&utm_medium=referral)**
 
 Claude Projects 适合处理反复出现的工作。与其在每次新对话里重新贴背景材料，不如把文档、上下文和规则放进同一个项目里，让 Claude 围绕这个工作流保持专注。
 
@@ -58,74 +47,10 @@ Anthropic 的帮助中心说明，项目指令会应用到项目内的所有对�
 
 ## 什么时候用项目知识库，而不是普通聊天上下文
 
-当同一批事实需要反复可用时，就应该用项目知识库。
+...
 
-例如：
+---
 
-- 团队术语和命名规范
-- 周报或月报模板
-- 很长的研究资料包
-- 应该影响每次回答的产品文档
+**[👉 继续阅读全文：Claude 项目知识库指南：复用上下文，不用每次重复](https://tools.cooconsbit.com/zh/articles/claude-project-knowledge-guide?utm_source=github&utm_medium=referral)**
 
-而一次性的请求、临时批注、短期决策记录，通常只需要普通聊天上下文，不必长期留在项目里。
-
-## 如何避免项目变得臃肿
-
-项目应该有用，而不是变成资料垃圾桶。下面几个原则比较管用：
-
-- 只保留下周之后仍然会用到的材料。
-- 不要保存多个几乎一样的版本。
-- 按主题或工作流整理文件。
-- 如果某个文件的作用不明显，就用简短说明补充一下。
-
-Anthropic 说明，项目内容变多时会自动切换到 RAG 模式来扩展容量。这个能力很有帮助，但不代表可以无限制地塞资料。结构清晰，结果通常还是更好。
-
-## 一个示例工作流
-
-假设你有一个“每周产品更新”项目。
-
-项目知识库可以放：
-
-- 产品路线图笔记
-- 发布标准
-- 品牌用语示例
-- 过往的管理层更新稿
-
-项目指令可以写：
-
-- 面向领导层写作，不要面向工程师
-- 总结要简洁
-- 先说风险，再说下一步
-- 用通俗语言，避免术语
-
-之后你每周只要说：
-
-> 根据这些笔记，帮我写本周更新。
-
-Claude 就可以直接利用项目记忆，不用你每次重新解释产品背景。
-
-## 常见错误
-
-最常见的错误，是把指令放进知识文件里，然后指望 Claude 自动理解。另一个错误是把语气、事实、示例和任务步骤混在一大段指令里。
-
-记住这条区分：
-
-- 知识库回答的是：Claude 应该知道什么？
-- 指令回答的是：Claude 应该怎么表现？
-
-只要把这两层分开，项目就更容易维护，也更容易信任。
-
-## 什么时候值得建立项目
-
-如果你的每个提示词都完全不同，Projects 的价值不会太大。如果你的工作重复、结构化，而且上下文很多，Projects 能节省大量重复解释的时间。
-
-Anthropic 说明 Projects 目前属于付费 Claude 计划功能，所以可用性取决于你的套餐。如果不确定，请以账户中的最新功能说明为准。
-
-## 官方参考资料
-
-- [What are projects?](https://support.anthropic.com/en/articles/9517075-what-are-projects)
-- [How can I create and manage projects?](https://support.anthropic.com/en/articles/9519177-how-can-i-create-and-manage-projects)
-- [Understanding Claude's Personalization Features](https://support.anthropic.com/en/articles/10185728-understanding-claude-s-personalization-features)
-- [Retrieval Augmented Generation (RAG) for Projects](https://support.anthropic.com/en/articles/11473015-retrieval-augmented-generation-rag-for-projects)
-
-以上资料检索于 2026年3月29日。功能可用性和套餐限制可能会变化，发布前请以 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

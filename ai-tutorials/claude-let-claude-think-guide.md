@@ -1,17 +1,6 @@
----
-title: "Claude 思考指南：什么时候应该让它一步一步推理"
-slug: "claude-let-claude-think-guide"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - 提示词
-  - 推理
-summary: "介绍 Claude 的链式思考提示法，说明它适合什么场景、不适合什么场景，以及如何把提示词写得更利于推理。"
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude 思考指南：什么时候应该让它一步一步推理
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/claude-let-claude-think-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/claude-let-claude-think-guide?utm_source=github&utm_medium=referral)**
 
 当任务需要多步推理时，Claude 的表现通常会明显更好。Anthropic 的提示词工程文档把这种方法称为 chain-of-thought prompting，核心思路很直接：如果任务需要分析、取舍或校验，就不要一上来直接让 Claude 给结论。
 
@@ -78,46 +67,10 @@ scheduledAt: ""
 </answer>
 ```
 
-这种结构便于把分析过程和最终答案分开，也更适合后续串联多个提示词或做结果处理。
+...
 
-## 实用流程
+---
 
-如果你想提升质量，但又不想把每个提示词都写成一大段说明，可以用下面这套顺序：
+**[👉 继续阅读全文：Claude 思考指南：什么时候应该让它一步一步推理](https://tools.cooconsbit.com/zh/articles/claude-let-claude-think-guide?utm_source=github&utm_medium=referral)**
 
-1. 清楚说明任务。
-2. 要求 Claude 展开推理。
-3. 补充评价标准。
-4. 指定最终输出格式。
-
-例如：
-
-```text
-我在决定是现在发布这个功能，还是延后两周。
-
-请一步一步分析这个决策。
-请考虑用户影响、工程风险、客服压力和时间安排。
-最后给我一个建议，附上简短解释和最终结论。
-```
-
-这比单纯问“要不要发布？”更有效，因为它不仅告诉 Claude 要回答什么，还告诉它应该怎么想。
-
-## 常见错误
-
-- 要求推理，却没有给上下文
-- 把一步一步思考用在不需要推理的任务上
-- 忘记定义最终输出格式
-- 把回答很长误认为一定更准确
-
-最后一点很重要。回答更长通常更有帮助，但它不自动等于更正确。你仍然需要检查推理过程，并验证结论。
-
-## 总结
-
-链式思考提示法是提升 Claude 处理复杂任务能力的最稳定方法之一。任务确实多步、确实需要思考时再使用它；如果简短答案就够了，就别让推理过程占据上下文。目标不是让 Claude 变得啰嗦，而是让它更审慎。
-
-## 官方参考资料
-
-- [Let Claude think (chain of thought prompting) to increase performance](https://docs.anthropic.com/en/docs/build-with-claude/prompt-engineering/chain-of-thought)
-- [Prompt engineering overview](https://docs.anthropic.com/en/docs/prompt-engineering)
-- [Getting started with Claude](https://support.anthropic.com/en/articles/8114491-how-do-i-get-started-with-claude-ai)
-
-以上资料检索于 2026年3月29日。功能可用性、界面细节和提示效果可能变化，发布前请以 Anthropic 官方资料为准。
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

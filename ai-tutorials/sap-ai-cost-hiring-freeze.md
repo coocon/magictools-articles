@@ -1,15 +1,6 @@
----
-title: "SAP 停招背后：AI 的账单来了"
-slug: sap-ai-cost-hiring-freeze
-summary: "SAP 冻结了大部分招聘和差旅，只为给 AI 算力腾预算——AI 相关的岗位和差旅除外。Atlassian、Adobe、Amazon、Uber、Citi、Microsoft 都在做同一件事，这不是 AI 泡沫破裂，是 AI 开始被定价。"
-category: ai-tutorials
-tags: [AI成本, SAP, token, 企业AI, FinOps, OpenAI, Anthropic, AI泡沫]
-coverImage: ""
-status: published
-locale: zh
-source: authored
-translationSlug: sap-ai-cost-hiring-freeze-en
----
+# SAP 停招背后：AI 的账单来了
+
+> 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/sap-ai-cost-hiring-freeze?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/sap-ai-cost-hiring-freeze?utm_source=github&utm_medium=referral)**
 
 > "SAP says it needs to 'be disciplined in how we spend.' That includes still freezing hires and travel. Unless it's to do with AI, of course."
 >
@@ -67,112 +58,10 @@ Bloomberg 在 7 月 2 日首次报道 SAP 限制招聘和差旅，为 "重大 AI
 
 这是整轮报道里最反直觉的一条。咨询巨头 Accenture 查了内部数据，发现推高 token 消耗的主力不是工程师，而是非技术岗位的员工。报道给了一个具体场景：把一份 PDF 转成 PPT，就能烧掉可观的预算。
 
-为什么？因为工程师用 AI 是有停止条件的：写一个函数、改一个 bug、跑通测试，成了就停。非技术人员用 AI 没有停止条件——不满意就再生成一版，一份 40 页的提案可以反复重做十几轮。而且他们完全不知道每一次 "再来一版" 值多少钱，界面上也没有任何东西告诉他们。
-
-**我的看法：** 企业采购 AI 时算的 ROI 通常是 "工程师提效 30%"。账单来的时候才发现，成本中心和收益中心根本不是同一批人。这不是员工滥用，这是产品设计的必然结果——一个把价格完全隐藏起来的界面，一定会导致无节制的消费。
+...
 
 ---
 
-## 4. Uber：4 个月，花完一年的预算
+**[👉 继续阅读全文：SAP 停招背后：AI 的账单来了](https://tools.cooconsbit.com/zh/articles/sap-ai-cost-hiring-freeze?utm_source=github&utm_medium=referral)**
 
-Uber 在 4 个月内用完了全年 AI 预算，随后开始限制员工使用 Claude Code 和 Cursor。
-
-3 倍超支不是估算做得不够细。3 倍超支意味着**估算模型本身不成立**。
-
-年初做预算时用的心智模型是 SaaS 席位：每人每月固定几十美元，乘以人数，得出年度数字。实际发生的是 agentic 编码——一次任务几十轮工具调用，上下文反复重放，长文件反复读入。同一个人，同一个月，消耗可以是聊天式使用的几十倍。
-
-**我的看法：** 2025 年的 AI 预算是按软件席位做的，2026 年的 AI 消耗是按云算力发生的。这两个模型差一个数量级，中间没有任何人提醒过财务部门。Uber 不是特例，Uber 只是先撞上墙。
-
----
-
-## 5. 计费模式变了：从席位到用量
-
-GitHub Copilot 从固定订阅转向按 token 计费，是这轮变化里最有象征意义的一步。
-
-订阅制的本质是**供应商吃掉波动风险**：不管你用多少，每月固定金额。它成立的前提是重度用户的成本还在可承受范围内。当一个重度用户单月的推理成本轻松超过订阅费好几倍，这个模型就崩了。
-
-转向 token 计费，就是把这个风险原样退还给客户。
-
-**我的看法：** 席位制让 AI 看起来像软件，用量制让 AI 露出本相——它是电，是水，是云算力。软件的边际成本趋近于零，AI 的边际成本不是。这一条是后面所有事情的根因：只要边际成本为正，"无限使用" 就永远只是一个临时的营销状态，不是终局。
-
----
-
-## 6. 一份被泄露的账单：1500 万美元一个月
-
-> "AI spending has tripled to more than $15 million a month."
->
-> —— 404 Media，2026 年 7 月 2 日
-
-404 Media 7 月那篇报道涉及 Amazon、Adobe、Atlassian、Citi 等六家公司的内部材料。其中至少一家的 AI 月支出三倍增长到 1500 万美元以上，年化接近 2 亿美元。
-
-请注意 "三倍" 这个词。不是超预算 20%，不是超 50%。是 3 倍。
-
-这个量级的偏差说明的不是花得多，而是**看不见**。等财务部门看见的时候，钱已经这么花了好几个月了。
-
-**我的看法：** 大多数公司还没有 AI 的 FinOps。云计算行业花了将近十年才建起成本可观测性那一整套东西——资源打标签、按团队分摊、预算告警、异常检测、单位经济学看板。AI 支出现在的成熟度，大概相当于 2012 年的 AWS 账单：一个很大的数字，没人说得清是谁花的。
-
----
-
-## 7. Adobe 收回无限，Microsoft 说 "tokenmaxxing 不是我们优化的目标"
-
-Adobe 终止了内部 Claude 的无限使用权限。Microsoft 引入 AI 预算上限，并在内部明确表示 "tokenmaxxing is not what we are optimizing for"——与此同时，它对外仍然自称 AI-first 公司。
-
-这两件事可以同时为真。但它们之间的张力，就是 2026 年企业 AI 的全部内容：**对外的叙事是全面拥抱，对内的指标是控制单位成本。**
-
-还有一个细节值得玩味：当一家公司需要专门发内部通知，告诉工程师不要把 token 用量当成努力的证明，说明之前确实有人在这么做。
-
-**我的看法：** 免费的东西一定会被用光，这条经济学定律在 AI 上一点折扣都没打。真正的问题不是员工不自觉，是公司先给了一个 "随便用" 的信号，然后又指望大家自我克制。信号和期望不一致的时候，输的永远是期望。
-
----
-
-## 8. 谁在收这笔钱
-
-行业估算中，约 70% 的 AI 收入集中在 OpenAI 和 Anthropic 两家手里。这个数字各家口径有出入，但集中度的方向没有争议。
-
-把前面几条连起来看：SAP 停招、Uber 限流、Adobe 收权限、Accenture 查内部消耗、Microsoft 设上限——这些公司在做的其实是同一件事：**控制流向两家供应商的现金。**
-
-而这恰恰是它们最不擅长的位置。企业软件行业过去二十年积累的核心议价能力——多云、多供应商、开源替代、长期合同锁价、以采购量换折扣——在基础模型上暂时全部失灵。顶级模型只有几家，切换成本高，能力差异肉眼可见，你没有真正的第二选择。
-
-**我的看法：** 这才是 SAP 那封邮件真正难受的地方。它是全球最大的企业软件供应商之一，习惯了站在收租的那一端。现在它在给别人交租，租金按用量浮动，而且涨得比它自己的收入快。
-
----
-
-## 9. 从 "all in" 到 "control costs"
-
-2024 到 2025 年，企业 AI 的主旋律是害怕掉队：先接入再说，预算之后再谈，董事会要听到 AI 战略。2026 年上半年，这个句式整个反了过来。
-
-值得注意的是转向的公司画像：SAP、Adobe、Atlassian、Amazon、Uber、Citi、Microsoft、Accenture——**全是最早、最积极拥抱 AI 的那一批**。不是保守派在踩刹车，是激进派在踩刹车。因为只有跑得最快的人，才最先跑到账单来的那一天。
-
-**我的看法：** 这不是 AI 泡沫破裂。泡沫破裂是需求消失，而现在需求非常真实——SAP 一边冻结招聘一边全公司铺 AI 工具，Microsoft 设了预算上限但仍然自称 AI-first。他们不打算少用，只打算更省地用。
-
-现在发生的是**需求被定价**。这比泡沫破裂健康得多，也比 all in 阶段难受得多。
-
----
-
-## 结语：账单不是坏消息
-
-免费试用期结束了。
-
-从 2022 年底到 2025 年，企业接触到的 AI 价格是被资本补贴过的：固定订阅、无限使用、成本模糊。这三年养成的使用习惯，建立在一个不真实的价格信号上。现在价格信号回到真实水平，习惯必然要跟着改。
-
-如果你在公司里负责这件事，从这一轮泄密里能提炼的几条是清楚的：
-
-- **先做可观测性，再谈优化。** 你没法优化一个你看不见的数字。按团队、按用例、按人打标签，比任何提示词技巧都重要。
-- **别只盯着工程师。** Accenture 的数据说明重灾区大概率在别处。查一下你的文档处理、报告生成、内容改写场景。
-- **给用量装一个可见的价签。** 用户看不到成本的时候，行为不可能自我约束。
-- **把 "无限" 从合同里划掉。** 无论你是买方还是卖方，无限使用条款在正边际成本的业务上都不可持续。
-- **区分 "贵" 和 "浪费"。** SAP 没有停止用 AI，它只是停止了不假思索地用。这两件事在恐慌时最容易混淆，而混淆的结果就是砍错东西。
-
-一项技术开始被认真算账的时候，通常不是它退潮的信号，而是它变成基础设施的信号。电力、云计算、带宽，都经历过完全相同的一步。
-
-区别只在于——这一次，账单来得特别快。
-
----
-
-*资料来源：*
-
-- *404 Media, "Software Giant SAP Stops Most Travel and Hiring Because of AI's Soaring Cost" (2026-08-06)*
-- *404 Media, "The Tokenpocalypse Is Here: Companies Are Scrambling to Stop Spending So Much on AI" (2026-06-24)*
-- *404 Media, "Companies Are Throttling Employees' AI Use Because It's Too Expensive" (2026-07-02)*
-- *404 Media, "Microsoft Tells Engineers 'Tokenmaxxing' Is Not What We Are Optimizing For" (2026-08-04)*
-- *Bloomberg, "SAP Restricts Hiring, Travel to Fund Significant AI Push" (2026-07-02)*
+更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)

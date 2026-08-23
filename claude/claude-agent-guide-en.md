@@ -1,11 +1,6 @@
----
-title: "Getting Started with Claude Agent SDK: Build Your First Intelligent Agent"
-slug: claude-agent-guide-en
-category: claude
-tags: [agent-sdk, tutorial, beginner, claude-agent]
-summary: "Learn Claude Agent SDK from scratch. Understand core agent concepts and build AI agents capable of tool use and multi-step reasoning."
-status: published
----
+# Getting Started with Claude Agent SDK: Build Your First Intelligent Agent
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-agent-guide-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-agent-guide-en?utm_source=github&utm_medium=referral)**
 
 ## What Are AI Agents?
 
@@ -48,105 +43,10 @@ An Agent is the core execution unit. It has a model, a set of tools, and system 
 
 A Tool is a function that an Agent can invoke. You can turn any Python function into a tool that the Agent will automatically call when needed.
 
-### Handoff
+...
 
-A Handoff allows one Agent to delegate a task to another specialized Agent, enabling multi-agent collaboration.
+---
 
-## Creating Your First Agent
+**[👉 Continue reading: Getting Started with Claude Agent SDK: Build Your First Intelligent Agent](https://tools.cooconsbit.com/en/articles/claude-agent-guide-en?utm_source=github&utm_medium=referral)**
 
-Here is the simplest possible Agent example:
-
-```python
-from claude_agent_sdk import Agent, tool
-
-# Define a tool
-@tool
-def get_weather(city: str) -> str:
-    """Get weather information for a specified city"""
-    # In a real project, this would call a weather API
-    return f"Today in {city}: Sunny, 72°F"
-
-# Create an Agent
-agent = Agent(
-    name="Weather Assistant",
-    instructions="You are a weather assistant that helps users check weather information.",
-    tools=[get_weather],
-)
-
-# Run the Agent
-result = agent.run("What's the weather like in New York tomorrow?")
-print(result.output)
-```
-
-## Adding Multiple Tools
-
-The real power of Agents comes from combining multiple tools -- the Agent autonomously decides the calling order:
-
-```python
-from claude_agent_sdk import Agent, tool
-
-@tool
-def search_web(query: str) -> str:
-    """Search the web for information"""
-    return f"Search results: Latest information about '{query}'..."
-
-@tool
-def send_email(to: str, subject: str, body: str) -> str:
-    """Send an email"""
-    return f"Email sent to {to}"
-
-@tool
-def summarize_text(text: str) -> str:
-    """Summarize text content"""
-    return f"Summary: {text[:100]}..."
-
-agent = Agent(
-    name="Multi-purpose Assistant",
-    instructions="You are a versatile assistant that can search information, send emails, and summarize content.",
-    tools=[search_web, send_email, summarize_text],
-)
-
-result = agent.run("Search for the latest AI news, summarize it, and email it to team@example.com")
-print(result.output)
-```
-
-## Agent Execution Flow
-
-When you call `agent.run()`, the SDK internally executes the following loop:
-
-1. Send the user message to the model
-2. The model decides whether it needs to call a tool
-3. If needed, execute the tool and return the result to the model
-4. The model continues reasoning based on tool results or returns the final answer
-5. Repeat steps 2-4 until the task is complete
-
-This loop enables Agents to handle complex tasks requiring multi-step reasoning.
-
-## When Should You Use Agents?
-
-Not every scenario requires an Agent. Here is a simple decision guide:
-
-| Scenario | Recommended Approach |
-|----------|---------------------|
-| Simple Q&A, text generation | Direct API call |
-| Requires external tool calls | Use an Agent |
-| Multi-step, multi-tool coordination | Use an Agent |
-| Requires autonomous planning | Use an Agent |
-
-## FAQ
-
-### What programming languages does Claude Agent SDK support?
-
-Currently, Claude Agent SDK primarily supports Python. Anthropic prioritizes feature completeness and stability for the Python SDK. Support for additional languages may be added in future releases.
-
-### What is the difference between an Agent and a regular API call?
-
-A regular API call follows a single request-response pattern, while an Agent automatically conducts multi-turn interactions: analyzing tasks, selecting tools, executing operations, and verifying results. The Agent maintains an internal execution loop that autonomously completes complex multi-step tasks.
-
-### How much does it cost to use Agent SDK?
-
-Each tool invocation and reasoning step in an Agent consumes tokens. Complex tasks may require multiple steps, so costs will be higher than a single API call. It is recommended to use smaller models for testing during development and choose the appropriate model for production based on your requirements.
-
-### How can I debug the Agent's execution process?
-
-The Agent SDK supports a verbose mode that prints each reasoning step and tool call details. You can also inspect `result.steps` to view the complete execution trace and understand what decisions the Agent made at each step.
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

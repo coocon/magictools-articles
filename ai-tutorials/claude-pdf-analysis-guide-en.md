@@ -1,17 +1,6 @@
----
-title: "Claude PDF Analysis: Extract Text, Tables, and Charts"
-slug: "claude-pdf-analysis-guide-en"
-category: ai-tutorials
-tags:
-  - claude
-  - anthropic
-  - pdf
-  - vision
-summary: "How to analyze PDFs with Claude: page and size limits, prompt patterns, and workflows for extracting text, tables, charts, and form fields from real documents."
-coverImage: ""
-status: published
-scheduledAt: ""
----
+# Claude PDF Analysis: Extract Text, Tables, and Charts
+
+> 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-pdf-analysis-guide-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-pdf-analysis-guide-en?utm_source=github&utm_medium=referral)**
 
 Claude can analyze PDFs directly, which makes it useful for documents that mix text, tables, charts, and visual layout. Anthropic's PDF support is built on Claude's vision capabilities, so the model can interpret both the written content and the graphical context around it.
 
@@ -36,57 +25,10 @@ Anthropic documents a few important constraints:
 - Maximum pages per request is 100.
 - PDFs must be standard, unencrypted files.
 
-Because PDF support relies on vision, the usual image limitations also matter. Very small text, blurry scans, or poor page quality can reduce accuracy. If the PDF is a scan, a clean source usually performs better than a compressed copy.
+...
 
-## How To Prompt For Better Results
+---
 
-A good PDF prompt tells Claude what to extract and how to present it.
+**[👉 Continue reading: Claude PDF Analysis: Extract Text, Tables, and Charts](https://tools.cooconsbit.com/en/articles/claude-pdf-analysis-guide-en?utm_source=github&utm_medium=referral)**
 
-```text
-Analyze the attached PDF and do three things:
-1. Summarize the main points in plain language.
-2. Extract every table into a bullet list.
-3. Highlight any numbers or claims that should be verified manually.
-
-Focus on accuracy over brevity.
-```
-
-If you want more reliable output, ask Claude to work in stages:
-
-1. Identify the relevant pages or sections.
-2. Extract quoted evidence or exact values.
-3. Produce the final summary or comparison.
-
-That sequence reduces the chance that Claude will jump straight to interpretation before it has enough evidence.
-
-## Better Workflows For Real Documents
-
-Claude works especially well when the PDF task is part of a bigger workflow:
-
-- Convert a report into a spreadsheet for reanalysis
-- Extract form fields into structured data
-- Compare two versions of a policy or contract
-- Summarize a deck or handout into action items
-- Use the PDF as source material for another file Claude creates
-
-The best prompts usually describe the final deliverable, not just the extraction step.
-
-## Vision-Aware Tips
-
-Because PDF support uses vision, some image-prompting rules apply:
-
-- Put the document first and the task second.
-- Use clearly scanned or readable documents when possible.
-- Ask for quotes or exact values before asking for a judgment.
-- Review the output carefully when the task is high stakes.
-
-If a page contains a chart, table, or diagram that matters, mention it explicitly. Claude can understand visual context, but it still benefits from directed prompts.
-
-## Official References
-
-- [PDF support](https://docs.anthropic.com/en/docs/build-with-claude/pdf-support)
-- [Vision](https://docs.anthropic.com/en/docs/build-with-claude/vision)
-- [Features overview](https://docs.anthropic.com/en/docs/build-with-claude/overview)
-- [Create and edit files with Claude](https://support.anthropic.com/en/articles/12111783-create-and-edit-files-with-claude)
-
-Sources reviewed on March 29, 2026. Feature availability, plan limits, and interface details can change, so confirm current behavior in the linked official Anthropic resources.
+More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)
