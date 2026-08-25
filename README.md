@@ -12,8 +12,8 @@
 |------|------|
 | [我按「删掉这 5 类提示词」清了 Opus 5 配置，然后跑了 18 次 A/B：省了 21%，但「更好」我拿不出证据](https://tools.cooconsbit.com/zh/articles/opus-5-prompt-diet-ab-test?utm_source=github&utm_medium=referral) | 中文 🆕 |
 | [I Put My Opus 5 Config on the Recommended Diet, Then Ran 18 A/B Trials (en)](https://tools.cooconsbit.com/en/articles/opus-5-prompt-diet-ab-test-en?utm_source=github&utm_medium=referral) | English 🆕 |
-| [Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了](https://tools.cooconsbit.com/zh/articles/claude-code-auto-mode-permission-trap?utm_source=github&utm_medium=referral) | 中文 🆕 |
-| [Claude Code's Auto Mode Judges a Model With a Model (en)](https://tools.cooconsbit.com/en/articles/claude-code-auto-mode-permission-trap-en?utm_source=github&utm_medium=referral) | English 🆕 |
+| [Claude Code 的 auto 模式是用模型审模型的——模型一挂，连 cat 都跑不了](./claude/claude-code-auto-mode-permission-trap.md) | 中文 🆕 |
+| [Claude Code's Auto Mode Judges a Model With a Model (en)](./claude/claude-code-auto-mode-permission-trap-en.md) | English 🆕 |
 | [Claude Code 完全指南：从安装到高效编程](https://tools.cooconsbit.com/zh/articles/claude-code-guide?utm_source=github&utm_medium=referral) | 中文 |
 | [Claude Code 高效使用技巧与最佳实践](https://tools.cooconsbit.com/zh/articles/claude-code-best-practices?utm_source=github&utm_medium=referral) | 中文 |
 | [Claude Code Hooks：自定义自动化工作流](https://tools.cooconsbit.com/zh/articles/claude-code-hooks?utm_source=github&utm_medium=referral) | 中文 |
