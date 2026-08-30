@@ -1,42 +1,31 @@
-# Turn a Home Mac mini Into an Always-On Claude Code Workstation: SSH Reverse Tunnel to a VPS, Manageable From Any Browser — and Why I Don't Use Tailscale
+# Turn a Home Mac mini Into an Always-On Claude Code Workstation: claudecodeui + SSH Reverse Tunnel, Take Over Sessions From Any Browser
 
 > 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-code-mac-mini-ssh-tunnel-web-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-code-mac-mini-ssh-tunnel-web-en?utm_source=github&utm_medium=referral)**
 
-The Mac mini at home stays on around the clock: Claude Code runs long tasks on it and manages the workspaces of several projects. The problem is that I'm not always home — and when I'm out, I still want to check how a task is going or hand it a new one.
+The Mac mini at home stays on around the clock: Claude Code manages the workspaces of five or six projects on it, and long tasks routinely run for tens of minutes. The problem is that I'm not always home — when I'm out, how do I check where a task is, approve a permission request, or hand it a new job?
 
-The goal is specific: **from any device with a browser** — phone, iPad, an office computer — open a URL, enter a password, and see and operate Claude Code on the Mac mini. No client install, no VPN.
+The goal is specific: **from any device with a browser**, open a URL, log in, and see and operate the Claude Code sessions on the Mac mini. No client install, no VPN — it has to work on an office computer and on a phone.
 
-This setup has been running stably for months, and it comes down to three parts: a local web management UI, one SSH reverse tunnel, and nginx on a VPS. This article covers the architecture and the "why not Tailscale" question first, then the full step-by-step.
+This setup has been live for a week and is in daily use. The article follows the real decision order: two selection rounds first (which web UI, which transport), then the full working configuration, then actual screenshots and operating numbers, and finally the pitfalls already hit.
 
-## The architecture: a three-leg relay
+## Selection Round One: Which Web UI
 
-```
-[Mac mini, home]                     [VPS, public]                 [any browser]
-Claude Code Web UI          SSH reverse tunnel   nginx (TLS+auth)
-127.0.0.1:3008    ────────►  127.0.0.1:18080  ────────►  https://code.example.com
-(loopback only)     ssh -R      (loopback only)    reverse proxy
-```
+There are four ways to "operate Claude Code in a browser." I ruled them out one by one until the last:
 
-Three deliberate design choices:
+**The official web version (claude.ai/code)**: eliminated first. It runs in Anthropic's cloud sandbox and operates on a copy of the code inside that sandbox — whereas what I need is to operate the **local workspaces on the Mac mini**: local repos, local `.env` files, local CLIs that are already logged in. They are simply not the same thing.
 
-1. **The web UI on the Mac mini listens on `127.0.0.1` only.** Other devices on the home LAN can't reach it, let alone the internet.
-2. **The SSH reverse tunnel is dialed out by the Mac mini** to the VPS, where it opens a port (18080) on the VPS's loopback address. No public IP at home, carrier-grade NAT, a locked-down ISP router — none of it matters, because the connection goes from the inside out.
-3. **That tunnel port on the VPS also binds loopback only.** The single public entrance is nginx: TLS, a layer of Basic Auth, and the app's own login. Three doors.
+**ttyd + tmux (terminal-in-a-browser)**: architecturally entirely feasible — hang a tmux session on a web page via ttyd and you have a remote terminal. But five minutes of using it on a phone tells you where the problem is: typing into a terminal on a touchscreen is torture — arrow keys, Ctrl combos, scrolling back through output, every one of them is awkward. What it gives you is "a remote screen," not "an interface designed for mobile."
 
-The web UI itself is interchangeable. I use the open-source claudecodeui (a web management interface for Claude Code — sessions, new tasks, a terminal), but ttyd + tmux works with the identical architecture — the tunnel just forwards one local port.
+**code-server (VS Code in the browser)**: works, but roundabout. It is fundamentally an editor, and Claude Code still has to run inside its integrated terminal — so you're wrapping a heavy shell (memory measured in GB) around a worse terminal experience, and the mobile layout is basically unusable.
 
-## Why an SSH reverse tunnel instead of Tailscale?
+**claudecodeui (open source, 13.5k stars)**: the final choice. The decisive point is its data model —
 
-This is the question I get most. Tailscale (and self-hosted Headscale) is the textbook answer for "reach a machine at home" — but for **this specific requirement**, a browser-reachable web entrance, the SSH tunnel wins on four dimensions.
-
-### 1. Zero install on the accessing side — this one is decisive
-
-Tailscale's model is "devices join a network": every device that wants access must install the client and log in to the same account. Your phone can. Your iPad can. **The office computer often can't**, and a borrowed device certainly won't.
+> claudecodeui **does not maintain its own session state** — it reads the session JSONL files under `~/.claude/projects/` directly. That means a Claude Code session you start in the terminal is **the same one** you see on the web; conversely, a session started from the web is right there when you get back to the computer and run `claude --resume`. The web UI is just another view of the same data — there is no separate ledger of "web sessions" versus "terminal sessions."
 
 ...
 
 ---
 
-**[👉 Continue reading: Turn a Home Mac mini Into an Always-On Claude Code Workstation: SSH Reverse Tunnel to a VPS, Manageable From Any Browser — and Why I Don't Use Tailscale](https://tools.cooconsbit.com/en/articles/claude-code-mac-mini-ssh-tunnel-web-en?utm_source=github&utm_medium=referral)**
+**[👉 Continue reading: Turn a Home Mac mini Into an Always-On Claude Code Workstation: claudecodeui + SSH Reverse Tunnel, Take Over Sessions From Any Browser](https://tools.cooconsbit.com/en/articles/claude-code-mac-mini-ssh-tunnel-web-en?utm_source=github&utm_medium=referral)**
 
 More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

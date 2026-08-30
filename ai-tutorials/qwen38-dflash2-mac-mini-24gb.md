@@ -49,6 +49,11 @@ uv pip install --python .venv/bin/python "dflash[local]"
     "你的问题"
 ```
 
+两个参数不能乱改：
+
+- **`--block-size 5`**：官方 README 明确要求量化模型下 block_size ≤ 5——MLX 当前的量化 matmul 内核在更大验证宽度下效率不升反降。这个限制是 Mac 上加速比的天花板之一，后面细说。
+- **`--draft-bits 4`**：草稿模型下载的是 BF16（3.85GB，约 2B 参数），加载时现场压成 4-bit，内存里只占约 1GB。
+
 ...
 
 ---
