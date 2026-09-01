@@ -1,4 +1,4 @@
-# What's New in Claude Code in 2026: Agent Teams, Nested Subagents, and Background Sessions
+# Claude Code's 2026 Features: Agent Teams, Nested Subagents, Fast Mode — and When Each Is Worth It
 
 > 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/claude-code-2026-new-features-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/claude-code-2026-new-features-en?utm_source=github&utm_medium=referral)**
 
@@ -54,6 +54,6 @@ The key mental model: teammates are **peers, not subordinates**. Teams shine on 
 
 ---
 
-**[👉 Continue reading: What's New in Claude Code in 2026: Agent Teams, Nested Subagents, and Background Sessions](https://tools.cooconsbit.com/en/articles/claude-code-2026-new-features-en?utm_source=github&utm_medium=referral)**
+**[👉 Continue reading: Claude Code's 2026 Features: Agent Teams, Nested Subagents, Fast Mode — and When Each Is Worth It](https://tools.cooconsbit.com/en/articles/claude-code-2026-new-features-en?utm_source=github&utm_medium=referral)**
 
 More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

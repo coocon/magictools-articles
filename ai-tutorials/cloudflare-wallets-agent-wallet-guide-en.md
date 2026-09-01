@@ -1,4 +1,4 @@
-# Cloudflare Wallets: What They Are and How to Get a Handle
+# Cloudflare Wallet: How It Works and How to Claim Your Handle Before It's Taken
 
 > 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/cloudflare-wallets-agent-wallet-guide-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/cloudflare-wallets-agent-wallet-guide-en?utm_source=github&utm_medium=referral)**
 
@@ -33,6 +33,6 @@ Every Cloudflare account can claim a unique handle at [cloudflare.pay](https://c
 
 ---
 
-**[👉 Continue reading: Cloudflare Wallets: What They Are and How to Get a Handle](https://tools.cooconsbit.com/en/articles/cloudflare-wallets-agent-wallet-guide-en?utm_source=github&utm_medium=referral)**
+**[👉 Continue reading: Cloudflare Wallet: How It Works and How to Claim Your Handle Before It's Taken](https://tools.cooconsbit.com/en/articles/cloudflare-wallets-agent-wallet-guide-en?utm_source=github&utm_medium=referral)**
 
 More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)
