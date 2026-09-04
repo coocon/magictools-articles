@@ -1,40 +1,50 @@
-# Cloudflare Wallets 上线：给 AI Agent 发身份证和钱包，cloudflare.pay 账户名开抢
+# Cloudflare 钱包（Wallets）是什么、怎么注册？cloudflare.pay 抢注与使用全指南
 
 > 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/cloudflare-wallets-agent-wallet-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/cloudflare-wallets-agent-wallet-guide?utm_source=github&utm_medium=referral)**
 
-2026 年 8 月 4 日，Cloudflare（NYSE: NET）在自家 Agents Week 上扔出一个重磅发布：**Cloudflare Wallets** 和 **cloudflare.pay**。一句话概括——给部署在 Cloudflare 上的 AI Agent 一个稳定的、人类可读的身份，再配一个由人类主人设定消费额度的稳定币钱包。
+先用三句话直接回答搜索者最关心的问题：
 
-CEO Matthew Prince 本人第一时间抢注了 `eastdakota.cloudflare.pay` 并发推带节奏，X 上随即刮起一阵"晒 handle"风潮。如果你刷到过 *"I just reserved my Cloudflare Wallet tag"* 这种模板推文，没错，那就是这次发布的官方病毒式传播设计。
+- **是什么**：Cloudflare Wallets（Cloudflare 钱包）是 Cloudflare 于 2026 年 8 月 4 日发布的 AI Agent 身份 + 支付体系——给 Agent 一个人类可读的稳定身份（形如 `yourname.cloudflare.pay`），配一个由人类主人设定消费额度的稳定币钱包。
+- **现在能做什么**：截至本文最后核实（2026 年 9 月），**唯一开放的功能是免费预订你的钱包 handle**。充值、支付等完整钱包功能官方口径是"未来几个月陆续开放"，尚无确切日期。
+- **怎么注册**：打开 [cloudflare.pay](https://cloudflare.pay) → 登录（或免费注册）Cloudflare 账户 → 输入想要的名字 → 确认预订。全程约两分钟，下文有逐步说明。
 
-这篇文章讲清楚三件事：它解决什么问题、机制怎么设计的、以及你现在能做什么（提示：目前唯一能做的就是抢名字）。
+## 一、注册抢注教程：两分钟拿下你的 handle
 
-## 一、AI Agent 上网干活的两个死结
+### 前提条件
 
-Cloudflare 在新闻稿里把问题说得很直白：**互联网是为人类设计的，不是为 Agent 设计的**。一个 AI Agent 想试用一个新 API，今天的真实流程是这样的：
+只需要一个 **Cloudflare 账户**（免费，用邮箱即可注册，不需要绑卡、不需要有网站托管在 Cloudflare）。
 
-1. 撞上一个为人类设计的注册页（可能还有验证码）；
-2. 找它的人类主人要一张信用卡绑支付方式；
-3. 生成 API key，再琢磨怎么调用。
+### 步骤
 
-结果就是 Agent 往往直接放弃，把注册、绑卡、生成 key 这些活全部踢回给人。这背后是两个结构性缺陷：
+1. **打开官方预订页** [cloudflare.pay](https://cloudflare.pay)。认准这个域名——抢注热潮历来是钓鱼站的温床，不要从来路不明的链接进入。
+2. **登录 Cloudflare 账户**。没有账户的先去 [dash.cloudflare.com](https://dash.cloudflare.com) 免费注册一个。
+3. **输入想要的名字**。被占用就换一个，最终形态是 `你的名字.cloudflare.pay`。
+4. **确认预订**。成功后页面会提示 handle 已为你保留（"has been reserved"），钱包功能正式上线时 Cloudflare 会通知你。
 
-- **没有身份**：Agent 访问网站时，商家没有可靠手段区分它是"真实客户的助手"还是"薅羊毛的恶意脚本"。老一代反爬虫工具是为搜索引擎爬虫设计的，不适用于替真人交易的 Agent。商家只剩两个坏选项：要么全封，要么裸奔。
-- **没法付钱**：Agent 没有原生的支付手段。想让它自主花几美分试用一个 API？现有支付体系里没有这条路。
+### 命名与审核规则
 
-Prince 的原话值得引用："当一个 Agent 出现在你门口时，你需要知道是谁派它来的。Cloudflare 可以给 Agent 一张脸——一条指向拥有它的人或组织的链接——这样信任、问责和真正的商业才能随之而来。"
+- **先到先得**，每个 Cloudflare 账户认领一个唯一 handle。
+- Cloudflare 官方明确保留**以任何理由拒绝预订**的权利（预订页原文如此）。抢注知名商标、名人名字再转卖，大概率会被收回，别打这个算盘。
+- 官方未公布完整的字符与长度规则，以预订页实时校验为准。
 
-## 二、机制拆解：Handle + 两级钱包 + x402
+### 为什么值得现在就抢
 
-### 2.1 Wallet Handle：Agent 世界的"姓氏"
+域名时代抢的是网站门牌，Agent 时代抢的是支付身份。这个 handle 未来既是你的收款地址，也是你旗下所有 AI Agent 对外的"姓氏"（比如研究型 Agent 可以住在 `research.yourname.cloudflare.pay`）。好名字的稀缺性逻辑和域名、社交媒体用户名一模一样——发布当天 CEO Matthew Prince 本人第一时间抢注了 `eastdakota.cloudflare.pay` 并发推带节奏，X 上随即刮起一阵"晒 handle"风潮，不少人当天就在抱怨心仪的名字被抢了。
 
-每个 Cloudflare 账户可以在 [cloudflare.pay](https://cloudflare.pay) 认领一个唯一的 handle，形如 `yourname.cloudflare.pay`。这个网址型 ID 就是你在 Agent 经济里的稳定身份。
+## 二、常见问题 FAQ
 
-更关键的是身份可以**向下委托**：你可以把身份延伸给具体的 Agent。比如一个研究型 Agent 可以住在 `research.yourname.cloudflare.pay`——商家一眼就能看出"这是哪个组织授权的哪个代理"。Agent 声明身份是完全可选的，但商家也有权决定是否优先与"有名有姓"的 Agent 做生意。Cloudflare 的类比是 VPN：匿名不等于不可信，但匿名者需要付出更多证明成本。
+### 注册（预订）之后多久能用？多久算申请成功？
+
+提交预订成功即刻生效——你会看到 handle 已保留的提示，这就是"申请成功"，没有额外的人工审核等待期（但 Cloudflare 保留事后拒绝的权利）。至于**钱包功能什么时候能真正用上**，官方只给了"soon / 未来几个月"的说法，没有公布确切时间表；上线时会通知所有已预订用户。任何声称"加急审核""付费提前开通"的服务都是骗局。
+
+### Cloudflare 钱包有什么用？我注册了有什么用？
+
+对普通用户，现阶段的价值就是**占住一个好名字**。功能上线后，它是两样东西：① 你在 Agent 经济里的稳定身份（收款、对外标识）；② 一个可以给 AI Agent 分配子钱包、设消费上限的稳定币钱包——让你的 Agent 能在你设定的额度内自主付费调用 API、购买内容。
 
 ...
 
 ---
 
-**[👉 继续阅读全文：Cloudflare Wallets 上线：给 AI Agent 发身份证和钱包，cloudflare.pay 账户名开抢](https://tools.cooconsbit.com/zh/articles/cloudflare-wallets-agent-wallet-guide?utm_source=github&utm_medium=referral)**
+**[👉 继续阅读全文：Cloudflare 钱包（Wallets）是什么、怎么注册？cloudflare.pay 抢注与使用全指南](https://tools.cooconsbit.com/zh/articles/cloudflare-wallets-agent-wallet-guide?utm_source=github&utm_medium=referral)**
 
 更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)
