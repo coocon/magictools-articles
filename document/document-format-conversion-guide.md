@@ -67,6 +67,55 @@ pandoc input.md -o output.pdf \
 
 ## Markdown → HTML
 
+Markdown 转 HTML 是最"无损"的转换，因为 Markdown 本来就是 HTML 的简化写法。
+
+### 静态博客生成
+
+主流方案：Hugo、Jekyll、Gatsby、Astro。以 Hugo 为例：
+
+```bash
+# 一条命令把整个 articles/ 目录转成网站
+hugo --source . --destination ./public
+
+# 生成的 public/ 包含完整的 HTML 站点，可直接部署
+```
+
+这类工具会自动处理代码高亮、目录生成、相关文章推荐等功能。
+
+### 单文件转换
+
+```bash
+# Pandoc 转换，嵌入完整样式（standalone 模式）
+pandoc input.md -o output.html --standalone
+
+# 引用外部样式文件
+pandoc input.md -o output.html --standalone --css=github-markdown.css
+```
+
+转换结果可以直接在浏览器打开，或嵌入到现有网页中。
+
+### 邮件模板
+
+把 Markdown 内容转成 HTML 后，注意邮件客户端对 CSS 支持极差，需要把所有样式内联化：
+
+```bash
+# 使用 juice 工具内联 CSS
+npm install -g juice
+pandoc input.md -o temp.html --standalone --css=email.css
+juice temp.html output-email.html
+```
+
+## HTML → Markdown
+
+这条路径最常用于：博客平台迁移（WordPress → Hexo/Hugo）、从网页提取内容归档、清洗爬虫抓取的内容。
+
+### 在线工具（推荐）
+
+[MagicTools HTML 转 Markdown](https://tools.cooconsbit.com/tools/html2md) 支持三种输入方式：
+- 直接粘贴 HTML 代码
+- 输入 URL 自动抓取网页
+- 粘贴富文本（从网页复制后粘贴）
+
 ...
 
 ---
