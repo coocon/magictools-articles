@@ -2,7 +2,7 @@
 
 > 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/bazi-time-calculation-pitfalls?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/bazi-time-calculation-pitfalls?utm_source=github&utm_medium=referral)**
 
-我们站上有个[五行排盘小工具](/zh/wuxing)，输入出生日期时间输出生辰八字。前几天收到用户反馈：
+我们站上有个[五行排盘小工具](/zh/tools/wuxing)，输入出生日期时间输出生辰八字。前几天收到用户反馈：
 
 > 1988-05-11 08:00 出生，正常应该是 戊辰 丁巳 丙寅 壬辰，你们算成了 戊寅 和 丙辰。
 
