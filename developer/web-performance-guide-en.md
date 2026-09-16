@@ -1,4 +1,4 @@
-# Web Performance Optimization: 15 Techniques to Speed Up Your Website
+# Web Performance Optimization: 15 Techniques, Plus a Lighthouse Test of Our Own Site (Mobile LCP 1.9s to 11.8s Across Pages)
 
 > 📍 Originally published at [MagicTools](https://tools.cooconsbit.com/en/articles/web-performance-guide-en?utm_source=github&utm_medium=referral). This mirror only carries a preview — **[read the full article →](https://tools.cooconsbit.com/en/articles/web-performance-guide-en?utm_source=github&utm_medium=referral)**
 
@@ -66,6 +66,6 @@ Serving a 1920px image to a 375px mobile screen wastes 5–10x the bandwidth nee
 
 ---
 
-**[👉 Continue reading: Web Performance Optimization: 15 Techniques to Speed Up Your Website](https://tools.cooconsbit.com/en/articles/web-performance-guide-en?utm_source=github&utm_medium=referral)**
+**[👉 Continue reading: Web Performance Optimization: 15 Techniques, Plus a Lighthouse Test of Our Own Site (Mobile LCP 1.9s to 11.8s Across Pages)](https://tools.cooconsbit.com/en/articles/web-performance-guide-en?utm_source=github&utm_medium=referral)**
 
 More articles: [tools.cooconsbit.com/articles](https://tools.cooconsbit.com/en/articles?utm_source=github&utm_medium=referral)

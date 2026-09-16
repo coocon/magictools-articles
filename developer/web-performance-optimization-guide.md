@@ -1,4 +1,4 @@
-# Web 性能优化完全指南：让网站加载速度提升 50% 的 15 个技巧
+# Web 性能优化完全指南：15 个技巧 + 本站 Lighthouse 实测，同站页面移动端 LCP 从 1.9 秒到 11.8 秒
 
 > 📍 本文首发于 [MagicTools 码农早餐](https://tools.cooconsbit.com/zh/articles/web-performance-optimization-guide?utm_source=github&utm_medium=referral)。镜像仓库仅收录预览，**[点此阅读全文 →](https://tools.cooconsbit.com/zh/articles/web-performance-optimization-guide?utm_source=github&utm_medium=referral)**
 
@@ -105,10 +105,30 @@ function App() {
 }
 ```
 
+代码分割可将首屏 JavaScript 包体积减少 40%~60%。
+
+### 技巧 6：关键 CSS 内联
+
+将首屏渲染所需的最少 CSS 直接内联到 `<head>` 中，消除渲染阻塞：
+
+```html
+<head>
+  <!-- 内联关键 CSS（通常 < 14KB） -->
+  <style>
+    /* 首屏布局和核心样式 */
+    body { margin: 0; font-family: system-ui; }
+    .hero { height: 100vh; display: flex; }
+  </style>
+
+  <!-- 非关键 CSS 异步加载 -->
+  <link rel="preload" href="styles.css" as="style" onload="this.rel='stylesheet'">
+</head>
+```
+
 ...
 
 ---
 
-**[👉 继续阅读全文：Web 性能优化完全指南：让网站加载速度提升 50% 的 15 个技巧](https://tools.cooconsbit.com/zh/articles/web-performance-optimization-guide?utm_source=github&utm_medium=referral)**
+**[👉 继续阅读全文：Web 性能优化完全指南：15 个技巧 + 本站 Lighthouse 实测，同站页面移动端 LCP 从 1.9 秒到 11.8 秒](https://tools.cooconsbit.com/zh/articles/web-performance-optimization-guide?utm_source=github&utm_medium=referral)**
 
 更多文章：[tools.cooconsbit.com/articles](https://tools.cooconsbit.com/zh/articles?utm_source=github&utm_medium=referral)
