@@ -74,3 +74,6 @@ gcp-*.json
 
 # 文章同步本地缓存（slug → payload hash），不入库
 /.articles-sync-cache.json
+
+# Excalidraw 字体由 scripts/copy-excalidraw-assets.mjs 在 predev/prebuild 时从 node_modules 复制
+/public/excalidraw-assets/
