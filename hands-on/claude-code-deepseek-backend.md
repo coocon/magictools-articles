@@ -64,6 +64,8 @@ export CLAUDE_CONFIG_DIR="$PWD/cc-config"
 | `deepseek-flash` | `deepseek-flash` | 1.44s |
 | `totally-made-up-model` | **HTTP 400** | 0.38s |
 
+`claude-opus*` → v4-pro、`claude-sonnet*`/`claude-haiku*` → flash，和文档一致。
+
 ...
 
 ---
