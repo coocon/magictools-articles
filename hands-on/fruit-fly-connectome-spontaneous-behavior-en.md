@@ -19,7 +19,7 @@ The stack I used has four parts. The first two are open-source projects Eon's wr
 
 | Component | Role | How I used it |
 |---|---|---|
-| FlyWire v783 + Shiu 2024 LIF model (Eon fly-brain) | Whole-brain spiking network: 138,639 neurons, ~5 million synapses | Unmodified, Brian2 C++ backend |
+| FlyWire v783 + Shiu 2024 LIF model (Eon fly-brain) | Whole-brain spiking network: 138,639 neurons, 15.09 million connected pairs (≈54.5 million synapses) | Unmodified, Brian2 C++ backend |
 | NeuroMechFly v2 (flygym) | Fly body in MuJoCo + CPG gait | Walking, turning, backing up |
 | flybody (Janelia / DeepMind) | A second body, flight-oriented | Flight footage; skipped in this article |
 | Descending neurons → motor commands | Translate brain output into leg movement | **Not released — I wrote my own** |

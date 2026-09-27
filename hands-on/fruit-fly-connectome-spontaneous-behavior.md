@@ -19,7 +19,7 @@
 
 | 组件 | 作用 | 本文用法 |
 |---|---|---|
-| FlyWire v783 + Shiu 2024 LIF 模型（Eon fly-brain） | 138,639 个神经元、约 500 万条突触的全脑脉冲网络 | 原样使用，Brian2 C++ 后端 |
+| FlyWire v783 + Shiu 2024 LIF 模型（Eon fly-brain） | 138,639 个神经元、1,509 万对连接（约 5,450 万个突触）的全脑脉冲网络 | 原样使用，Brian2 C++ 后端 |
 | NeuroMechFly v2（flygym） | MuJoCo 里的果蝇身体 + CPG 步态 | 行走、转向、后退 |
 | flybody（Janelia / DeepMind） | 另一套身体，偏飞行 | 飞行素材，本文略过 |
 | 下行神经元 → 运动指令 | 把脑的输出翻译成腿的动作 | **未开源，我自己写** |
@@ -54,8 +54,6 @@ MPS 没有 CSR 稀疏内核，只能退化成 gather + index_add，结果比 Bri
 **排除项：** 不做运动神经元级仿真（没有腹神经索数据）；flybody 的训练策略是 TF 2.8，Apple Silicon 装不上，只导出权重用 numpy 推理，行走策略因缺 3 GB 参考轨迹数据没做。
 
 ## 落地/实测过程
-
-### 一、刺激驱动：连接组的接线是通的
 
 ...
 
