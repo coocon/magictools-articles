@@ -12,6 +12,7 @@ The short version:
 - **With no input, the original model is completely silent.** It is a passive responder; it does not move on its own.
 - After adding two pieces of basic physiology — membrane noise and spike-frequency adaptation — it does switch **spontaneously** between resting, walking forward, walking backward, grooming and startle. But version 1 keeps time like a metronome. Version 2 changes three things, and only then does the rhythm turn irregular, with bouts of varied length, closer to a living animal.
 - Every one of these "behaviors" passes through a low-dimensional interface I wrote by hand (descending neurons → actions). **This is not a motor-neuron-level simulation.** Keep that in mind when reading the numbers below.
+- **2026-10-17 update**: I rented an RTX 4090 and did two things — rendered a 3D video that lights up the neurons driving the current action, and measured GPU-parallel simulation of the fly body, which saturates at about 420,000 steps/s above 4,096 worlds. See the [update section](#2026-10-17-update-drawing-the-causal-chain-on-an-rtx-4090) at the end.
 
 ## Background: what exactly got "uploaded"
 
@@ -23,8 +24,6 @@ The stack I used has four parts. The first two are open-source projects Eon's wr
 | NeuroMechFly v2 (flygym) | Fly body in MuJoCo + CPG gait | Walking, turning, backing up |
 | flybody (Janelia / DeepMind) | A second body, flight-oriented | Flight footage; skipped in this article |
 | Descending neurons → motor commands | Translate brain output into leg movement | **Not released — I wrote my own** |
-
-FlyWire covers the brain only, not the ventral nerve cord (the fly's spinal cord), so there is a built-in gap between brain and legs. The last signal the brain produces is the firing of descending neurons (DNs). Everyone replicating this has to fill in the path from DNs to joint torques themselves.
 
 ...
 
